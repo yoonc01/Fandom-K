@@ -1,5 +1,5 @@
-const fs = require('fs');
-const axios = require('axios');
+import fs from 'fs';
+import axios from 'axios';
 
 const token = process.env.GITHUB_TOKEN;
 const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY.split('/');
