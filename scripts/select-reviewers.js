@@ -1,4 +1,5 @@
-import axios from 'axios';
+const fs = require('fs');
+const axios = require('axios');
 
 const token = process.env.GITHUB_TOKEN;
 const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY.split('/');
@@ -45,6 +46,27 @@ async function assignReviewers(prNumber, reviewers) {
   }
 }
 
+function getPullRequestNumber() {
+  try {
+    const eventPath = process.env.GITHUB_EVENT_PATH;
+    if (!eventPath) {
+      throw new Error('GITHUB_EVENT_PATH is not defined.');
+    }
+
+    const eventData = JSON.parse(fs.readFileSync(eventPath, 'utf8'));
+    const prNumber = eventData.pull_request?.number;
+
+    if (!prNumber) {
+      throw new Error('Pull request number not found in event data.');
+    }
+
+    return prNumber;
+  } catch (error) {
+    console.error('Error fetching PR number:', error.message);
+    process.exit(1);
+  }
+}
+
 async function main() {
   try {
     const collaborators = await getCollaborators();
@@ -62,12 +84,7 @@ async function main() {
     console.log('Selected reviewers:', selectedReviewers);
 
     // PR 번호 가져오기
-    const prNumber = process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
-    if (!prNumber) {
-      console.error('PR number could not be determined.');
-      process.exit(1);
-    }
-
+    const prNumber = getPullRequestNumber();
     await assignReviewers(prNumber, selectedReviewers);
   } catch (error) {
     console.error('Error in main execution:', error.message);
