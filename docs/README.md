@@ -4,6 +4,9 @@
 
 tailwind css 설치해 놓았습니다!
 
+Pr reviewers 2명 자동 설정 기능을 추가했습니다!
+Pr reviewers 설정은 PR이 열릴 때만 동작합니다! 만약 PR 올린 후에 내용을 바꾸고 싶다! 하시면 PR을 닫지 마시고 PR을 올린 Branch에서 내용 수정 후 push해주시면 PR에 적용됩니다!
+
 ## 프로젝트 색상 정의
 
 figma의 색상이 동일 이름으로 설정되어 있는 것이 많아 gpt에게 색깔 이름을 물어봐 재정의 후 tailwind에 저장해 놓았습니다!
