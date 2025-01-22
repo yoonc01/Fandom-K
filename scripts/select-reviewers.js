@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const token = process.env.GITHUB_TOKEN;
 const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY.split('/');
+const prAuthor = process.env.GITHUB_ACTOR; // PR 작성자
 
 async function getCollaborators() {
   try {
@@ -34,6 +35,7 @@ async function assignReviewers(prNumber, reviewers) {
         },
       }
     );
+    console.log(`Reviewers successfully assigned: ${reviewers}`);
   } catch (error) {
     console.error(
       'Error assigning reviewers:',
@@ -46,13 +48,26 @@ async function assignReviewers(prNumber, reviewers) {
 async function main() {
   try {
     const collaborators = await getCollaborators();
-    const selectedReviewers = collaborators
+
+    // PR 작성자 제외
+    const filteredCollaborators = collaborators.filter(
+      (user) => user !== prAuthor
+    );
+
+    // 무작위로 2명 선택
+    const selectedReviewers = filteredCollaborators
       .sort(() => Math.random() - 0.5)
       .slice(0, 2);
 
     console.log('Selected reviewers:', selectedReviewers);
 
-    const prNumber = process.env.GITHUB_REF.split('/').pop();
+    // PR 번호 가져오기
+    const prNumber = process.env.GITHUB_EVENT_PULL_REQUEST_NUMBER;
+    if (!prNumber) {
+      console.error('PR number could not be determined.');
+      process.exit(1);
+    }
+
     await assignReviewers(prNumber, selectedReviewers);
   } catch (error) {
     console.error('Error in main execution:', error.message);
