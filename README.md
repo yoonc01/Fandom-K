@@ -3,41 +3,79 @@
 > 개발기간: 2025.01.24 ~
 
 ## Contributors
-
 <table align="center">
+  <thead>
+    <tr>
+      <th align="center" width="250px;">팀원</th>
+      <th align="center" width="600px;">역할</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td align="center">
+      <td align="center" height="300px">
         <a href="https://github.com/hyeonjiroh">
-          <img src="https://avatars.githubusercontent.com/u/108173863?v=4" width="200px;" height="200px;" alt="노현지" />
+          <img src="https://avatars.githubusercontent.com/u/108173863?v=4" width="150px;" height="150px;" alt="노현지" />
           <h3><b>노현지</b></h3>
         </a>
       </td>
-      <td align="center">
-        <a href="https://github.com/doctor-taco">
-          <img src="https://avatars.githubusercontent.com/u/100111506?v=4" width="200px;" height="200px;" alt="박재현" />
-          <h3><b>박재현</b></h3>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/juha399">
-          <img src="https://avatars.githubusercontent.com/u/174230233?v=4" width="200px;" height="200px;" alt="신주하" />
-          <h3><b>신주하</b></h3>
-        </a>
+      <td>
+        <ul>
+          <li>목록 페이지 - 후원 리스트 섹션</li><br>
+          <li>목록 페이지 - 후원 모달</li>
+        </ul>
       </td>
     </tr>
     <tr>
-      <td align="center">
+      <td align="center" height="300px">
+        <a href="https://github.com/doctor-taco">
+          <img src="https://avatars.githubusercontent.com/u/100111506?v=4" width="150px;" height="150px;" alt="박재현" />
+          <h3><b>박재현</b></h3>
+        </a>
+      </td>
+      <td>
+        <ul>
+          <li>목록 페이지 - 크레딧 섹션</li><br>
+          <li>목록 페이지 - 크레딧 충전 모달</li><br>
+          <li>목록 페이지 - 크레딧 부족 모달</li>
+        </ul>
+      </td>  
+    </tr>
+    <tr>
+      <td align="center" height="300px">
+        <a href="https://github.com/juha399">
+          <img src="https://avatars.githubusercontent.com/u/174230233?v=4" width="150px;" height="150px;" alt="신주하" />
+          <h3><b>신주하</b></h3>
+        </a>
+      </td>
+      <td>
+          <li>마이페이지 페이지 - 크레딧 섹션</li><br>
+          <li>이미지 컴포넌트(공통)</li>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" height="300px">
         <a href="https://github.com/yoonc01">
-          <img src="https://avatars.githubusercontent.com/u/143938662?v=4" width="200px;" height="200px;" alt="윤효준" />
+          <img src="https://avatars.githubusercontent.com/u/143938662?v=4" width="150px;" height="150px;" alt="윤효준" />
           <h3><b>윤효준</b></h3>
         </a>
       </td>
-      <td align="center">
+      <td>
+          <li>랜딩 페이지</li><br>
+          <li>Nav 컴포넌트(공통)</li><br>
+          <li>모달 컴포넌트(공통)</li><br>
+          <li>버튼 컴포넌트(공통)</li>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" height="300px">
         <a href="https://github.com/jihye5081">
-          <img src="https://avatars.githubusercontent.com/u/87625901?v=4" width="200px;" height="200px;" alt="임지혜" />
+          <img src="https://avatars.githubusercontent.com/u/87625901?v=4" width="150px;" height="150px;" alt="임지혜" />
           <h3><b>임지혜</b></h3>
         </a>
+      </td>
+      <td>
+          <li>목록 페이지 - 차트 리스트 섹션</li><br>
+          <li>목록 페이지 - 투표 모달</li>
       </td>
     </tr>
   </tbody>
@@ -48,7 +86,7 @@
 ### Commit Message
 
 ```
-타입/ 요약
+타입: 요약
 ```
 
 #### 타입
