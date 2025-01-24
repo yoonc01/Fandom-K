@@ -1,10 +1,10 @@
 const donation = {
   id: 572,
   idolId: 1186,
-  title: '민지야 생일 축하해',
+  title: '생일 광고',
   subtitle: '강남역 광고',
   targetDonation: 100000,
-  receivedDonations: 0,
+  receivedDonations: 60000,
   createdAt: '2024-09-25T12:08:47.530Z',
   deadline: '2024-09-26T23:59:59.000Z',
   status: false,
@@ -21,16 +21,24 @@ const donation = {
 
 function DonationCard() {
   return (
-    <>
-      <div>
-        <img src={donation.idol.profilePicture} alt={donation.idol.name} />
+    <div class="w-[282px]">
+      <div class="w-full h-[282px] relative overflow-hidden flex items-center justify-center rounded-t-lg">
+        <img
+          class="object-contain"
+          src={donation.idol.profilePicture}
+          alt={donation.idol.name}
+        />
+        <div class="w-full h-1/3 absolute bottom-0 bg-gradient-to-t from-black to-transparent"></div>
       </div>
-      <div>
+      <div class="w-full h-[97px] bg-black">
         <ul>
-          <li>{}</li>
+          <li class="font-pretendard text-[16px] font-regular text-silverGray">
+            {donation.subtitle}
+          </li>
+          <li class="font-pretendard font-medium text-[18px] text-white">{`${donation.idol.group} ${donation.idol.name} ${donation.title}`}</li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

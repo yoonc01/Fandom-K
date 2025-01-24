@@ -1,13 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from '@/pages/landingPage/LandingPage';
 import ListPage from './pages/list/ListPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="list" element={<ListPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
