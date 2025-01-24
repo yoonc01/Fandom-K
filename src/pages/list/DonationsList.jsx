@@ -1,6 +1,6 @@
 import DonationCard from './DonationCard';
 
-function DonationsList({ items }) {
+function DonationsList() {
   return (
     <ul>
       <li>

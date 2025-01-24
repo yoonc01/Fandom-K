@@ -22,6 +22,11 @@ export default {
         '2-percent': '0.02em', // Letter spacing 2%
         'minus-0.17px': '-0.17px', // Letter spacing -0.17px
       },
+      screens: {
+        pc: '1200px',
+        tablet: '768px',
+        mobile: '375px',
+      },
     },
   },
   plugins: [],
