@@ -18,6 +18,10 @@ export const rechgCredits = (amount) => {
 export const spendCredits = (amount) => {
   if (amount > 0) {
     const currentCredits = getCredits();
+    if (amount > currentCredits) {
+      return 'NOT-ENOUGH';
+    }
+
     const newCredits = Math.max(currentCredits - amount, 0);
     localStorage.setItem('credits', newCredits);
   }
