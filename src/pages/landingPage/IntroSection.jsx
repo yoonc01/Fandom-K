@@ -1,6 +1,7 @@
 import fandomKLogo from '@/assets/icons/FandomKLogo.svg';
 import idolImage from '@/assets/images/introSectionIdolImage.png';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
+import PrimaryButton from '@/components/PrimaryButton';
 
 function IntroSection() {
   return (
@@ -24,9 +25,13 @@ function IntroSection() {
         alt="idolImage"
         className="w-[392px] mt-[20px] h-auto opacity-70 top-[100px] tablet:w-[712px] pc:absolute pc:w-[932px] select-none"
       />
-      <button className="z-10 mt-[40px] w-[230px] h-[48px] bg-gradient-to-r from-[#F86F65] to-pinkPunch rounded-[3px] text-[14px] z-10 tablet:mt-[100px] tablet:w-[477px] pc:mt-[584px]">
+      <PrimaryButton
+        styles={
+          'z-10 mt-[40px] w-[230px] h-[48px] rounded-[3px] text-[14px] z-10 md:mt-[100px] md:w-[477px] lg:mt-[584px]'
+        }
+      >
         지금 시작하기
-      </button>
+      </PrimaryButton>
     </div>
   );
 }
