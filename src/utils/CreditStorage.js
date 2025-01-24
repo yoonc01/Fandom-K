@@ -1,6 +1,6 @@
-export const initCredits = () => {
+export const initCredits = (initialCreditValue = 50) => {
   if (!localStorage.getItem('credits')) {
-    localStorage.setItem('credits', 50);
+    localStorage.setItem('credits', initialCreditValue);
   }
 };
 
