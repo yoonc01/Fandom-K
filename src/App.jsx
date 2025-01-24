@@ -1,8 +1,13 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ListPage from './pages/list/ListPage';
+
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-blue-100">
-      <h1 className="text-4xl font-bold text-blue-600">Hello, Tailwind!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="list" element={<ListPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
