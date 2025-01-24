@@ -14,3 +14,11 @@ export const rechgCredits = (amount) => {
     localStorage.setItem('credits', currentCredits + amount);
   }
 };
+
+export const spendCredits = (amount) => {
+  if (amount > 0) {
+    const currentCredits = getCredits();
+    const newCredits = Math.max(currentCredits - amount, 0);
+    localStorage.setItem('credits', newCredits);
+  }
+};
