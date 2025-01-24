@@ -18,12 +18,12 @@ function IntroSection() {
       <img
         src={fandomKLogo}
         alt="FandomKLogo"
-        className="z-10 mt-[20px] w-[236px] md:w-[324px] lg:w-[512px] select-none"
+        className="z-10 mt-[20px] w-[236px] tablet:w-[324px] pc:w-[512px] select-none"
       />
       <img
         src={idolImage}
         alt="idolImage"
-        className="w-[392px] mt-[20px] h-auto opacity-70 top-[100px] md:w-[712px] lg:absolute lg:w-[932px] select-none"
+        className="w-[392px] mt-[20px] h-auto opacity-70 top-[100px] tablet:w-[712px] pc:absolute pc:w-[932px] select-none"
       />
       <PrimaryButton
         styles={
