@@ -3,3 +3,7 @@ export const initCredits = () => {
     localStorage.setItem('credits', 50);
   }
 };
+
+export const getCredits = () => {
+  return parseInt(localStorage.getItem('credits'), 10) || 0;
+};
