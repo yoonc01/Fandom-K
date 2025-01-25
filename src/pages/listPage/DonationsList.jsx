@@ -1,4 +1,4 @@
-import DonationCard from '@/pages/list/DonationCard';
+import DonationCard from '@/pages/listPage/DonationCard';
 
 function DonationsList() {
   return (

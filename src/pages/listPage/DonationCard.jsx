@@ -1,4 +1,4 @@
-import CreditIcon from '@/assets/icons/Credit.svg';
+import creditIcon from '@/assets/icons/credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
 const donation = {
@@ -67,7 +67,7 @@ function DonationCard() {
             <div class="flex justify-between">
               {/* 현재 후원된 크레딧 개수 */}
               <div class="flex items-center">
-                <img src={CreditIcon} alt="credit" />
+                <img src={creditIcon} alt="credit" />
                 <div class="font-pretendard font-[300] text-[12px] text-coralRed">
                   {receivedCredit}
                 </div>

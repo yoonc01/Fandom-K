@@ -1,4 +1,4 @@
-import fandomKLogo from '@/assets/icons/FandomKLogo.svg';
+import fandomKLogo from '@/assets/icons/fandomKLogo.svg';
 import idolImage from '@/assets/images/introSectionIdolImage.png';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import PrimaryButton from '@/components/PrimaryButton';
