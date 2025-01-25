@@ -76,12 +76,28 @@ async function main() {
       (user) => user !== prAuthor
     );
 
-    // 무작위로 2명 선택
-    const selectedReviewers = filteredCollaborators
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 2);
+    const totalCollaborators = filteredCollaborators.length;
 
-    console.log('Selected reviewers:', selectedReviewers);
+    // 배열에 요소가 2명 미만이면 선택 불가능
+    if (totalCollaborators < 2) {
+      throw new Error('At least two collaborators are required.');
+    }
+
+    let firstIdx, secondIdx;
+
+    // 무작위로 두 인덱스를 선택하되, 서로 달라야 함
+    do {
+      firstIdx = Math.floor(Math.random() * totalCollaborators);
+      secondIdx = Math.floor(Math.random() * totalCollaborators);
+    } while (firstIdx === secondIdx);
+
+    // 무작위로 선택된 2명의 리뷰어
+    const selectedReviewers = [
+      filteredCollaborators[firstIdx],
+      filteredCollaborators[secondIdx],
+    ];
+
+    console.log(selectedReviewers);
 
     // PR 번호 가져오기
     const prNumber = getPullRequestNumber();
