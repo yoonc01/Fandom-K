@@ -8,13 +8,13 @@ import { initCredits } from '@/utils/CreditStorage.js';
 function IntroSection() {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    initCredits();
+  const handleClick = (doInitCredits) => {
+    if (doInitCredits) initCredits();
     navigate('/list');
   };
 
   return (
-    <div className="py-[140px] relative flex flex-col items-center w-full bg-midnightBlack text-softWhite font-pretendard">
+    <div className="py-[140px] relative flex flex-col items-center w-full min-h-screen bg-midnightBlack text-softWhite font-pretendard">
       <img
         src={leftTopGradient}
         alt="leftTopGradient"
@@ -27,7 +27,10 @@ function IntroSection() {
       <img
         src={fandomKLogo}
         alt="FandomKLogo"
-        className="z-10 mt-[20px] w-[236px] tablet:w-[324px] pc:w-[512px] select-none"
+        className="cursor-pointer z-10 mt-[20px] w-[236px] tablet:w-[324px] pc:w-[512px] select-none"
+        onClick={() => {
+          handleClick(false);
+        }}
       />
       <img
         src={idolImage}
@@ -38,7 +41,9 @@ function IntroSection() {
         styles={
           'z-10 mt-[40px] w-[230px] h-[48px] rounded-[3px] text-[14px] z-10 md:mt-[100px] md:w-[477px] lg:mt-[584px]'
         }
-        onClickFunc={handleClick}
+        onClickFunc={() => {
+          handleClick(true);
+        }}
       >
         지금 시작하기
       </PrimaryButton>
