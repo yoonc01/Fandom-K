@@ -61,7 +61,7 @@ function DonationCard() {
             {subtitle}
           </li>
           {/* 후원 제목 */}
-          <li class="font-pretendard font-regular text-[18px] text-white">{`${group} ${name} ${title}`}</li>
+          <li class="font-pretendard font-regular text-[18px] text-softWhite">{`${group} ${name} ${title}`}</li>
           {/* 후원 현황 */}
           <li class="w-full flex flex-col gap-1 absolute bottom-0">
             <div class="flex justify-between">
@@ -73,7 +73,7 @@ function DonationCard() {
                 </div>
               </div>
               {/* 남은 후원 일자 */}
-              <div class="font-pretendard font-[300] text-[12px] text-white">{`${remainingDays}일 남음`}</div>
+              <div class="font-pretendard font-[300] text-[12px] text-softWhite">{`${remainingDays}일 남음`}</div>
             </div>
             {/* 후원 현황 차트 */}
             <div class="w-full h-[1.5px] bg-white">
