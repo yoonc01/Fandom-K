@@ -3,6 +3,7 @@
 > 개발기간: 2025.01.24 ~
 
 ## Contributors
+
 <table align="center">
   <thead>
     <tr>
@@ -94,10 +95,16 @@
 - feat : 새로운 기능 추가
 - fix : 버그 수정
 - docs : 문서 내용 변경
-- style : 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우 등
+- style : 코드 스타일 변경(코드 포메팅, 세미콜론 누락)
+- design: 사용자 UI 디자인 변경(CSS 등)
 - refactor : 코드 리팩토링
 - test : 테스트 코드 작성
+- build : 빌드 파일 수정
+- ci : CI 설정 파일 수정
+- perf : 성능 개선
 - chore : 빌드 수정, 패키지 매니저 설정, 운영 코드 변경이 없는 경우 등
+- rename : 파일명 혹은 폴더명을 수젇한 경우
+- remove : 파일을 삭제만 한 경우
 
 ### 브랜치명
 
@@ -129,20 +136,26 @@ feat/#27/Button
 <!-- 예시 -->
 feat : #27/Component Base - Button 기능 개발
 ```
+
 ## 프로젝트 구조
+
 ```
 📦 src
-├──── apis               # API 관리
+├──── apis               # API 관련 함수 및 관리 파일
 │
 ├──── assets             # 이미지 및 정적 파일 관리
-│     ├── icons          # 아이콘 파일
+│     ├── icons          # 아이콘 관련 파일
 │     │
-│     └── images         # 이미지 파일
+│     └── images         # 일반 이미지 파일
 │
 ├──── components         # 공통 컴포넌트 관리
 │
+├──── utils              # 유틸리티 함수 관리
+│
 └──── pages              # 라우터 페이지 관리
-      ├── mypage         # 마이페이지 관련 파일
+      ├── landingPage    # 랜딩 페이지 관련 파일
       │
-      └── list           # 리스트 페이지
- ```
+      ├── listPage       # 리스트 페이지 관련 파일
+      │
+      └── myPage         # 마이페이지 관련 파일
+```
