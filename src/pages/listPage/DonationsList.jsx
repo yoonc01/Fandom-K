@@ -89,14 +89,12 @@ function DonationsList() {
   return (
     <div class="w-[1350px] mx-auto flex flex-col gap-8">
       <div class="flex items-center justify-between">
-        <div>
-          <button
-            type="button"
-            class="bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
-          >
-            <img src={prevIcon} alt="이전" />
-          </button>
-        </div>
+        <button
+          type="button"
+          class="bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
+        >
+          <img src={prevIcon} alt="이전" />
+        </button>
         <div class="w-[1200px] flex flex-col gap-8">
           <div class="font-pretendard font-medium text-[24px] text-softWhite">
             후원을 기다리는 조공
@@ -109,14 +107,12 @@ function DonationsList() {
             ))}
           </ul>
         </div>
-        <div>
-          <button
-            type="button"
-            class="bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
-          >
-            <img src={nextIcon} alt="다음" />
-          </button>
-        </div>
+        <button
+          type="button"
+          class="bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
+        >
+          <img src={nextIcon} alt="다음" />
+        </button>
       </div>
     </div>
   );
