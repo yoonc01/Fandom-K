@@ -1,4 +1,4 @@
-import CreditIcon from '@/assets/icons/donation_credit.svg';
+import CreditIcon from '@/assets/icons/Credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
 const donation = {
