@@ -23,7 +23,7 @@ const donation = {
 };
 
 function DonationCard() {
-  const nowDonation =
+  const currentDonationPercentage =
     (donation.receivedDonations / donation.targetDonation) * 100;
 
   const receivedCredit = donation.receivedDonations.toLocaleString();
@@ -80,7 +80,7 @@ function DonationCard() {
             <div class="w-full h-[1.5px] bg-white">
               <div
                 class="h-full bg-coralRed"
-                style={{ width: `${nowDonation}%` }}
+                style={{ width: `${currentDonationPercentage}%` }}
               ></div>
             </div>
           </li>
