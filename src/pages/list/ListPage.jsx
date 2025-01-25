@@ -1,4 +1,4 @@
-import DonationsList from './DonationsList';
+import DonationsList from '@/pages/list/DonationsList';
 
 function ListPage() {
   return (

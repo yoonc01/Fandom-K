@@ -1,5 +1,5 @@
-import CreditIcon from '../../assets/icons/donation_credit.svg';
-import PrimaryButton from '../../components/PrimaryButton';
+import CreditIcon from '@/assets/icons/Credit.svg';
+import PrimaryButton from '@/components/PrimaryButton';
 
 const donation = {
   id: 572,
@@ -23,25 +23,24 @@ const donation = {
 };
 
 function DonationCard() {
-  const nowDonation =
-    (donation.receivedDonations / donation.targetDonation) * 100;
+  const { receivedDonations, targetDonation, subtitle, title, idol, deadline } =
+    donation;
+  const { name, group, profilePicture } = idol;
 
-  const receivedCredit = donation.receivedDonations.toLocaleString();
+  const currentDonationPercentage = (receivedDonations / targetDonation) * 100;
 
-  const deadline = new Date(donation.deadline);
+  const receivedCredit = receivedDonations.toLocaleString();
+
+  const deadlineDate = new Date(deadline);
   const today = new Date();
-  const diffTime = deadline - today;
+  const diffTime = deadlineDate - today;
   const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return (
     <div class="w-[282px] relative flex flex-col bg-black">
       {/* 후원 아이돌 이미지 */}
       <div class="w-full h-[293px] relative overflow-hidden flex items-center justify-center rounded-t-lg">
-        <img
-          class="object-contain"
-          src={donation.idol.profilePicture}
-          alt={donation.idol.name}
-        />
+        <img class="object-contain" src={profilePicture} alt={name} />
         {/* 후원 아이돌 이미지 그라데이션 효과 */}
         <div class="w-full h-1/3 absolute flex justify-center bottom-0 bg-gradient-to-t from-black to-transparent">
           {/* 후원하기 버튼 */}
@@ -59,10 +58,10 @@ function DonationCard() {
         <ul>
           {/* 후원 부제목 */}
           <li class="font-pretendard text-[16px] font-[300] text-silverGray">
-            {donation.subtitle}
+            {subtitle}
           </li>
           {/* 후원 제목 */}
-          <li class="font-pretendard font-regular text-[18px] text-white">{`${donation.idol.group} ${donation.idol.name} ${donation.title}`}</li>
+          <li class="font-pretendard font-regular text-[18px] text-white">{`${group} ${name} ${title}`}</li>
           {/* 후원 현황 */}
           <li class="w-full flex flex-col gap-1 absolute bottom-0">
             <div class="flex justify-between">
@@ -80,7 +79,7 @@ function DonationCard() {
             <div class="w-full h-[1.5px] bg-white">
               <div
                 class="h-full bg-coralRed"
-                style={{ width: `${nowDonation}%` }}
+                style={{ width: `${currentDonationPercentage}%` }}
               ></div>
             </div>
           </li>
