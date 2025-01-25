@@ -1,5 +1,5 @@
-import CreditIcon from '../../assets/icons/donation_credit.svg';
-import PrimaryButton from '../../components/PrimaryButton';
+import CreditIcon from '@/assets/icons/donation_credit.svg';
+import PrimaryButton from '@/components/PrimaryButton';
 
 const donation = {
   id: 572,
