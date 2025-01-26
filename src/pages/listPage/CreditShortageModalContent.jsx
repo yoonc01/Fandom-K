@@ -3,7 +3,7 @@ import PrimaryButton from '@/components/PrimaryButton.jsx';
 export default function CreditShortageModalContent() {
   return (
     <div className="bg-black w-[295px] h-[243px] flex flex-col items-center font-pretendard text-white">
-      <div className="w-[138px] h-[115px] bg-[url(@/assets/icons/credit.svg)] bg-cover bg-no-repeat bg-[center_top_-50px]" />
+      <div className="w-[138px] h-[115px] bg-[url(@/assets/icons/credit.svg)] bg-cover bg-no-repeat bg-[left_9.86px_top_-50px]" />
       <p className="my-[31px] mx-auto font-regular text-[16px]">
         앗! 투표하기 위한 <span className="text-coralRed">크레딧</span>이
         부족해요
