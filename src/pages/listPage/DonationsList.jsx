@@ -118,7 +118,7 @@ function DonationsList() {
           <div className="font-pretendard font-medium text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
             후원을 기다리는 조공
           </div>
-          <div className="overflow-x-auto whitespace-nowrap">
+          <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
             <div className="inline-flex pc:grid pc:grid-cols-4 gap-2 tablet:gap-4 pc:gap-6">
               {donations.map((donation) => (
                 <div key={donation.id}>
