@@ -1,6 +1,6 @@
-import { getCredits } from '../../utils/CreditStorage';
+import { getCredits } from '@/utils/CreditStorage';
 
-export default function CreditSection() {
+export default function CreditSection({ onRechargeClick }) {
   return (
     <div className="h-[87px] pl-[70px] pr-[78px] border border-[#C1BECA] rounded-lg flex items-center justify-between w-full max-w-[1200px] min-w-[327px] pc:h-[131px] tablet:h-[131px] mt-[16px] mb-[40px] tablet:mt-[0] tablet:mb-[64px] pc:my-[50px]">
       <div className="flex flex-col items-start">
@@ -14,7 +14,10 @@ export default function CreditSection() {
           </p>
         </div>
       </div>
-      <p className="font-pretendard font-bold text-coralRed text-[13px] pc:text-[16px] tablet:text-[16px]">
+      <p
+        className="font-pretendard font-bold text-coralRed text-[13px] pc:text-[16px] tablet:text-[16px]"
+        onClick={onRechargeClick}
+      >
         충전하기
       </p>
     </div>
