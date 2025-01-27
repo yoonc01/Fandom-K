@@ -24,15 +24,24 @@ export function ListPage() {
       title: '크레딧 충전하기',
       content: <RechgModalContent />,
     },
-    creditShortage: {
+
+    'NOT-ENOUGH': {
       title: '',
       content: <CreditShortageModalContent />,
     },
   };
 
+  const onCreditShortageClick = () => {
+    setCurrentModal('NOT-ENOUGH');
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="bg-midnightBlack flex flex-col items-center">
-      <CreditSection onRechargeClick={() => openModal('recharge')} />
+      <CreditSection
+        onRechargeClick={() => openModal('recharge')}
+        onCreditShortageClick={() => openModal('NOT-ENOUGH')}
+      />
       <DonationsList />
 
       {isModalOpen && currentModal && (
