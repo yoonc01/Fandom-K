@@ -5,7 +5,8 @@ export const initCredits = (initialCreditValue = 50) => {
 };
 
 export const getCredits = () => {
-  return parseInt(localStorage.getItem('credits'), 10) || 0;
+  const credits = parseInt(localStorage.getItem('credits'), 10) || 0;
+  return credits.toLocaleString();
 };
 
 export const rechgCredits = (amount) => {
