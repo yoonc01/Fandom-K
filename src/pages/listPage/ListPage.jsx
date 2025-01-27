@@ -2,7 +2,7 @@ import DonationsList from '@/pages/listPage/DonationsList';
 
 function ListPage() {
   return (
-    <div class="bg-midnightBlack">
+    <div className="bg-midnightBlack">
       <DonationsList />
     </div>
   );
