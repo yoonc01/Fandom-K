@@ -16,9 +16,9 @@ function DonationCard({ donation }) {
   const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return (
-    <div class="w-[158px] mobile:w-[282px] relative flex flex-col gap-[10px] mobile:gap-3 bg-midnightBlack">
+    <div class="w-[158px] tablet:w-[282px] relative flex flex-col gap-[10px] tablet:gap-3 bg-midnightBlack font-pretendard">
       {/* 후원 아이돌 이미지 */}
-      <div class="w-full h-[206px] mobile:h-[293px] relative overflow-hidden flex items-center justify-center rounded-t-lg">
+      <div class="w-full h-[206px] tablet:h-[293px] relative overflow-hidden flex items-center justify-center rounded-t-lg">
         <img
           class="w-full h-full object-cover"
           src={profilePicture}
@@ -29,7 +29,7 @@ function DonationCard({ donation }) {
           {/* 후원하기 버튼 */}
           <PrimaryButton
             styles={
-              'w-[142px] mobile:w-[234px] h-[31px] mobile:h-[40px] absolute bottom-[8px] mobile:bottom-[20px] font-pretendard font-medium text-[13px] text-white'
+              'w-[142px] tablet:w-[234px] h-[31px] tablet:h-[40px] absolute bottom-[8px] tablet:bottom-[20px] font-medium text-[13px] text-white'
             }
           >
             후원하기
@@ -37,26 +37,26 @@ function DonationCard({ donation }) {
         </div>
       </div>
       {/* 후원 정보 */}
-      <div class="w-full h-[87px] mobile:h-[97px] relative bg-black">
+      <div class="w-full h-[87px] tablet:h-[97px] relative bg-black">
         <ul>
           {/* 후원 부제목 */}
-          <li class="font-pretendard text-[12px] mobile:text-[16px] font-[300] text-silverGray">
+          <li class="text-[12px] tablet:text-[16px] font-[300] text-silverGray">
             {subtitle}
           </li>
           {/* 후원 제목 */}
-          <li class="font-pretendard font-regular text-[14px] mobile:text-[18px] text-softWhite">{`${group} ${name} ${title}`}</li>
+          <li class="font-regular text-[14px] tablet:text-[18px] text-softWhite">{`${group} ${name} ${title}`}</li>
           {/* 후원 현황 */}
           <li class="w-full flex flex-col gap-1 absolute bottom-0">
             <div class="flex justify-between">
               {/* 현재 후원된 크레딧 개수 */}
               <div class="flex items-center">
                 <img src={creditIcon} alt="credit" />
-                <div class="font-pretendard font-[300] text-[12px] text-coralRed">
+                <div class="font-[300] text-[12px] text-coralRed">
                   {receivedCredit}
                 </div>
               </div>
               {/* 남은 후원 일자 */}
-              <div class="font-pretendard font-[300] text-[12px] text-softWhite">{`${remainingDays}일 남음`}</div>
+              <div class="font-[300] text-[12px] text-softWhite">{`${remainingDays}일 남음`}</div>
             </div>
             {/* 후원 현황 차트 */}
             <div class="w-full h-[1.5px] bg-white">
