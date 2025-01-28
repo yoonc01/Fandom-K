@@ -4,6 +4,7 @@ import CreditSection from '@/pages/listPage/CreditSection';
 import RechgModalContent from '@/pages/listPage/RechgModalContent';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
+import MonthlyChart from '@/pages/listPage/MonthlyChart';
 
 export function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,6 +50,8 @@ export function ListPage() {
           {modalTypes[currentModal].content}
         </Modal>
       )}
+
+      <MonthlyChart />
     </div>
   );
 }
