@@ -19,7 +19,7 @@ function Modal({ title, onClose, children }) {
           onClick={onClose}
         />
         {title && (
-          <div className="px-[2px] w-full h-[24px] leading-[24px] text-[18px] font-semiBold">
+          <div className="px-[2px] w-full h-[24px] leading-[24px] font-pretendard text-[18px] font-semiBold text-softWhite">
             {title}
           </div>
         )}
