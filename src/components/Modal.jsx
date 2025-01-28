@@ -10,7 +10,7 @@ function Modal({ title, onClose, children }) {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-black/80">
+    <div className="fixed top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-black/80 font-pretendard">
       <div className="relative bg-deepCharcoal p-[20px] rounded-[8px] py-[24px] px-[16px]">
         <img
           src={closeButton}
@@ -19,7 +19,7 @@ function Modal({ title, onClose, children }) {
           onClick={onClose}
         />
         {title && (
-          <div className="px-[2px] w-full h-[24px] leading-[24px] font-pretendard text-[18px] font-semiBold text-softWhite">
+          <div className="px-[2px] w-full h-[24px] leading-[24px] text-[18px] font-semiBold text-softWhite">
             {title}
           </div>
         )}

@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal';
-import DonationsList from '@/pages/listPage/DonationsList';
 import CreditSection from '@/pages/listPage/CreditSection';
+import RechgModalContent from '@/pages/listPage/RechgModalContent';
+import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
+import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/pages/listPage/DonationModalContent';
+import MonthlyChart from '@/pages/listPage/MonthlyChart';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,16 +22,35 @@ function ListPage() {
   };
 
   const modalTypes = {
+    recharge: {
+      title: '크레딧 충전하기',
+      content: <RechgModalContent />,
+    },
+
+    'NOT-ENOUGH': {
+      title: '',
+      content: <CreditShortageModalContent />,
+    },
+
     donation: {
       title: '후원하기',
       content: <DonationModalContent />,
     },
   };
 
+  const onCreditShortageClick = () => {
+    setCurrentModal('NOT-ENOUGH');
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="bg-midnightBlack flex flex-col items-center">
-      <CreditSection />
+      <CreditSection
+        onRechargeClick={() => openModal('recharge')}
+        onCreditShortageClick={() => openModal('NOT-ENOUGH')}
+      />
       <DonationsList onDonationClick={() => openModal('donation')} />
+      <MonthlyChart />
 
       {isModalOpen && currentModal && (
         <Modal title={modalTypes[currentModal].title} onClose={closeModal}>

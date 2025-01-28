@@ -2,9 +2,9 @@ import PrimaryButton from '../../components/PrimaryButton';
 
 export default function RechgModalContent() {
   return (
-    <form className="w-[295px] h-[268px] flex flex-col gap-[8px]">
+    <form className="w-[295px] h-fit flex flex-col gap-[8px]">
       <div
-        className="bg-[#02000E] w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer border-[#F7F7F8] hover:border-[#F96D69] focus:border-[#F96D69]"
+        className="bg-[#02000E] w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer border-[#F7F7F8] hover:border-[#F96D69] focus:border-[#F96D69] mt-[24px]"
         onClick={(e) => e.currentTarget.querySelector('input').click()}
       >
         <div className="w-[216px] h-[26px] flex items-center justify-start gap-[2px]">
