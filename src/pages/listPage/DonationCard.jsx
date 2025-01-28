@@ -1,4 +1,4 @@
-import creditIcon from '@/assets/icons/credit.svg';
+import creditIcon from '@/assets/icons/creditLight.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
 function DonationCard({ donation, onDonationClick }) {

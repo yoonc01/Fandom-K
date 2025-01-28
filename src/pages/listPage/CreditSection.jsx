@@ -8,7 +8,7 @@ export default function CreditSection() {
           내 크레딧
         </p>
         <div className="flex items-center justify-between">
-          <div className="w-[30px] h-[30px] bg-[url(@/assets/icons/credit.svg)] bg-contain bg-no-repeat bg-center" />
+          <div className="w-[30px] h-[30px] bg-[url(@/assets/icons/creditLight.svg)] bg-contain bg-no-repeat bg-center" />
           <p className="font-pretendard font-bold text-[#DEDEE0] text-[20px] pc:text-[24px] tablet:text-[24px]">
             {getCredits()}
           </p>
