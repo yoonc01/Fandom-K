@@ -104,7 +104,7 @@ const donations = [
   // },
 ];
 
-function DonationsList() {
+function DonationsList({ onDonationClick }) {
   return (
     <div className="pc:w-[1350px] mx-auto flex flex-col gap-8">
       <div className="flex items-center justify-between">
@@ -122,7 +122,10 @@ function DonationsList() {
             <div className="inline-flex pc:grid pc:grid-cols-4 gap-2 tablet:gap-4 pc:gap-6">
               {donations.map((donation) => (
                 <div key={donation.id}>
-                  <DonationCard donation={donation} />
+                  <DonationCard
+                    donation={donation}
+                    onDonationClick={onDonationClick}
+                  />
                 </div>
               ))}
             </div>

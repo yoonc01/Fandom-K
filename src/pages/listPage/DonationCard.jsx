@@ -1,7 +1,7 @@
 import creditIcon from '@/assets/icons/credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
-function DonationCard({ donation }) {
+function DonationCard({ donation, onDonationClick }) {
   const { receivedDonations, targetDonation, subtitle, title, idol, deadline } =
     donation;
   const { name, group, profilePicture } = idol;
@@ -31,6 +31,7 @@ function DonationCard({ donation }) {
             styles={
               'w-[142px] tablet:w-[234px] h-[31px] tablet:h-[40px] absolute bottom-[8px] tablet:bottom-[20px] font-medium text-[13px] text-white'
             }
+            onClickFunc={onDonationClick}
           >
             후원하기
           </PrimaryButton>
