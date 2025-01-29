@@ -63,7 +63,7 @@ export default function RechgModalContent() {
         </div>
       </div>
 
-      <PrimaryButton styles="flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch">
+      <PrimaryButton className="flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch">
         <div className="w-[75px] h-[26px] bg-[url(@/assets/icons/creditWhite.svg)] bg-no-repeat text-[14px] text-white font-pretendard font-bold flex items-center justify-end pr-[5px]">
           <p>충전하기</p>
         </div>
