@@ -3,11 +3,9 @@ import PrimaryButton from '../../components/PrimaryButton';
 
 function MonthlyChartSection() {
   return (
-    <div className="flex flex-col items-center mx-auto font-pretendard bg-midnightBlack text-white pc:w-[1200px] tablet:w-[700px]">
-      <div className="flex justify-between w-full font-bold leading-[26px]">
-        <h3 className="mb-[16px] pc:mb-[24px] tablet:mb-[24px] text-[24px] pt-[80px]">
-          이달의 차트
-        </h3>
+    <div className="flex flex-col items-center mx-auto font-pretendard bg-midnightBlack text-white w-full pc:w-[1200px]">
+      <div className="flex justify-between w-full font-bold leading-[26px] mb-[16px] pc:mb-[24px] tablet:mb-[24px]">
+        <h3 className="text-[24px]">이달의 차트</h3>
         {/* 피그마에 지정되어 있는 padding 값이 css 상에서 깨져서 12px로 변경 */}
         <PrimaryButton styles="flex font-pretendard pt-[2px] pb-[3px] text-[13px] tracking-[0.02em] w-[128px] h-[32px] gap-[4px] px-[12px]">
           <img src={chartLogo} alt="chartLogo" className="inline" />

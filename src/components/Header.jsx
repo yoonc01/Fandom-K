@@ -13,7 +13,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-midnightBlack flex items-center justify-between px-[24px] h-[44px] tablet:h-[80px] pc:px-[360px]">
+    <div className="flex items-center justify-between h-[44px] tablet:h-[80px] mx-auto  w-full pc:w-[1200px]">
       <div></div>
       <img
         src={fandomKLogo}
