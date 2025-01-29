@@ -83,33 +83,57 @@ const donations = [
       totalVotes: 0,
     },
   },
+  // {
+  //   id: 572,
+  //   idolId: 1186,
+  //   title: '생일 광고',
+  //   subtitle: '강남역 광고',
+  //   targetDonation: 100000,
+  //   receivedDonations: 40000,
+  //   createdAt: '2024-09-25T12:08:47.530Z',
+  //   deadline: '2025-02-16T23:59:59.000Z',
+  //   status: false,
+  //   idol: {
+  //     id: 1186,
+  //     name: '윈터',
+  //     gender: 'female',
+  //     group: '에스파',
+  //     profilePicture: 'https://api.nudge-community.com/attachments/7033524',
+  //     totalVotes: 0,
+  //   },
+  // },
 ];
 
-function DonationsList() {
+function DonationsList({ onDonationClick }) {
   return (
-    <div class="w-[1350px] mx-auto flex flex-col gap-8">
-      <div class="flex items-center justify-between">
+    <div className="max-w-[1350px] mx-auto flex flex-col gap-8 mb-[80px]">
+      <div className="flex items-center justify-between">
         <button
           type="button"
-          class="bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
+          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
         >
           <img src={prevIcon} alt="이전" />
         </button>
-        <div class="w-[1200px] flex flex-col gap-8">
-          <div class="font-pretendard font-medium text-[24px] text-softWhite">
+        <div className="w-full pc:max-w-[1200px] flex flex-col gap-4 tablet:gap-6 pc:gap-8">
+          <h3 className="font-pretendard font-bold text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
             후원을 기다리는 조공
+          </h3>
+          <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <div className="flex gap-2 tablet:gap-4 pc:gap-6">
+              {donations.map((donation) => (
+                <div key={donation.id}>
+                  <DonationCard
+                    donation={donation}
+                    onDonationClick={onDonationClick}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-          <ul class="flex gap-6">
-            {donations.map((donation) => (
-              <li key={donation.id}>
-                <DonationCard donation={donation} />
-              </li>
-            ))}
-          </ul>
         </div>
         <button
           type="button"
-          class="bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
+          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
         >
           <img src={nextIcon} alt="다음" />
         </button>

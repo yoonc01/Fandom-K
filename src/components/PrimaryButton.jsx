@@ -1,10 +1,10 @@
 import React from 'react';
 
-function PrimaryButton({ children, styles = '', onClickFunc = () => {} }) {
+function PrimaryButton({ children, className = '', onClickFunc = () => {} }) {
   const backgroundStyle =
     'bg-gradient-to-r from-[#F86F65] to-pinkPunch rounded-[3px]';
   return (
-    <button className={backgroundStyle + ' ' + styles} onClick={onClickFunc}>
+    <button className={`${backgroundStyle} ${className}`} onClick={onClickFunc}>
       {children}
     </button>
   );
