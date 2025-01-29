@@ -52,7 +52,7 @@ function DonationCard({ donation, onDonationClick }) {
           <li className="w-full flex flex-col gap-2">
             <div className="flex justify-between">
               {/* 현재 후원된 크레딧 개수 */}
-              <div className="flex items-center gap-[3px]">
+              <div className="flex justify-center gap-[3px]">
                 <img src={creditIcon} alt="credit" className="w-[12px]" />
                 <div className="font-regular text-[12px] text-coralRed">
                   {receivedCredit}

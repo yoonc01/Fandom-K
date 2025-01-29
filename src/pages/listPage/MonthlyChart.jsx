@@ -3,7 +3,7 @@ import PrimaryButton from '../../components/PrimaryButton';
 
 function MonthlyChartSection() {
   return (
-    <div className="flex flex-col items-center font-pretendard bg-midnightBlack text-white pc:w-[1200px] tablet:w-[700px]">
+    <div className="flex flex-col items-center mx-auto font-pretendard bg-midnightBlack text-white pc:w-[1200px] tablet:w-[700px]">
       <div className="flex justify-between w-full font-bold leading-[26px]">
         <h3 className="mb-[16px] pc:mb-[24px] tablet:mb-[24px] text-[24px] pt-[80px]">
           이달의 차트
