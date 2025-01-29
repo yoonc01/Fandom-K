@@ -1,10 +1,10 @@
 import creditIcon from '@/assets/icons/credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
-function DonationCard({ donation, onDonationClick }) {
+function DonationCard({ item, onDonationClick }) {
   const { receivedDonations, targetDonation, subtitle, title, idol, deadline } =
-    donation;
-  const { name, group, profilePicture } = idol;
+    item;
+  const { profilePicture } = idol;
 
   const currentDonationPercentage = (receivedDonations / targetDonation) * 100;
 
@@ -46,7 +46,9 @@ function DonationCard({ donation, onDonationClick }) {
               {subtitle}
             </div>
             {/* 후원 제목 */}
-            <div className="font-medium text-[14px] tablet:text-[18px] text-softWhite">{`${group} ${name} ${title}`}</div>
+            <div className="font-medium text-[14px] tablet:text-[18px] text-softWhite">
+              {title}
+            </div>
           </li>
           {/* 후원 현황 */}
           <li className="w-full flex flex-col gap-2">

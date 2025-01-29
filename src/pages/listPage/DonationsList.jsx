@@ -1,115 +1,50 @@
+import { useEffect, useState } from 'react';
+import { getItems } from '@/apis/donationApi';
 import DonationCard from '@/pages/listPage/DonationCard';
 import prevIcon from '@/assets/icons/prevIcon.svg';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 
-const donations = [
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 100000,
-    receivedDonations: 60000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-12T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '민지',
-      gender: 'female',
-      group: '뉴진스',
-      profilePicture:
-        'https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/08/19/c5cd0937-06c6-4f4c-9f22-660c5ec8adfb.jpg',
-      totalVotes: 0,
-    },
-  },
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 200000,
-    receivedDonations: 80000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-13T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '하니',
-      gender: 'female',
-      group: '뉴진스',
-      profilePicture:
-        'https://image.fnnews.com/resource/media/image/2024/10/10/202410100737527065_l.jpg',
-      totalVotes: 0,
-    },
-  },
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 150000,
-    receivedDonations: 80000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-14T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '원영',
-      gender: 'female',
-      group: '아이브',
-      profilePicture:
-        'https://news.nateimg.co.kr/orgImg/sw/2023/11/13/20231113506783.jpg',
-      totalVotes: 0,
-    },
-  },
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 200000,
-    receivedDonations: 50000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-15T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '제니',
-      gender: 'female',
-      group: '블랙핑크',
-      profilePicture:
-        'https://image-notepet.akamaized.net/resize/620x-/seimage/20241021/e92e5bbf5a646afe66b685a7df3bad26.jpg',
-      totalVotes: 0,
-    },
-  },
-  // {
-  //   id: 572,
-  //   idolId: 1186,
-  //   title: '생일 광고',
-  //   subtitle: '강남역 광고',
-  //   targetDonation: 100000,
-  //   receivedDonations: 40000,
-  //   createdAt: '2024-09-25T12:08:47.530Z',
-  //   deadline: '2025-02-16T23:59:59.000Z',
-  //   status: false,
-  //   idol: {
-  //     id: 1186,
-  //     name: '윈터',
-  //     gender: 'female',
-  //     group: '에스파',
-  //     profilePicture: 'https://api.nudge-community.com/attachments/7033524',
-  //     totalVotes: 0,
-  //   },
-  // },
-];
-
 function DonationsList({ onDonationClick }) {
+  // 이전 페이지 데이터(history)를 저장
+  // 이전 페이지로 이동할 때는 API 요청을 보내는 대신 저장된 데이터 사용
+  const [history, setHistory] = useState([]);
+  const [items, setItems] = useState([]);
+  const [cursor, setCursor] = useState(0);
+
+  const handleLoad = async (query) => {
+    const { list, nextCursor } = await getItems(query);
+
+    setHistory((prev) => [...prev, { cursor, items }]);
+    setItems(list);
+    if (nextCursor !== null) {
+      setCursor(nextCursor);
+    }
+  };
+
+  const handleLoadNext = () => {
+    handleLoad({ cursor });
+  };
+
+  const handleLoadPrev = () => {
+    // 현재 페이지 데이터를 삭제 후 이전 페이지 데이터 가져오기
+    if (history.length > 0) {
+      const prevPage = history.pop();
+      setHistory([...history]);
+      setItems(prevPage.items);
+      setCursor(prevPage.cursor);
+    }
+  };
+
+  useEffect(() => {
+    handleLoad({ cursor });
+  }, []);
+
   return (
     <div className="max-w-[1350px] mx-auto flex flex-col gap-8 mb-[80px]">
       <div className="flex items-center justify-between">
         <button
           type="button"
+          onClick={handleLoadPrev}
           className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
         >
           <img src={prevIcon} alt="이전" />
@@ -120,12 +55,9 @@ function DonationsList({ onDonationClick }) {
           </h3>
           <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
             <div className="flex gap-2 tablet:gap-4 pc:gap-6">
-              {donations.map((donation) => (
-                <div key={donation.id}>
-                  <DonationCard
-                    donation={donation}
-                    onDonationClick={onDonationClick}
-                  />
+              {items.map((item) => (
+                <div key={item.id}>
+                  <DonationCard item={item} onDonationClick={onDonationClick} />
                 </div>
               ))}
             </div>
@@ -133,6 +65,7 @@ function DonationsList({ onDonationClick }) {
         </div>
         <button
           type="button"
+          onClick={handleLoadNext}
           className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
         >
           <img src={nextIcon} alt="다음" />
