@@ -33,8 +33,8 @@ function DonationModalContent() {
             className="w-full h-full object-cover"
           />
         </div>
-        <ul className="flex flex-col gap-[6px] m-0">
-          <li className="text-[12px] font-regular text-silverGray">
+        <ul className="flex flex-col gap-[2px] m-0">
+          <li className="font-regular text-[12px] text-silverGray">
             {mock.subtitle}
           </li>
           <li className="font-medium text-[14px] text-softWhite">{`${mock.idol.group} ${mock.idol.name} ${mock.title}`}</li>

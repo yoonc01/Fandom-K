@@ -115,9 +115,9 @@ function DonationsList({ onDonationClick }) {
           <img src={prevIcon} alt="이전" />
         </button>
         <div className="w-full pc:w-[1200px] flex flex-col gap-4 tablet:gap-6 pc:gap-8 px-6 pc:px-0">
-          <div className="font-pretendard font-medium text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
+          <h3 className="font-pretendard font-bold text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
             후원을 기다리는 조공
-          </div>
+          </h3>
           <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
             <div className="inline-flex pc:grid pc:grid-cols-4 gap-2 tablet:gap-4 pc:gap-6">
               {donations.map((donation) => (
