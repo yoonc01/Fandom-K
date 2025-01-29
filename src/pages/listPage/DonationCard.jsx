@@ -28,7 +28,7 @@ function DonationCard({ donation, onDonationClick }) {
         <div className="w-full h-1/3 absolute flex justify-center bottom-0 bg-gradient-to-t from-midnightBlack to-transparent">
           {/* 후원하기 버튼 */}
           <PrimaryButton
-            styles={
+            className={
               'w-[142px] tablet:w-[234px] h-[31px] tablet:h-[40px] absolute bottom-[8px] tablet:bottom-[20px] font-bold text-[13px] text-white'
             }
             onClickFunc={onDonationClick}

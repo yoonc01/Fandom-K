@@ -52,7 +52,7 @@ function DonationModalContent() {
           className="w-[20px] absolute top-[18px] right-[18px]"
         />
       </div>
-      <PrimaryButton styles="w-full h-[42px] rounded-lg font-bold text-[14px] text-white">
+      <PrimaryButton className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white">
         후원하기
       </PrimaryButton>
     </div>
