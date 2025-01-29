@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import Modal from '@/components/Modal';
+import Header from '@/components/Header';
 import CreditSection from '@/pages/listPage/CreditSection';
 import RechgModalContent from '@/pages/listPage/RechgModalContent';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
+import DonationModalContent from '@/pages/listPage/DonationModalContent';
 import MonthlyChart from '@/pages/listPage/MonthlyChart';
+import leftTopGradient from '@/assets/images/leftTopGradient.png';
 
-export function ListPage() {
+function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
 
@@ -30,6 +33,11 @@ export function ListPage() {
       title: '',
       content: <CreditShortageModalContent />,
     },
+
+    donation: {
+      title: '후원하기',
+      content: <DonationModalContent />,
+    },
   };
 
   const onCreditShortageClick = () => {
@@ -38,20 +46,25 @@ export function ListPage() {
   };
 
   return (
-    <div className="bg-midnightBlack flex flex-col items-center">
+    <div className="bg-midnightBlack px-6 pc:px-0 relative">
+      <img
+        src={leftTopGradient}
+        alt="leftTopGradient"
+        className="absolute top-[-52px] left-[-112px] opacity-40 pointer-events-none"
+      />
+      <Header />
       <CreditSection
         onRechargeClick={() => openModal('recharge')}
         onCreditShortageClick={() => openModal('NOT-ENOUGH')}
       />
-      <DonationsList />
+      <DonationsList onDonationClick={() => openModal('donation')} />
+      <MonthlyChart />
 
       {isModalOpen && currentModal && (
         <Modal title={modalTypes[currentModal].title} onClose={closeModal}>
           {modalTypes[currentModal].content}
         </Modal>
       )}
-
-      <MonthlyChart />
     </div>
   );
 }

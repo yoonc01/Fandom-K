@@ -104,25 +104,28 @@ const donations = [
   // },
 ];
 
-function DonationsList() {
+function DonationsList({ onDonationClick }) {
   return (
-    <div className="pc:w-[1350px] mx-auto flex flex-col gap-8">
+    <div className="max-w-[1350px] mx-auto flex flex-col gap-8 mb-[80px]">
       <div className="flex items-center justify-between">
         <button
           type="button"
-          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
+          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
         >
           <img src={prevIcon} alt="이전" />
         </button>
-        <div className="w-full pc:w-[1200px] flex flex-col gap-4 tablet:gap-6 pc:gap-8 px-6 pc:px-0">
-          <div className="font-pretendard font-medium text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
+        <div className="w-full pc:max-w-[1200px] flex flex-col gap-4 tablet:gap-6 pc:gap-8">
+          <h3 className="font-pretendard font-bold text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
             후원을 기다리는 조공
-          </div>
+          </h3>
           <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
-            <div className="inline-flex pc:grid pc:grid-cols-4 gap-2 tablet:gap-4 pc:gap-6">
+            <div className="flex gap-2 tablet:gap-4 pc:gap-6">
               {donations.map((donation) => (
                 <div key={donation.id}>
-                  <DonationCard donation={donation} />
+                  <DonationCard
+                    donation={donation}
+                    onDonationClick={onDonationClick}
+                  />
                 </div>
               ))}
             </div>
@@ -130,7 +133,7 @@ function DonationsList() {
         </div>
         <button
           type="button"
-          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shadow hover:bg-[rgba(27,27,27,0.8)]"
+          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
         >
           <img src={nextIcon} alt="다음" />
         </button>
