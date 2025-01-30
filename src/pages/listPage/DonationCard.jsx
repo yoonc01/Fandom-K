@@ -4,7 +4,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 function DonationCard({ item, onDonationClick }) {
   const { receivedDonations, targetDonation, subtitle, title, idol, deadline } =
     item;
-  const { profilePicture } = idol;
+  const { name, profilePicture } = idol;
 
   const currentDonationPercentage = (receivedDonations / targetDonation) * 100;
 
@@ -18,14 +18,12 @@ function DonationCard({ item, onDonationClick }) {
   return (
     <div className="w-[158px] tablet:w-[282px] relative flex flex-col gap-[6px] tablet:gap-2 font-pretendard">
       {/* 후원 아이돌 이미지 */}
-
       <div className="w-full h-[206px] tablet:h-[293px] relative overflow-hidden flex items-center justify-center rounded-t-lg">
         <img
           className="w-full h-full object-cover"
           src={profilePicture}
           alt={name}
         />
-
         {/* 후원 아이돌 이미지 그라데이션 효과 */}
         <div className="w-full h-1/3 absolute flex justify-center bottom-0 bg-gradient-to-t from-midnightBlack to-transparent">
           {/* 후원하기 버튼 */}
@@ -52,7 +50,6 @@ function DonationCard({ item, onDonationClick }) {
               {title}
             </div>
           </li>
-
           {/* 후원 현황 */}
           <li className="w-full flex flex-col gap-2">
             <div className="flex justify-between">
@@ -64,7 +61,6 @@ function DonationCard({ item, onDonationClick }) {
                 </div>
               </div>
               {/* 남은 후원 일자 */}
-
               <div className="font-regular text-[12px] text-softWhite">{`${remainingDays}일 남음`}</div>
             </div>
             {/* 후원 현황 차트 */}
