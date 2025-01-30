@@ -33,11 +33,3 @@ export const mockIdols = [
 export const getIdolById = (id) => {
   return mockIdols.find((idol) => idol.id === id) || null;
 };
-
-export const setIdolById = (id, updatedData) => {
-  const index = mockIdols.findIndex((idol) => idol.id === id);
-  // 조건을 만족하는 id가 존재하는 경우 : 업데이트
-  if (index !== -1) {
-    mockIdols[index] = { ...mockIdols[index], ...updatedData };
-  }
-};
