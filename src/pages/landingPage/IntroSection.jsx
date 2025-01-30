@@ -38,7 +38,7 @@ function IntroSection() {
         className="w-[392px] mt-[20px] h-auto opacity-70 top-[100px] tablet:w-[712px] pc:absolute pc:w-[932px] select-none"
       />
       <PrimaryButton
-        styles={
+        className={
           'z-10 mt-[40px] w-[230px] h-[48px] rounded-[3px] text-[14px] z-10 md:mt-[100px] md:w-[477px] lg:mt-[584px]'
         }
         onClickFunc={() => {

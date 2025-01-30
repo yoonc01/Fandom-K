@@ -13,7 +13,7 @@ export default function CreditShortageModalContent() {
         <button className="w-[295px] h-[42px] font-bold text-[14px] text-coralRed rounded-[3px] bg-softWhite">
           충전하기
         </button>
-        <PrimaryButton styles="w-[295px] h-[42px] font-bold text-[14px]">
+        <PrimaryButton className="w-[295px] h-[42px] font-bold text-[14px]">
           확인
         </PrimaryButton>
       </div>
