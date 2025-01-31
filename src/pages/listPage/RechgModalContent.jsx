@@ -2,7 +2,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import { getCredits, rechargeCredits } from '@/utils/CreditStorage';
 import { useState } from 'react';
 
-export default function RechgModalContent({ onRechargeSuccess }) {
+export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
   const [selectedAmount, setSelectedAmount] = useState(null);
 
   const handleRecharge = (e) => {
@@ -14,9 +14,8 @@ export default function RechgModalContent({ onRechargeSuccess }) {
     }
 
     rechargeCredits(selectedAmount);
-    const updatedCredits = getCredits();
-
-    onRechargeSuccess(updatedCredits);
+    onRechargeSuccess(getCredits());
+    setModalStep('creditRechargeSuccess');
   };
 
   return (

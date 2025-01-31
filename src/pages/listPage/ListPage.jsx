@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import CreditSection from '@/pages/listPage/CreditSection';
 import { getCredits } from '@/utils/CreditStorage';
 import RechgModalContent from '@/pages/listPage/RechgModalContent';
+import CreditRechgSuccess from '@/pages/listPage/CreditRechgSuccess';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/pages/listPage/DonationModalContent';
@@ -12,43 +13,34 @@ import leftTopGradient from '@/assets/images/leftTopGradient.png';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentModal, setCurrentModal] = useState(null);
+  const [modalStep, setModalStep] = useState(null);
   const [credits, setCredits] = useState(getCredits());
 
   useEffect(() => {
     setCredits(getCredits());
   }, []);
 
-  const openModal = (modalType) => {
-    setCurrentModal(modalType);
+  const openModal = (step) => {
+    setModalStep(step);
     setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalStep(null);
   };
 
   const handleRechargeSuccess = (updatedCredits) => {
     setCredits(updatedCredits);
+    setModalStep('creditRechargeSuccess');
   };
 
-  const modalTypes = {
-    recharge: {
-      title: '크레딧 충전하기',
-      content: <RechgModalContent onRechargeSuccess={handleRechargeSuccess} />,
-    },
-
-    'NOT-ENOUGH': {
-      title: '',
-      content: <CreditShortageModalContent />,
-    },
-
-    donation: {
-      title: '후원하기',
-      content: <DonationModalContent />,
-    },
-  };
-
-  const onCreditShortageClick = () => {
-    setCurrentModal('NOT-ENOUGH');
-    setIsModalOpen(true);
-  };
+  const modalTitle = {
+    creditRecharge: '크레딧 충전하기',
+    creditRechargeSuccess: '',
+    creditNotEnough: '',
+    donation: '후원하기',
+  }[modalStep];
 
   return (
     <div className="bg-midnightBlack px-6 pc:px-0 relative">
@@ -59,19 +51,26 @@ function ListPage() {
       />
       <Header />
       <CreditSection
-        onRechargeClick={() => openModal('recharge')}
-        onCreditShortageClick={() => openModal('NOT-ENOUGH')}
+        onRechargeClick={() => openModal('creditRecharge')}
+        onCreditShortageClick={() => openModal('creditNotEnough')}
         credits={credits}
       />
       <DonationsList onDonationClick={() => openModal('donation')} />
       <MonthlyChart />
 
-      {isModalOpen && currentModal && (
-        <Modal
-          title={modalTypes[currentModal].title}
-          onClose={() => setIsModalOpen(false)}
-        >
-          {modalTypes[currentModal].content}
+      {isModalOpen && (
+        <Modal title={modalTitle} onClose={closeModal}>
+          {modalStep === 'creditRecharge' && (
+            <RechgModalContent
+              setModalStep={setModalStep}
+              onRechargeSuccess={handleRechargeSuccess}
+            />
+          )}
+          {modalStep === 'creditRechargeSuccess' && (
+            <CreditRechgSuccess onConfirm={closeModal} />
+          )}
+          {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
+          {modalStep === 'donation' && <DonationModalContent />}
         </Modal>
       )}
     </div>
