@@ -1,142 +1,126 @@
+import { useEffect, useState, useRef } from 'react';
+import { getItems } from '@/apis/donationApi';
 import DonationCard from '@/pages/listPage/DonationCard';
 import prevIcon from '@/assets/icons/prevIcon.svg';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 
-const donations = [
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 100000,
-    receivedDonations: 60000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-12T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '민지',
-      gender: 'female',
-      group: '뉴진스',
-      profilePicture:
-        'https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/08/19/c5cd0937-06c6-4f4c-9f22-660c5ec8adfb.jpg',
-      totalVotes: 0,
-    },
-  },
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 200000,
-    receivedDonations: 80000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-13T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '하니',
-      gender: 'female',
-      group: '뉴진스',
-      profilePicture:
-        'https://image.fnnews.com/resource/media/image/2024/10/10/202410100737527065_l.jpg',
-      totalVotes: 0,
-    },
-  },
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 150000,
-    receivedDonations: 80000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-14T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '원영',
-      gender: 'female',
-      group: '아이브',
-      profilePicture:
-        'https://news.nateimg.co.kr/orgImg/sw/2023/11/13/20231113506783.jpg',
-      totalVotes: 0,
-    },
-  },
-  {
-    id: 572,
-    idolId: 1186,
-    title: '생일 광고',
-    subtitle: '강남역 광고',
-    targetDonation: 200000,
-    receivedDonations: 50000,
-    createdAt: '2024-09-25T12:08:47.530Z',
-    deadline: '2025-02-15T23:59:59.000Z',
-    status: false,
-    idol: {
-      id: 1186,
-      name: '제니',
-      gender: 'female',
-      group: '블랙핑크',
-      profilePicture:
-        'https://image-notepet.akamaized.net/resize/620x-/seimage/20241021/e92e5bbf5a646afe66b685a7df3bad26.jpg',
-      totalVotes: 0,
-    },
-  },
-  // {
-  //   id: 572,
-  //   idolId: 1186,
-  //   title: '생일 광고',
-  //   subtitle: '강남역 광고',
-  //   targetDonation: 100000,
-  //   receivedDonations: 40000,
-  //   createdAt: '2024-09-25T12:08:47.530Z',
-  //   deadline: '2025-02-16T23:59:59.000Z',
-  //   status: false,
-  //   idol: {
-  //     id: 1186,
-  //     name: '윈터',
-  //     gender: 'female',
-  //     group: '에스파',
-  //     profilePicture: 'https://api.nudge-community.com/attachments/7033524',
-  //     totalVotes: 0,
-  //   },
-  // },
-];
-
 function DonationsList({ onDonationClick }) {
+  const [history, setHistory] = useState([]);
+  const [items, setItems] = useState([]);
+  const [cursor, setCursor] = useState(0);
+  const [isPC, setIsPC] = useState(window.innerWidth >= 1200);
+  const observerRef = useRef(null);
+
+  // 화면 크기에 따라 PC인지 아닌지 구분
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPC(window.innerWidth >= 1200);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleLoad = async (query) => {
+    const { list, nextCursor } = await getItems(query);
+
+    // PC의 경우, 이전 페이지 데이터(history)를 저장
+    // 이전 페이지로 이동할 때는 새로 API 요청을 보내는 대신 저장된 데이터를 사용
+    if (isPC) {
+      setHistory((prev) => [...prev, { cursor, items }]);
+      setItems(list);
+    }
+
+    // PC가 아닌 경우, 무한 스크롤을 고려해서 새로 받은 데이터를 기존 데이터에 추가
+    if (!isPC) {
+      setItems((prev) => [...prev, ...list]);
+    }
+
+    setCursor(nextCursor);
+  };
+
+  const handleLoadPrev = () => {
+    // 현재 페이지 데이터 삭제 후 이전 페이지 데이터 가져오기
+    if (history.length > 1) {
+      const prevPage = history.pop();
+      setHistory([...history]);
+      setItems(prevPage.items);
+      setCursor(prevPage.cursor);
+    }
+  };
+
+  const handleLoadNext = () => {
+    handleLoad({ cursor });
+  };
+
+  // 화면 크기가 PC에서 Tablet, Tablet에서 PC로 변했을 때 가장 처음의 데이터들 보여주기
+  useEffect(() => {
+    setItems([]);
+    setHistory([]);
+    handleLoad({ cursor: 0 });
+    setCursor(0);
+  }, [isPC]);
+
+  useEffect(() => {
+    // PC의 경우, 무한 스크롤 실행 X
+    if (isPC) return;
+
+    // PC가 아닌 경우, 무한 스크롤 실행
+    if (cursor === null) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) handleLoad({ cursor });
+      },
+      { threshold: 0.2 }
+    );
+    if (observerRef.current) observer.observe(observerRef.current);
+    return () => observer.disconnect();
+  }, [cursor, isPC]);
+
   return (
     <div className="max-w-[1350px] mx-auto flex flex-col gap-8 mb-[80px]">
       <div className="flex items-center justify-between">
-        <button
-          type="button"
-          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
-        >
-          <img src={prevIcon} alt="이전" />
-        </button>
+        {/* PC 버전: 이전 버튼 */}
+        {isPC && (
+          <button
+            type="button"
+            onClick={handleLoadPrev}
+            disabled={history.length === 1} // 이전 데이터가 없으면 이전 버튼 비활성화
+            className="bg-deepCharcoal opacity-80 text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:opacity-70 disabled:opacity-50"
+          >
+            <img src={prevIcon} alt="이전" />
+          </button>
+        )}
+
+        {/* 데이터 리스트 */}
         <div className="w-full pc:max-w-[1200px] flex flex-col gap-4 tablet:gap-6 pc:gap-8">
           <h3 className="font-pretendard font-bold text-[16px] tablet:text-[20px] pc:text-[24px] text-softWhite">
             후원을 기다리는 조공
           </h3>
           <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
             <div className="flex gap-2 tablet:gap-4 pc:gap-6">
-              {donations.map((donation) => (
-                <div key={donation.id}>
-                  <DonationCard
-                    donation={donation}
-                    onDonationClick={onDonationClick}
-                  />
+              {items.map((item, index) => (
+                <div
+                  key={item.id}
+                  ref={index === items.length - 1 ? observerRef : null}
+                >
+                  <DonationCard item={item} onDonationClick={onDonationClick} />
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <button
-          type="button"
-          className="hidden pc:flex bg-[rgba(27,27,27,1)] text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:bg-[rgba(27,27,27,0.8)]"
-        >
-          <img src={nextIcon} alt="다음" />
-        </button>
+
+        {/* PC 버전: 다음 버튼 */}
+        {isPC && (
+          <button
+            type="button"
+            onClick={handleLoadNext}
+            disabled={cursor === null} // 다음 데이터가 없으면 다음 버튼 비활성화
+            className="bg-deepCharcoal opacity-80 text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:opacity-70 disabled:opacity-50"
+          >
+            <img src={nextIcon} alt="다음" />
+          </button>
+        )}
       </div>
     </div>
   );
