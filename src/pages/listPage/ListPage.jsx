@@ -15,6 +15,7 @@ function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStep, setModalStep] = useState(null);
   const [credits, setCredits] = useState(getCredits());
+  const [selectedAmount, setSelectedAmount] = useState(null);
 
   useEffect(() => {
     setCredits(getCredits());
@@ -28,10 +29,12 @@ function ListPage() {
   const closeModal = () => {
     setIsModalOpen(false);
     setModalStep(null);
+    setSelectedAmount(null);
   };
 
-  const handleRechargeSuccess = (updatedCredits) => {
+  const handleRechargeSuccess = (updatedCredits, amount) => {
     setCredits(updatedCredits);
+    setSelectedAmount(amount);
     setModalStep('creditRechargeSuccess');
   };
 
@@ -67,7 +70,10 @@ function ListPage() {
             />
           )}
           {modalStep === 'creditRechargeSuccess' && (
-            <CreditRechgSuccess onConfirm={closeModal} />
+            <CreditRechgSuccess
+              amount={selectedAmount}
+              onConfirm={closeModal}
+            />
           )}
           {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
           {modalStep === 'donation' && <DonationModalContent />}

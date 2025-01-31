@@ -14,7 +14,7 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
     }
 
     rechargeCredits(selectedAmount);
-    onRechargeSuccess(getCredits());
+    onRechargeSuccess(getCredits(), selectedAmount);
     setModalStep('creditRechargeSuccess');
   };
 
