@@ -8,11 +8,6 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
   const handleRecharge = (e) => {
     e.preventDefault();
 
-    if (!selectedAmount) {
-      alert('충전할 양을 선택하세요');
-      return;
-    }
-
     rechargeCredits(selectedAmount);
     onRechargeSuccess(getCredits(), selectedAmount);
     setModalStep('creditRechargeSuccess');
@@ -54,8 +49,9 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
       ))}
 
       <PrimaryButton
-        className="flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch mt-4"
+        className={`flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch mt-4 ${!selectedAmount ? 'opacity-50 cursor-not-allowed border-none' : ''}`}
         onClickFunc={handleRecharge}
+        disabled={!selectedAmount}
       >
         <div className="w-[75px] h-[26px] bg-[url(@/assets/icons/creditWhite.svg)] bg-no-repeat text-[14px] text-white font-pretendard font-bold flex items-center justify-end pr-[5px]">
           <p>충전하기</p>
