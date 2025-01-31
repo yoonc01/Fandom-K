@@ -26,8 +26,12 @@ function DonationsList({ onDonationClick }) {
     // PC의 경우, 이전 페이지 데이터(history)를 저장
     // 이전 페이지로 이동할 때는 새로 API 요청을 보내는 대신 저장된 데이터를 사용
     if (isPC) {
-      setHistory((prev) => [...prev, { cursor, items }]);
-      setItems(list);
+      setHistory((prevHistory) => {
+        const newHistory = [...prevHistory, { cursor, items }];
+        setItems(list);
+
+        return newHistory;
+      });
     }
 
     // PC가 아닌 경우, 무한 스크롤을 고려해서 새로 받은 데이터를 기존 데이터에 추가
@@ -57,7 +61,6 @@ function DonationsList({ onDonationClick }) {
     setItems([]);
     setHistory([]);
     handleLoad({ cursor: 0 });
-    setCursor(0);
   }, [isPC]);
 
   useEffect(() => {
@@ -84,7 +87,7 @@ function DonationsList({ onDonationClick }) {
           <button
             type="button"
             onClick={handleLoadPrev}
-            disabled={history.length === 1} // 이전 데이터가 없으면 이전 버튼 비활성화
+            disabled={history.length <= 1} // 이전 데이터가 없으면 이전 버튼 비활성화
             className="bg-deepCharcoal opacity-80 text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:opacity-70 disabled:opacity-50"
           >
             <img src={prevIcon} alt="이전" />
