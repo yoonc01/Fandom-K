@@ -17,10 +17,6 @@ function ListPage() {
   const [credits, setCredits] = useState(getCredits());
   const [selectedAmount, setSelectedAmount] = useState(null);
 
-  useEffect(() => {
-    setCredits(getCredits());
-  }, []);
-
   const openModal = (step) => {
     setModalStep(step);
     setIsModalOpen(true);
@@ -32,7 +28,8 @@ function ListPage() {
     setSelectedAmount(null);
   };
 
-  const handleRechargeSuccess = (updatedCredits, amount) => {
+  const handleRechargeSuccess = (amount) => {
+    const updatedCredits = getCredits();
     setCredits(updatedCredits);
     setSelectedAmount(amount);
     setModalStep('creditRechargeSuccess');

@@ -8,12 +8,9 @@ export default function RechargeModalContent({
 }) {
   const [selectedAmount, setSelectedAmount] = useState(null);
 
-  const handleRecharge = (e) => {
-    e.preventDefault();
-
+  const handleRecharge = () => {
     rechargeCredits(selectedAmount);
-    onRechargeSuccess(getCredits(), selectedAmount);
-    setModalStep('creditRechargeSuccess');
+    onRechargeSuccess(selectedAmount);
   };
 
   return (
@@ -22,9 +19,7 @@ export default function RechargeModalContent({
         <div
           key={amount}
           className={`bg-midnightBlack w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer ${selectedAmount === amount ? 'border-coralRed' : 'border-softWhite'} hover:border-coralRed`}
-          onClick={() => {
-            setSelectedAmount(amount);
-          }}
+          onClick={() => setSelectedAmount(amount)}
         >
           <div className="w-[216px] h-[26px] flex items-center justify-start gap-[2px]">
             <div className="w-[20px] h-[30px] bg-[url(@/assets/icons/credit.svg)] bg-contain bg-no-repeat bg-center" />
@@ -33,13 +28,6 @@ export default function RechargeModalContent({
             </label>
           </div>
           <div className="relative flex items-center justify-center">
-            <input
-              type="radio"
-              name="selectAmount"
-              className="peer hidden"
-              checked={selectedAmount === amount}
-              readOnly
-            />
             <div
               className={`w-[16px] h-[16px] rounded-full border-[2px] bg-gray-100 border-gray-300 ${selectedAmount === amount ? 'border-coralRed' : ''} flex items-center justify-center`}
             >
