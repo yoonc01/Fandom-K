@@ -72,7 +72,12 @@ function ListPage() {
               onConfirm={closeModal}
             />
           )}
-          {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
+          {modalStep === 'creditNotEnough' && (
+            <CreditShortageModalContent
+              onClose={closeModal}
+              setModalStep={setModalStep}
+            />
+          )}
           {modalStep === 'donation' && <DonationModalContent />}
         </Modal>
       )}
