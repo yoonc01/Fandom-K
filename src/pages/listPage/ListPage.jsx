@@ -16,10 +16,17 @@ function ListPage() {
   const [modalStep, setModalStep] = useState(null);
   const [credits, setCredits] = useState(getCredits());
   const [selectedAmount, setSelectedAmount] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null); //
 
   const openModal = (step) => {
+  useEffect(() => {
+    setCredits(getCredits());
+  }, []);
+
+  const openModal = (step, item = null) => {
     setModalStep(step);
     setIsModalOpen(true);
+    setSelectedItem(item); //
   };
 
   const closeModal = () => {
@@ -55,7 +62,7 @@ function ListPage() {
         onCreditShortageClick={() => openModal('creditNotEnough')}
         credits={credits}
       />
-      <DonationsList onDonationClick={() => openModal('donation')} />
+      <DonationsList onDonationClick={(item) => openModal('donation', item)} />
       <MonthlyChart />
 
       {isModalOpen && (
@@ -79,6 +86,10 @@ function ListPage() {
             />
           )}
           {modalStep === 'donation' && <DonationModalContent />}
+          {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
+          {modalStep === 'donation' && (
+            <DonationModalContent item={selectedItem} />
+          )}
         </Modal>
       )}
     </div>
