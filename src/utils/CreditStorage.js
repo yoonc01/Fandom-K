@@ -5,14 +5,14 @@ export const initCredits = (initialCreditValue = 50) => {
 };
 
 export const getCredits = () => {
-  const credits = parseInt(localStorage.getItem('credits'), 10) || 0;
-  return credits.toLocaleString();
+  return parseInt(localStorage.getItem('credits'), 10) || 0;
 };
 
-export const rechgCredits = (amount) => {
+export const rechargeCredits = (amount) => {
   if (amount > 0) {
     const currentCredits = getCredits();
-    localStorage.setItem('credits', currentCredits + amount);
+    const newCredits = currentCredits + amount;
+    localStorage.setItem('credits', newCredits.toString());
   }
 };
 
