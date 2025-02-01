@@ -8,7 +8,8 @@ function DonationModalContent({ item, credits }) {
 
   const [detailInfo, setDetailInfo] = useState(false);
   const [inputCredit, setInputCredit] = useState(null);
-  const [properCredit, setProperCredit] = useState(false);
+  const [invalidCredit, setInvalidCredit] = useState(true);
+  const [nullCredit, setNullCredit] = useState(true);
 
   function showDetailInfo() {
     setDetailInfo(!detailInfo);
@@ -20,9 +21,17 @@ function DonationModalContent({ item, credits }) {
 
   useEffect(() => {
     if (inputCredit !== null && inputCredit > myCredit) {
-      setProperCredit(false);
+      setInvalidCredit(true);
     } else {
-      setProperCredit(true);
+      setInvalidCredit(false);
+    }
+  }, [inputCredit]);
+
+  useEffect(() => {
+    if (inputCredit < 1) {
+      setNullCredit(true);
+    } else {
+      setNullCredit(false);
     }
   }, [inputCredit]);
 
@@ -83,19 +92,22 @@ function DonationModalContent({ item, credits }) {
           onChange={handleCreditChange}
           onInput={(e) => (e.target.value = e.target.value.replace(/\D/g, ''))} // 입력된 값이 숫자가 아닐 시 제거
           placeholder="크레딧 입력"
-          className={`w-full h-[58px] rounded-lg bg-[#272F3D] border ${properCredit ? 'border-white focus:border-white' : 'border-red-500 focus:border-red-500'} focus:outline-none p-[16px] text-[20px] text-white placeholder-bold-steelGray`}
+          className={`w-full h-[58px] rounded-lg bg-[#272F3D] border ${!invalidCredit ? 'border-white focus:border-white' : 'border-red-500 focus:border-red-500'} focus:outline-none p-[16px] text-[20px] text-white placeholder-bold-steelGray`}
         />
         <img
           src={CreditIcon}
           className="w-[20px] absolute top-[18px] right-[18px]"
         />
-        {!properCredit && (
+        {invalidCredit && (
           <div className="mt-[6px] font-medium text-[12px] text-red-500">
             갖고 있는 크레딧보다 더 많이 후원할 수 없어요
           </div>
         )}
       </div>
-      <PrimaryButton className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white">
+      <PrimaryButton
+        disabled={invalidCredit || nullCredit}
+        className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white"
+      >
         후원하기
       </PrimaryButton>
     </div>
