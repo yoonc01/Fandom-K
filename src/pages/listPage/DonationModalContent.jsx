@@ -1,43 +1,69 @@
 import PrimaryButton from '@/components/PrimaryButton';
 import CreditIcon from '@/assets/icons/Credit.svg';
+import { useState } from 'react';
 
-const mock = {
-  id: 572,
-  idolId: 1186,
-  title: '생일 광고',
-  subtitle: '강남역 광고',
-  targetDonation: 200000,
-  receivedDonations: 80000,
-  createdAt: '2024-09-25T12:08:47.530Z',
-  deadline: '2025-02-13T23:59:59.000Z',
-  status: false,
-  idol: {
-    id: 1186,
-    name: '하니',
-    gender: 'female',
-    group: '뉴진스',
-    profilePicture:
-      'https://image.fnnews.com/resource/media/image/2024/10/10/202410100737527065_l.jpg',
-    totalVotes: 0,
-  },
-};
+function DonationModalContent({ item }) {
+  const {
+    image,
+    subtitle,
+    title,
+    receivedCredit,
+    currentCreditPercentage,
+    remainingDays,
+  } = item;
 
-function DonationModalContent() {
+  const [detailInfo, setDetailInfo] = useState(false);
+
+  function showDetailInfo() {
+    setDetailInfo(!detailInfo);
+  }
+
   return (
     <div className="w-[295px] pt-[24px] flex flex-col items-center gap-6">
       {/* 후원 세부 정보 */}
       <div className="flex flex-col gap-[10px]">
-        <div className="w-[158px] h-[206px] overflow-hidden rounded-t-lg">
-          <img
-            src={mock.idol.profilePicture}
-            className="w-full h-full object-cover"
-          />
+        <div className="w-[158px] h-[206px] overflow-hidden rounded-lg">
+          <img src={image} className="w-full h-full object-cover" />
         </div>
         <ul className="flex flex-col gap-[2px] m-0">
           <li className="font-regular text-[12px] text-silverGray">
-            {mock.subtitle}
+            {subtitle}
           </li>
-          <li className="font-medium text-[14px] text-softWhite">{`${mock.idol.group} ${mock.idol.name} ${mock.title}`}</li>
+          <li className="font-medium text-[14px] text-softWhite">
+            <button type="button" onClick={showDetailInfo}>
+              {title}
+            </button>
+          </li>
+          {detailInfo && (
+            <li className="flex flex-col gap-2 bg-[#272F3D] p-[10px] mt-[6px] rounded-lg">
+              <ul className="flex flex-col">
+                <li className="font-regular text-[12px] text-silverGray">
+                  모인 크레딧
+                </li>
+                <li className="flex items-baseline flex-end gap-1">
+                  <div className="inline-block font-regular text-[14px] text-softWhite">
+                    {receivedCredit}
+                  </div>
+                  <div className="inline-block font-regular text-[10px] text-silverGray">
+                    크레딧
+                  </div>
+                </li>
+              </ul>
+              <ul className="flex flex-col">
+                <li className="font-regular text-[12px] text-silverGray">
+                  남은 일자
+                </li>
+                <li className="flex items-baseline flex-end gap-1">
+                  <div className="inline-block font-regular text-[14px] text-softWhite">
+                    {remainingDays}
+                  </div>
+                  <div className="inline-block font-regular text-[10px] text-silverGray">
+                    일
+                  </div>
+                </li>
+              </ul>
+            </li>
+          )}
         </ul>
       </div>
       {/* 후원할 크레딧 입력 */}
