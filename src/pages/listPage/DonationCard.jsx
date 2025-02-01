@@ -18,9 +18,8 @@ function DonationCard({ item, onDonationClick }) {
   const modalData = {
     image: profilePicture,
     subtitle: subtitle,
-    title: `${group} ${name} 생일 광고`,
+    title: `${group} ${name} 광고`,
     receivedCredit: receivedCredit,
-    currentCreditPercentage: currentDonationPercentage,
     remainingDays: remainingDays,
   };
 

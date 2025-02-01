@@ -79,7 +79,7 @@ function ListPage() {
           )}
           {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
           {modalStep === 'donation' && (
-            <DonationModalContent item={selectedItem} />
+            <DonationModalContent item={selectedItem} credits={credits} />
           )}
         </Modal>
       )}
