@@ -1,8 +1,14 @@
 import PrimaryButton from '@/components/PrimaryButton';
 import CreditIcon from '@/assets/icons/Credit.svg';
 import { useEffect, useState } from 'react';
+import { getCredits, spendCredits } from '@/utils/CreditStorage';
 
-function DonationModalContent({ item, credits }) {
+function DonationModalContent({
+  item,
+  credits,
+  setModalStep,
+  onDonationSuccess,
+}) {
   const { image, subtitle, title, receivedCredit, remainingDays } = item;
   const myCredit = credits;
 
@@ -15,8 +21,14 @@ function DonationModalContent({ item, credits }) {
     setDetailInfo(!detailInfo);
   }
 
-  const handleCreditChange = (event) => {
-    setInputCredit(event.target.value);
+  const handleCreditChange = (e) => {
+    setInputCredit(e.target.value);
+  };
+
+  const handleDonation = () => {
+    spendCredits(inputCredit);
+    onDonationSuccess(getCredits());
+    setModalStep('donationSuccess');
   };
 
   useEffect(() => {
@@ -107,6 +119,7 @@ function DonationModalContent({ item, credits }) {
       <PrimaryButton
         disabled={invalidCredit || nullCredit}
         className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white"
+        onClickFunc={handleDonation}
       >
         후원하기
       </PrimaryButton>
