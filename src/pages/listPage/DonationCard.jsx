@@ -2,8 +2,15 @@ import creditIcon from '@/assets/icons/credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
 function DonationCard({ item, onDonationClick }) {
-  const { idol, subtitle, title, receivedDonations, targetDonation, deadline } =
-    item;
+  const {
+    id,
+    idol,
+    subtitle,
+    title,
+    receivedDonations,
+    targetDonation,
+    deadline,
+  } = item;
   const { name, group, profilePicture } = idol;
 
   const currentDonationPercentage = (receivedDonations / targetDonation) * 100;
@@ -16,6 +23,7 @@ function DonationCard({ item, onDonationClick }) {
   const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   const modalData = {
+    id: id,
     image: profilePicture,
     subtitle: subtitle,
     title: `${group} ${name} 광고`,

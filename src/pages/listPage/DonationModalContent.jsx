@@ -2,6 +2,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import CreditIcon from '@/assets/icons/Credit.svg';
 import { useEffect, useState } from 'react';
 import { getCredits, spendCredits } from '@/utils/CreditStorage';
+import { putCredits } from '@/apis/donationApi';
 
 function DonationModalContent({
   item,
@@ -9,23 +10,25 @@ function DonationModalContent({
   setModalStep,
   onDonationSuccess,
 }) {
-  const { image, subtitle, title, receivedCredit, remainingDays } = item;
+  const { id, image, subtitle, title, receivedCredit, remainingDays } = item;
   const myCredit = credits;
 
   const [detailInfo, setDetailInfo] = useState(false);
-  const [inputCredit, setInputCredit] = useState(null);
+  const [inputCredit, setInputCredit] = useState(undefined);
   const [invalidCredit, setInvalidCredit] = useState(true);
   const [nullCredit, setNullCredit] = useState(true);
 
-  function showDetailInfo() {
+  const showDetailInfo = () => {
     setDetailInfo(!detailInfo);
-  }
+  };
 
   const handleCreditChange = (e) => {
     setInputCredit(e.target.value);
   };
 
-  const handleDonation = () => {
+  const handleDonation = async () => {
+    const credit = Number(inputCredit);
+    const res = await putCredits({ id, credit });
     spendCredits(inputCredit);
     onDonationSuccess(getCredits());
     setModalStep('donationSuccess');
