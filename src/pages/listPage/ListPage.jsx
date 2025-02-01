@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 import Header from '@/components/Header';
 import CreditSection from '@/pages/listPage/CreditSection';
-import { getCredits } from '@/utils/CreditStorage';
+import { getCredits } from '@/utils/creditStorage';
 import RechgModalContent from '@/pages/listPage/RechgModalContent';
 import CreditRechgSuccess from '@/pages/listPage/CreditRechgSuccess';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';

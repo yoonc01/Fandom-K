@@ -1,5 +1,5 @@
 import PrimaryButton from '@/components/PrimaryButton';
-import { getCredits, rechargeCredits } from '@/utils/CreditStorage';
+import { getCredits, rechargeCredits } from '@/utils/creditStorage';
 import { useState } from 'react';
 
 export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
