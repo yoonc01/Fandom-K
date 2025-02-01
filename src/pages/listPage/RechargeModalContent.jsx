@@ -40,7 +40,9 @@ export default function RechargeModalContent({
       ))}
 
       <PrimaryButton
-        className={`flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch mt-4 ${!selectedAmount ? 'opacity-50 cursor-not-allowed border-none' : ''}`}
+        className={
+          'flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch mt-4'
+        }
         onClickFunc={handleRecharge}
         disabled={!selectedAmount}
       >
