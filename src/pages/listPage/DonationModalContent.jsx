@@ -44,7 +44,7 @@ function DonationModalContent({
   }, [inputCredit]);
 
   useEffect(() => {
-    if (inputCredit < 1) {
+    if (inputCredit === undefined || inputCredit < 1) {
       setNullCredit(true);
     } else {
       setNullCredit(false);
