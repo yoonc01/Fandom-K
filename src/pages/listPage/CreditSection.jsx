@@ -18,13 +18,13 @@ export default function CreditSection({
       </div>
       <div className="flex flex-col items-center justify-center">
         <p
-          className="font-pretendard font-bold text-coralRed text-[13px] pc:text-[16px] tablet:text-[16px]"
+          className="font-pretendard font-bold text-coralRed text-[13px] pc:text-[16px] tablet:text-[16px] cursor-pointer"
           onClick={onRechargeClick}
         >
           충전하기
         </p>
         <p
-          className="mt-[50px] text-white absolute"
+          className="mt-[50px] text-white absolute cursor-pointer"
           onClick={onCreditShortageClick}
         >
           크레딧 부족
