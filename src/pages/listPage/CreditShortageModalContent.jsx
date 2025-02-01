@@ -9,7 +9,7 @@ export default function CreditShortageModalContent() {
         앗! 투표하기 위한 <span className="text-coralRed">크레딧</span>이
         부족해요
       </p>
-      <div className="flex flex-col items-center justify-between gap-[14px]">
+      <div className="flex flex-col items-center justify-between gap-[10px]">
         <button className="w-[295px] h-[42px] font-bold text-[14px] text-coralRed rounded-[3px] bg-softWhite">
           충전하기
         </button>
