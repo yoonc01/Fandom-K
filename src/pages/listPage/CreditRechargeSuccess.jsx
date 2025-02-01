@@ -1,6 +1,6 @@
 import PrimaryButton from '@/components/PrimaryButton';
 
-export default function CreditRechgSuccess({ amount, onConfirm }) {
+export default function CreditRechargeSuccess({ amount, onConfirm }) {
   return (
     <div className="w-[295px] h-fit flex flex-col gap-[8px] mt-[42px]">
       <div className="flex items-center justify-center">

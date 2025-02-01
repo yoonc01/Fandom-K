@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 import Header from '@/components/Header';
 import CreditSection from '@/pages/listPage/CreditSection';
-import { getCredits } from '@/utils/CreditStorage';
-import RechgModalContent from '@/pages/listPage/RechgModalContent';
-import CreditRechgSuccess from '@/pages/listPage/CreditRechgSuccess';
+import { getCredits } from '@/utils/creditStorage';
+import RechargeModalContent from '@/pages/listPage/RechargeModalContent';
+import CreditRechargeSuccess from '@/pages/listPage/CreditRechargeSuccess';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/pages/listPage/DonationModalContent';
@@ -64,13 +64,13 @@ function ListPage() {
       {isModalOpen && (
         <Modal title={modalTitle} onClose={closeModal}>
           {modalStep === 'creditRecharge' && (
-            <RechgModalContent
+            <RechargeModalContent
               setModalStep={setModalStep}
               onRechargeSuccess={handleRechargeSuccess}
             />
           )}
           {modalStep === 'creditRechargeSuccess' && (
-            <CreditRechgSuccess
+            <CreditRechargeSuccess
               amount={selectedAmount}
               onConfirm={closeModal}
             />
