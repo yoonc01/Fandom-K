@@ -3,7 +3,7 @@ import idolImage from '@/assets/images/introSectionIdolImage.png';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import PrimaryButton from '@/components/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
-import { initCredits } from '@/utils/CreditStorage.js';
+import { initCredits } from '@/utils/creditStorage.js';
 
 function IntroSection() {
   const navigate = useNavigate();
