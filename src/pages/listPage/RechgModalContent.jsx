@@ -18,7 +18,7 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
       {[100, 500, 1000].map((amount) => (
         <div
           key={amount}
-          className={`bg-[#02000E] w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer ${selectedAmount === amount ? 'border-coralRed' : 'border-softWhite'} hover:border-coralRed`}
+          className={`bg-midnightBlack w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer ${selectedAmount === amount ? 'border-coralRed' : 'border-softWhite'} hover:border-coralRed`}
           onClick={() => {
             setSelectedAmount(amount);
           }}

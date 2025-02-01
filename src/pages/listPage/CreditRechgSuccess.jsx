@@ -5,7 +5,7 @@ export default function CreditRechgSuccess({ amount, onConfirm }) {
     <div className="w-[295px] h-fit flex flex-col gap-[8px] mt-[42px]">
       <div className="flex items-center justify-center">
         <div className="w-[30px] h-[30px] bg-[url(@/assets/icons/creditLight.svg)] bg-contain bg-no-repeat bg-center" />
-        <p className="font-pretendard font-bold text-[#DEDEE0] text-[20px] pc:text-[24px] tablet:text-[24px]">
+        <p className="font-pretendard font-bold text-white/[0.87] text-[20px] pc:text-[24px] tablet:text-[24px]">
           + {amount.toLocaleString()}
         </p>
       </div>
