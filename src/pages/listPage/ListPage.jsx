@@ -3,8 +3,8 @@ import Modal from '@/components/Modal';
 import Header from '@/components/Header';
 import CreditSection from '@/pages/listPage/CreditSection';
 import { getCredits } from '@/utils/creditStorage';
-import RechgModalContent from '@/pages/listPage/RechgModalContent';
-import CreditRechgSuccess from '@/pages/listPage/CreditRechgSuccess';
+import RechargeModalContent from '@/pages/listPage/RechargeModalContent';
+import CreditRechargeSuccess from '@/pages/listPage/CreditRechargeSuccess';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/pages/listPage/DonationModalContent';
@@ -25,7 +25,7 @@ function ListPage() {
   const openModal = (step, item = null) => {
     setModalStep(step);
     setIsModalOpen(true);
-    setSelectedItem(item); //
+    setSelectedItem(item);
   };
 
   const closeModal = () => {
@@ -34,7 +34,8 @@ function ListPage() {
     setSelectedAmount(null);
   };
 
-  const handleRechargeSuccess = (updatedCredits, amount) => {
+  const handleRechargeSuccess = (amount) => {
+    const updatedCredits = getCredits();
     setCredits(updatedCredits);
     setSelectedAmount(amount);
     setModalStep('creditRechargeSuccess');
@@ -66,17 +67,24 @@ function ListPage() {
       {isModalOpen && (
         <Modal title={modalTitle} onClose={closeModal}>
           {modalStep === 'creditRecharge' && (
-            <RechgModalContent
+            <RechargeModalContent
               setModalStep={setModalStep}
               onRechargeSuccess={handleRechargeSuccess}
             />
           )}
           {modalStep === 'creditRechargeSuccess' && (
-            <CreditRechgSuccess
+            <CreditRechargeSuccess
               amount={selectedAmount}
               onConfirm={closeModal}
             />
           )}
+          {modalStep === 'creditNotEnough' && (
+            <CreditShortageModalContent
+              onClose={closeModal}
+              setModalStep={setModalStep}
+            />
+          )}
+          {modalStep === 'donation' && <DonationModalContent />}
           {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
           {modalStep === 'donation' && (
             <DonationModalContent item={selectedItem} />

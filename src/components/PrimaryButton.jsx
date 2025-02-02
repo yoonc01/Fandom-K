@@ -1,10 +1,19 @@
 import React from 'react';
 
-function PrimaryButton({ children, className = '', onClickFunc = () => {} }) {
-  const backgroundStyle =
-    'bg-gradient-to-r from-[#F86F65] to-pinkPunch rounded-[3px]';
+function PrimaryButton({
+  children,
+  className = '',
+  onClickFunc = () => {},
+  disabled = false,
+}) {
+  const buttonClass = `bg-gradient-to-r from-[#F86F65] to-pinkPunch rounded-[3px] ${className} ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`;
+
   return (
-    <button className={`${backgroundStyle} ${className}`} onClick={onClickFunc}>
+    <button
+      className={buttonClass}
+      onClick={disabled ? undefined : onClickFunc}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

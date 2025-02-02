@@ -2,15 +2,15 @@ import PrimaryButton from '@/components/PrimaryButton';
 import { getCredits, rechargeCredits } from '@/utils/creditStorage';
 import { useState } from 'react';
 
-export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
+export default function RechargeModalContent({
+  setModalStep,
+  onRechargeSuccess,
+}) {
   const [selectedAmount, setSelectedAmount] = useState(null);
 
-  const handleRecharge = (e) => {
-    e.preventDefault();
-
+  const handleRecharge = () => {
     rechargeCredits(selectedAmount);
-    onRechargeSuccess(getCredits(), selectedAmount);
-    setModalStep('creditRechargeSuccess');
+    onRechargeSuccess(selectedAmount);
   };
 
   return (
@@ -18,10 +18,8 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
       {[100, 500, 1000].map((amount) => (
         <div
           key={amount}
-          className={`bg-[#02000E] w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer ${selectedAmount === amount ? 'border-coralRed' : 'border-softWhite'} hover:border-coralRed`}
-          onClick={() => {
-            setSelectedAmount(amount);
-          }}
+          className={`bg-midnightBlack w-full h-[62px] border-2 rounded-lg pl-[15px] pr-[20px] flex items-center justify-between cursor-pointer ${selectedAmount === amount ? 'border-coralRed' : 'border-softWhite'} hover:border-coralRed`}
+          onClick={() => setSelectedAmount(amount)}
         >
           <div className="w-[216px] h-[26px] flex items-center justify-start gap-[2px]">
             <div className="w-[20px] h-[30px] bg-[url(@/assets/icons/credit.svg)] bg-contain bg-no-repeat bg-center" />
@@ -30,13 +28,6 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
             </label>
           </div>
           <div className="relative flex items-center justify-center">
-            <input
-              type="radio"
-              name="selectAmount"
-              className="peer hidden"
-              checked={selectedAmount === amount}
-              readOnly
-            />
             <div
               className={`w-[16px] h-[16px] rounded-full border-[2px] bg-gray-100 border-gray-300 ${selectedAmount === amount ? 'border-coralRed' : ''} flex items-center justify-center`}
             >
@@ -49,7 +40,9 @@ export default function RechgModalContent({ setModalStep, onRechargeSuccess }) {
       ))}
 
       <PrimaryButton
-        className={`flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch mt-4 ${!selectedAmount ? 'opacity-50 cursor-not-allowed border-none' : ''}`}
+        className={
+          'flex items-center justify-center w-[295px] h-[42px] hover:border-2 hover:border-pinkPunch mt-4'
+        }
         onClickFunc={handleRecharge}
         disabled={!selectedAmount}
       >
