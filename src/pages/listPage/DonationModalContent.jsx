@@ -15,7 +15,7 @@ function DonationModalContent({
 
   const [detailInfo, setDetailInfo] = useState(false);
   const [inputCredit, setInputCredit] = useState('');
-  const [invalidCredit, setInvalidCredit] = useState(true);
+  const [invalidCredit, setInvalidCredit] = useState(false);
   const [nullCredit, setNullCredit] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
