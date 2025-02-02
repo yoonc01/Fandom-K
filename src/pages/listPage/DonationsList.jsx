@@ -21,7 +21,17 @@ function DonationsList({ onDonationClick }) {
   }, []);
 
   const handleLoad = async (query) => {
-    const { list, nextCursor } = await getItems(query);
+    const { data, error } = await getItems(query);
+
+    if (error) {
+      console.error('Error loading items:', error);
+      alert('데이터를 불러오는 중 오류가 발생했습니다. 다시 시도해주세요.');
+      return;
+    }
+
+    if (!data) return;
+
+    const { list, nextCursor } = data;
 
     // PC의 경우, 이전 페이지 데이터(history)를 저장
     // 이전 페이지로 이동할 때는 새로 API 요청을 보내는 대신 저장된 데이터를 사용

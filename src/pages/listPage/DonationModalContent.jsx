@@ -29,13 +29,18 @@ function DonationModalContent({
   const handleDonation = async () => {
     const credit = Number(inputCredit);
     const res = await putCredits({ id, credit });
-    spendCredits(inputCredit);
-    onDonationSuccess(getCredits());
-    setModalStep('donationSuccess');
+    if (res?.status === 200) {
+      spendCredits(credit);
+      onDonationSuccess(getCredits());
+      setModalStep('donationSuccess');
+    } else {
+      console.error('후원 요청 실패:', res);
+      alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
   };
 
   useEffect(() => {
-    if (inputCredit !== null && inputCredit > myCredit) {
+    if (Number(inputCredit) > myCredit) {
       setInvalidCredit(true);
     } else {
       setInvalidCredit(false);
