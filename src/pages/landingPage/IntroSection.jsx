@@ -1,6 +1,5 @@
 import fandomKLogo from '@/assets/icons/fandomKLogo.svg';
-import idolImage from '@/assets/images/introSectionIdolImage.png';
-import leftTopGradient from '@/assets/images/leftTopGradient.png';
+import idolImage from '@/assets/images/introSectionIdolImage.webp';
 import PrimaryButton from '@/components/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
 import { initCredits } from '@/utils/creditStorage.js';
@@ -14,16 +13,11 @@ function IntroSection() {
   };
 
   return (
-    <div className="py-[140px] relative flex flex-col items-center w-full min-h-screen bg-midnightBlack text-softWhite font-pretendard">
-      <img
-        src={leftTopGradient}
-        alt="leftTopGradient"
-        className="absolute top-[-52px] left-[-112px] opacity-40 pointer-events-none"
-      />
-      <div className="z-10 text-center text-[26px] font-bold">
+    <div className="py-[120px] relative flex flex-col items-center w-full min-h-screen">
+      <h1 className="z-10 text-center text-[26px] font-bold">
         내가 좋아하는 아이돌을 <br />
         가장 <span className="text-coralRed">쉽게 덕질</span> 하는 방법
-      </div>
+      </h1>
       <img
         src={fandomKLogo}
         alt="FandomKLogo"
@@ -39,7 +33,7 @@ function IntroSection() {
       />
       <PrimaryButton
         className={
-          'z-10 mt-[40px] w-[230px] h-[48px] rounded-[3px] text-[14px] z-10 md:mt-[100px] md:w-[477px] lg:mt-[584px]'
+          'mt-[40px] w-[230px] h-[48px] rounded-[3px] text-[14px] tablet:mt-[100px] tablet:w-[477px] pc:mt-[600px]'
         }
         onClickFunc={() => {
           handleClick(true);
