@@ -18,7 +18,6 @@ function ListPage() {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null); //
 
-  const openModal = (step) => {
   useEffect(() => {
     setCredits(getCredits());
   }, []);
@@ -26,7 +25,7 @@ function ListPage() {
   const openModal = (step, item = null) => {
     setModalStep(step);
     setIsModalOpen(true);
-    setSelectedItem(item); //
+    setSelectedItem(item);
   };
 
   const closeModal = () => {

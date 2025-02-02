@@ -1,4 +1,4 @@
-import IntroSection from '@/pages/LandingPage/IntroSection.jsx';
+import IntroSection from '@/pages/landingPage/IntroSection.jsx';
 
 function LandingPage() {
   return <IntroSection />;

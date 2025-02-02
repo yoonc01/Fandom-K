@@ -1,5 +1,5 @@
 import PrimaryButton from '@/components/PrimaryButton';
-import CreditIcon from '@/assets/icons/Credit.svg';
+import CreditIcon from '@/assets/icons/credit.svg';
 import { useState } from 'react';
 
 function DonationModalContent({ item }) {
