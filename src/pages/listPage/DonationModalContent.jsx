@@ -1,6 +1,5 @@
 import PrimaryButton from '@/components/PrimaryButton';
-import CreditIcon from '@/assets/icons/Credit.svg';
-
+import CreditIcon from '@/assets/icons/credit.svg';
 import { useEffect, useState } from 'react';
 import { getCredits, spendCredits } from '@/utils/CreditStorage';
 import { putCredits } from '@/apis/donationApi';
