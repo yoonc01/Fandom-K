@@ -27,6 +27,16 @@ export default {
         tablet: '768px',
         mobile: '375px',
       },
+      backgroundImage: {
+        mainSectionBackgroundImage1:
+          "url('/src/assets/images/mainSectionBackgroundImage1.webp')",
+        mainSectionBackgroundImage2:
+          "url('/src/assets/images/mainSectionBackgroundImage2.webp')",
+        mainSectionBackgroundImage3:
+          "url('/src/assets/images/mainSectionBackgroundImage3.webp')",
+        'radial-black':
+          'radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,1) 60%)',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],

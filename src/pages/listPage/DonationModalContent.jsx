@@ -1,7 +1,7 @@
 import PrimaryButton from '@/components/PrimaryButton';
 import CreditIcon from '@/assets/icons/credit.svg';
 import { useEffect, useState } from 'react';
-import { getCredits, spendCredits } from '@/utils/CreditStorage';
+import { getCredits, spendCredits } from '@/utils/creditStorage';
 import { putCredits } from '@/apis/donationApi';
 
 function DonationModalContent({
