@@ -2,9 +2,16 @@ import creditIcon from '@/assets/icons/credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
 function DonationCard({ item, onDonationClick }) {
-  const { receivedDonations, targetDonation, subtitle, title, idol, deadline } =
-    item;
-  const { name, profilePicture } = idol;
+  const {
+    id,
+    idol,
+    subtitle,
+    title,
+    receivedDonations,
+    targetDonation,
+    deadline,
+  } = item;
+  const { name, group, profilePicture } = idol;
 
   const currentDonationPercentage = (receivedDonations / targetDonation) * 100;
 
@@ -14,6 +21,15 @@ function DonationCard({ item, onDonationClick }) {
   const today = new Date();
   const diffTime = deadlineDate - today;
   const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  const modalData = {
+    id: id,
+    image: profilePicture,
+    subtitle: subtitle,
+    title: `${group} ${name} 광고`,
+    receivedCredit: receivedCredit,
+    remainingDays: remainingDays,
+  };
 
   return (
     <div className="w-[158px] tablet:w-[282px] relative flex flex-col gap-[6px] tablet:gap-2 font-pretendard">
@@ -31,7 +47,7 @@ function DonationCard({ item, onDonationClick }) {
             className={
               'w-[142px] tablet:w-[234px] h-[31px] tablet:h-[40px] absolute bottom-[8px] tablet:bottom-[20px] font-bold text-[13px] text-white'
             }
-            onClickFunc={onDonationClick}
+            onClickFunc={() => onDonationClick(modalData)}
           >
             후원하기
           </PrimaryButton>

@@ -10,3 +10,9 @@ export async function getItems({ cursor = 0 }) {
 
   return res.data;
 }
+
+export async function putCredits({ id, credit }) {
+  const res = await instance.put(`/donations/${id}/contribute`, {
+    amount: credit,
+  });
+}

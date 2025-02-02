@@ -1,4 +1,4 @@
-import IntroSection from '@/pages/LandingPage/IntroSection.jsx';
+import IntroSection from '@/pages/landingPage/IntroSection.jsx';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import phoneImage1 from '@/assets/images/mainSectionPhoneImage1.png';
 import phoneImage2 from '@/assets/images/mainSectionPhoneImage2.png';

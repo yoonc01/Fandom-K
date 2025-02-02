@@ -2,7 +2,7 @@ import fandomKLogo from '@/assets/icons/fandomKLogo.svg';
 import idolImage from '@/assets/images/introSectionIdolImage.webp';
 import PrimaryButton from '@/components/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
-import { initCredits } from '@/utils/CreditStorage.js';
+import { initCredits } from '@/utils/creditStorage.js';
 
 function IntroSection() {
   const navigate = useNavigate();
