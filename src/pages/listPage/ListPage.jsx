@@ -10,13 +10,14 @@ import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/pages/listPage/DonationModalContent';
 import MonthlyChart from '@/pages/listPage/MonthlyChart';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
+import DonationSuccess from './DonationSuccess';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStep, setModalStep] = useState(null);
   const [credits, setCredits] = useState(getCredits());
   const [selectedAmount, setSelectedAmount] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null); //
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     setCredits(getCredits());
@@ -41,11 +42,17 @@ function ListPage() {
     setModalStep('creditRechargeSuccess');
   };
 
+  const handleDonationSuccess = (updatedCredits) => {
+    setCredits(updatedCredits);
+    setModalStep('DonationSuccess');
+  };
+
   const modalTitle = {
     creditRecharge: '크레딧 충전하기',
     creditRechargeSuccess: '',
     creditNotEnough: '',
     donation: '후원하기',
+    donationSuccess: '',
   }[modalStep];
 
   return (
@@ -84,10 +91,16 @@ function ListPage() {
               setModalStep={setModalStep}
             />
           )}
-          {modalStep === 'donation' && <DonationModalContent />}
-          {modalStep === 'creditNotEnough' && <CreditShortageModalContent />}
           {modalStep === 'donation' && (
-            <DonationModalContent item={selectedItem} />
+            <DonationModalContent
+              item={selectedItem}
+              credits={credits}
+              setModalStep={setModalStep}
+              onDonationSuccess={handleDonationSuccess}
+            />
+          )}
+          {modalStep === 'donationSuccess' && (
+            <DonationSuccess onConfirm={closeModal} />
           )}
         </Modal>
       )}

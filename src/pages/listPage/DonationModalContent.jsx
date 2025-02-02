@@ -1,22 +1,54 @@
 import PrimaryButton from '@/components/PrimaryButton';
 import CreditIcon from '@/assets/icons/credit.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getCredits, spendCredits } from '@/utils/creditStorage';
+import { putCredits } from '@/apis/donationApi';
 
-function DonationModalContent({ item }) {
-  const {
-    image,
-    subtitle,
-    title,
-    receivedCredit,
-    currentCreditPercentage,
-    remainingDays,
-  } = item;
+function DonationModalContent({
+  item,
+  credits,
+  setModalStep,
+  onDonationSuccess,
+}) {
+  const { id, image, subtitle, title, receivedCredit, remainingDays } = item;
+  const myCredit = credits;
 
   const [detailInfo, setDetailInfo] = useState(false);
+  const [inputCredit, setInputCredit] = useState(undefined);
+  const [invalidCredit, setInvalidCredit] = useState(true);
+  const [nullCredit, setNullCredit] = useState(true);
 
-  function showDetailInfo() {
+  const showDetailInfo = () => {
     setDetailInfo(!detailInfo);
-  }
+  };
+
+  const handleCreditChange = (e) => {
+    setInputCredit(e.target.value);
+  };
+
+  const handleDonation = async () => {
+    const credit = Number(inputCredit);
+    const res = await putCredits({ id, credit });
+    spendCredits(inputCredit);
+    onDonationSuccess(getCredits());
+    setModalStep('donationSuccess');
+  };
+
+  useEffect(() => {
+    if (inputCredit !== null && inputCredit > myCredit) {
+      setInvalidCredit(true);
+    } else {
+      setInvalidCredit(false);
+    }
+  }, [inputCredit]);
+
+  useEffect(() => {
+    if (inputCredit === undefined || inputCredit < 1) {
+      setNullCredit(true);
+    } else {
+      setNullCredit(false);
+    }
+  }, [inputCredit]);
 
   return (
     <div className="w-[295px] pt-[24px] flex flex-col items-center gap-6">
@@ -29,7 +61,7 @@ function DonationModalContent({ item }) {
           <li className="font-regular text-[12px] text-silverGray">
             {subtitle}
           </li>
-          <li className="font-medium text-[14px] text-softWhite">
+          <li className="font-medium text-[16px] text-softWhite">
             <button type="button" onClick={showDetailInfo}>
               {title}
             </button>
@@ -70,15 +102,28 @@ function DonationModalContent({ item }) {
       <div className="w-full relative">
         <input
           type="text"
+          id="credit"
+          value={inputCredit}
+          onChange={handleCreditChange}
+          onInput={(e) => (e.target.value = e.target.value.replace(/\D/g, ''))} // 입력된 값이 숫자가 아닐 시 제거
           placeholder="크레딧 입력"
-          className="w-full h-[58px] rounded-lg bg-[#272F3D] border border-white p-[16px] text-[20px] text-white placeholder-bold-steelGray"
+          className={`w-full h-[58px] rounded-lg bg-[#272F3D] border ${!invalidCredit ? 'border-white focus:border-white' : 'border-red-500 focus:border-red-500'} focus:outline-none p-[16px] text-[20px] text-white placeholder-bold-steelGray`}
         />
         <img
           src={CreditIcon}
           className="w-[20px] absolute top-[18px] right-[18px]"
         />
+        {invalidCredit && (
+          <div className="mt-[6px] font-medium text-[12px] text-red-500">
+            갖고 있는 크레딧보다 더 많이 후원할 수 없어요
+          </div>
+        )}
       </div>
-      <PrimaryButton className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white">
+      <PrimaryButton
+        disabled={invalidCredit || nullCredit}
+        className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white"
+        onClickFunc={handleDonation}
+      >
         후원하기
       </PrimaryButton>
     </div>
