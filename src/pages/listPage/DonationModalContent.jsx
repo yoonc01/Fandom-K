@@ -17,6 +17,7 @@ function DonationModalContent({
   const [inputCredit, setInputCredit] = useState(undefined);
   const [invalidCredit, setInvalidCredit] = useState(true);
   const [nullCredit, setNullCredit] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const showDetailInfo = () => {
     setDetailInfo(!detailInfo);
@@ -27,15 +28,20 @@ function DonationModalContent({
   };
 
   const handleDonation = async () => {
-    const credit = Number(inputCredit);
-    const res = await putCredits({ id, credit });
-    if (res?.status === 200) {
-      spendCredits(credit);
-      onDonationSuccess(getCredits());
-      setModalStep('donationSuccess');
-    } else {
-      console.error('후원 요청 실패:', res);
-      alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
+    setIsLoading(true);
+    try {
+      const credit = Number(inputCredit);
+      const res = await putCredits({ id, credit });
+      if (res?.status === 200) {
+        spendCredits(credit);
+        onDonationSuccess(getCredits());
+        setModalStep('donationSuccess');
+      } else {
+        console.error('후원 요청 실패:', res);
+        alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -125,7 +131,7 @@ function DonationModalContent({
         )}
       </div>
       <PrimaryButton
-        disabled={invalidCredit || nullCredit}
+        disabled={invalidCredit || nullCredit || isLoading}
         className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white"
         onClickFunc={handleDonation}
       >
