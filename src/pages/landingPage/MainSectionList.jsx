@@ -9,7 +9,7 @@ function MainSectionList({ headText, semiHeadText, imgData, backgroundImage }) {
     })[name] || '';
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center overflow-hidden">
       {/* 배경 이미지 */}
       <div
         className={`z-0 absolute top-[90px] tablet:top-[45px] pc:top-[90px] w-[768px] h-[768px] pc:w-[900px] pc:h-[900px] bg-cover bg-center ${getBackgroundClass(backgroundImage)}`}
