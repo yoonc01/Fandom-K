@@ -29,22 +29,17 @@ const sections = [
 
 function LandingPage() {
   return (
-    <>
-      <Helmet>
-        <title>Fandom-K - 좋아하는 아이돌을 쉽게 덕질해보세요</title>
-      </Helmet>
-      <div className="bg-midnightBlack text-softWhite font-pretendard">
-        <img
-          src={leftTopGradient}
-          alt="leftTopGradient"
-          className="absolute w-[200px] h-[272px] opacity-70 z-10 pointer-events-none"
-        />
-        <IntroSection />
-        {sections.map((section, index) => (
-          <MainSectionList key={index} {...section} />
-        ))}
-      </div>
-    </>
+    <div className="bg-midnightBlack text-softWhite font-pretendard">
+      <img
+        src={leftTopGradient}
+        alt="leftTopGradient"
+        className="absolute w-[200px] h-[272px] opacity-70 z-10 pointer-events-none"
+      />
+      <IntroSection />
+      {sections.map((section, index) => (
+        <MainSectionList key={index} {...section} />
+      ))}
+    </div>
   );
 }
 
