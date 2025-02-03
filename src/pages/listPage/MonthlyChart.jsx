@@ -54,7 +54,7 @@ const MonthlyChart = () => {
           <span>차트 투표하기</span>
         </PrimaryButton>
       </div>
-      <div className="flex w-full text-[14px] font-regular leading-[18px] tracking-[-0.17px] mb-[16px]">
+      <div className="flex w-full text-[14px] font-normal leading-[18px] tracking-[-0.17px] mb-[16px]">
         <button
           onClick={() => setGender('female')}
           className="flex justify-center items-center text-center w-1/2 h-[42px] focus:text-white hover:text-white focus:bg-white hover:bg-white focus:bg-opacity-10 hover:bg-opacity-10 focus:border-b hover:border-b text-neutral-500"

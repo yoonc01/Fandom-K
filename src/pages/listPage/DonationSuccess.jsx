@@ -7,7 +7,7 @@ export default function DonationSuccess({ onConfirm }) {
         <div className="w-[138px] h-[115px] bg-[url(@/assets/icons/creditNoFeather.svg)] bg-cover bg-no-repeat bg-[left_9.86px_top_-50px] blur-2xl" />
         <div className="absolute w-[138px] h-[115px] bg-[url(@/assets/icons/creditNoFeather.svg)] bg-cover bg-no-repeat bg-[left_9.86px_top_-50px]" />
       </div>
-      <div className="mx-auto font-regular text-[16px]">
+      <div className="mx-auto font-normal text-[16px]">
         <div className="inline-block text-coralRed">후원</div>
         <div className="inline-block text-white">이 완료되었습니다!</div>
       </div>
