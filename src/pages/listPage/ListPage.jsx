@@ -61,7 +61,7 @@ function ListPage() {
       <Helmet>
         <title>Fandom-K - 좋아하는 아이돌에게 후원하고 투표하세요</title>
       </Helmet>
-      <div className="bg-midnightBlack px-6 pc:px-0 relative">
+      <div className="min-h-screen bg-midnightBlack px-6 pc:px-0 relative">
         <img
           src={leftTopGradient}
           alt="leftTopGradient"
