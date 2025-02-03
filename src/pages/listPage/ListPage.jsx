@@ -11,7 +11,6 @@ import DonationModalContent from '@/pages/listPage/DonationModalContent';
 import MonthlyChart from '@/pages/listPage/MonthlyChart';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import DonationSuccess from './DonationSuccess';
-import { Helmet } from 'react-helmet';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);

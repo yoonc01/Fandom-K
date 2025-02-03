@@ -4,7 +4,6 @@ import phoneImage1 from '@/assets/images/mainSectionPhoneImage1.png';
 import phoneImage2 from '@/assets/images/mainSectionPhoneImage2.png';
 import phoneImage3 from '@/assets/images/mainSectionPhoneImage3.png';
 import MainSectionList from '@/pages/landingPage/MainSectionList';
-import { Helmet } from 'react-helmet';
 
 const sections = [
   {

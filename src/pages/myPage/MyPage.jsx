@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import IdolCard from '@/components/IdolCard';
-import { Helmet } from 'react-helmet';
 
 const MyPage = () => {
   const [idols, setIdols] = useState([]);
