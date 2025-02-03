@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '@/components/Header';
 import IdolCard from '@/components/IdolCard';
+ 
 import nextIcon from '@/assets/icons/nextIcon.svg';
 import prevIcon from '@/assets/icons/prevIcon.svg';
 import { Helmet } from 'react-helmet';
 const storageKey = 'favoriteIdols';
+ 
 
 const MyPage = () => {
   const [idols, setIdols] = useState([]);
@@ -76,7 +78,7 @@ const MyPage = () => {
     }
   };
 
-  return (
+  return ( 
     <div className="w-full min-h-screen bg-[#02000E] flex flex-col items-center">
       <Header />
 
@@ -169,8 +171,22 @@ const MyPage = () => {
         >
           + 추가하기
         </button>
+ 
+    <>
+      <Helmet>
+        <title>Fandom-K - 좋아하는 아이돌을 관심 아이돌로 설정하세요</title>
+      </Helmet>
+      <div className="h-screen w-full bg-midnightBlack flex items-center justify-center">
+        <div className="flex w-full max-w-[1200px] px-4 justify-center gap-6">
+          {idols.length > 0 ? (
+            idols.map((idol) => <IdolCard key={idol.id} idol={idol} />)
+          ) : (
+            <p className="text-white">아이돌 데이터를 불러오는 중...</p>
+          )}
+        </div>
+ 
       </div>
-    </div>
+    </>
   );
 };
 

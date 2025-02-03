@@ -1,6 +1,5 @@
 # 코드잇 스프린트 13기 3팀(파트 2)
-
-> 개발기간: 2025.01.24 ~
+> 개발기간: 2025.01.24 ~  
 
 ## Contributors
 
@@ -136,6 +135,45 @@ feat/#27/Button
 <!-- 예시 -->
 feat : #27/Component Base - Button 기능 개발
 ```
+
+## 기술 스택
+#### Environment
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+#### Config
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
+#### Linters
+![js](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
+![js](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+
+#### Development
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+#### communication
+![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+
+#### Deployment
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
+## 설치 및 실행 방법
+
+### 로컬 실행
+```
+git clone https://github.com/yoonc01/Fandom-K.git
+cd Fandom-K
+npm install
+npm run dev
+```
+
+### 배포 주소
+🚀 프로젝트를 확인하려면 [여기](https://fandom-k-murex.vercel.app/)를 클릭하세요!
 
 ## 프로젝트 구조
 
