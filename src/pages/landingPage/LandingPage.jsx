@@ -28,7 +28,7 @@ const sections = [
 
 function LandingPage() {
   return (
-    <div className="bg-midnightBlack text-softWhite font-pretendard">
+    <div className="bg-midnightBlack text-softWhite font-pretendard min-h-screen">
       <img
         src={leftTopGradient}
         alt="leftTopGradient"

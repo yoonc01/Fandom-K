@@ -10,7 +10,7 @@ function NotFoundPage() {
       <div className="font-bold text-[24px] text-white">
         페이지를 찾을 수 없습니다.
       </div>
-      <div className="font-regular text-[20px] text-white">
+      <div className="font-normal text-[20px] text-white">
         죄송합니다. 존재하지 않는 페이지입니다.
       </div>
 

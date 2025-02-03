@@ -35,7 +35,7 @@ export default {
         mainSectionBackgroundImage3:
           "url('/src/assets/images/mainSectionBackgroundImage3.webp')",
         'radial-black':
-          'radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,1) 60%)',
+          'radial-gradient(circle, rgba(2,0,14,0) 0%, rgba(2,0,14,0.5) 18%, rgba(2,0,14,1) 60%)',
       },
     },
   },
