@@ -27,7 +27,6 @@ const MonthlyChartSection = () => {
   };
 
   const loadIdolData = async () => {
-    console.log('loadIdolData:', gender, cursor, pageSize);
     setLoading(true);
     try {
       const response = await getLists(gender, cursor, pageSize);
@@ -48,13 +47,11 @@ const MonthlyChartSection = () => {
     if (cursor === null) {
       alert('불러올 데이터가 없습니다.');
     } else {
-      console.log(cursor);
       loadIdolData();
     }
   };
 
   useEffect(() => {
-    console.log('useEffect:', gender, pageSize);
     setIdolData([]);
     setCursor(0);
     loadIdolData();
