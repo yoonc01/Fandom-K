@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import IdolCard from '@/components/IdolCard';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 import prevIcon from '@/assets/icons/prevIcon.svg';
-
+import { Helmet } from 'react-helmet';
 const storageKey = 'favoriteIdols';
 
 const MyPage = () => {
