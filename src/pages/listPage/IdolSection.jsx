@@ -14,7 +14,6 @@ const IdolSection = ({ idol }) => {
           {group} {name}
         </p>
       </div>
-      {/* font-regular가 작동하지 않아 font-normal로 작성 */}
       <div className="font-normal text-white/60">{totalVotes}표</div>
     </div>
   );
