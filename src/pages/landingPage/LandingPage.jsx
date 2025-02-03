@@ -4,6 +4,7 @@ import phoneImage1 from '@/assets/images/mainSectionPhoneImage1.png';
 import phoneImage2 from '@/assets/images/mainSectionPhoneImage2.png';
 import phoneImage3 from '@/assets/images/mainSectionPhoneImage3.png';
 import MainSectionList from '@/pages/landingPage/MainSectionList';
+import { Helmet } from 'react-helmet';
 
 const sections = [
   {
@@ -28,17 +29,22 @@ const sections = [
 
 function LandingPage() {
   return (
-    <div className="bg-midnightBlack text-softWhite font-pretendard">
-      <img
-        src={leftTopGradient}
-        alt="leftTopGradient"
-        className="absolute w-[200px] h-[272px] opacity-70 z-10 pointer-events-none"
-      />
-      <IntroSection />
-      {sections.map((section, index) => (
-        <MainSectionList key={index} {...section} />
-      ))}
-    </div>
+    <>
+      <Helmet>
+        <title>Fandom-K - 좋아하는 아이돌을 쉽게 덕질해보세요</title>
+      </Helmet>
+      <div className="bg-midnightBlack text-softWhite font-pretendard">
+        <img
+          src={leftTopGradient}
+          alt="leftTopGradient"
+          className="absolute w-[200px] h-[272px] opacity-70 z-10 pointer-events-none"
+        />
+        <IntroSection />
+        {sections.map((section, index) => (
+          <MainSectionList key={index} {...section} />
+        ))}
+      </div>
+    </>
   );
 }
 
