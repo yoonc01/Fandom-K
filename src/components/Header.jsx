@@ -5,7 +5,7 @@ function Header() {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    window.location.reload();
+    navigate("/list");
   };
 
   const handleProfileClick = () => {
