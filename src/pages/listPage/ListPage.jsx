@@ -11,7 +11,6 @@ import DonationModalContent from '@/pages/listPage/DonationModalContent';
 import MonthlyChart from '@/pages/listPage/MonthlyChart';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import DonationSuccess from './DonationSuccess';
-import { Helmet } from 'react-helmet';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,62 +56,55 @@ function ListPage() {
   }[modalStep];
 
   return (
-    <>
-      <Helmet>
-        <title>Fandom-K - 좋아하는 아이돌에게 후원하고 투표하세요</title>
-      </Helmet>
-      <div className="min-h-screen bg-midnightBlack px-6 pc:px-0 relative">
-        <img
-          src={leftTopGradient}
-          alt="leftTopGradient"
-          className="absolute top-[-52px] left-[-112px] opacity-40 pointer-events-none"
-        />
-        <Header />
-        <CreditSection
-          onRechargeClick={() => openModal('creditRecharge')}
-          onCreditShortageClick={() => openModal('creditNotEnough')}
-          credits={credits}
-        />
-        <DonationsList
-          onDonationClick={(item) => openModal('donation', item)}
-        />
-        <MonthlyChart />
+    <div className="min-h-screen bg-midnightBlack px-6 pc:px-0 relative">
+      <img
+        src={leftTopGradient}
+        alt="leftTopGradient"
+        className="absolute top-[-52px] left-[-112px] opacity-40 pointer-events-none"
+      />
+      <Header />
+      <CreditSection
+        onRechargeClick={() => openModal('creditRecharge')}
+        onCreditShortageClick={() => openModal('creditNotEnough')}
+        credits={credits}
+      />
+      <DonationsList onDonationClick={(item) => openModal('donation', item)} />
+      <MonthlyChart />
 
-        {isModalOpen && (
-          <Modal title={modalTitle} onClose={closeModal}>
-            {modalStep === 'creditRecharge' && (
-              <RechargeModalContent
-                setModalStep={setModalStep}
-                onRechargeSuccess={handleRechargeSuccess}
-              />
-            )}
-            {modalStep === 'creditRechargeSuccess' && (
-              <CreditRechargeSuccess
-                amount={selectedAmount}
-                onConfirm={closeModal}
-              />
-            )}
-            {modalStep === 'creditNotEnough' && (
-              <CreditShortageModalContent
-                onClose={closeModal}
-                setModalStep={setModalStep}
-              />
-            )}
-            {modalStep === 'donation' && (
-              <DonationModalContent
-                item={selectedItem}
-                credits={credits}
-                setModalStep={setModalStep}
-                onDonationSuccess={handleDonationSuccess}
-              />
-            )}
-            {modalStep === 'donationSuccess' && (
-              <DonationSuccess onConfirm={closeModal} />
-            )}
-          </Modal>
-        )}
-      </div>
-    </>
+      {isModalOpen && (
+        <Modal title={modalTitle} onClose={closeModal}>
+          {modalStep === 'creditRecharge' && (
+            <RechargeModalContent
+              setModalStep={setModalStep}
+              onRechargeSuccess={handleRechargeSuccess}
+            />
+          )}
+          {modalStep === 'creditRechargeSuccess' && (
+            <CreditRechargeSuccess
+              amount={selectedAmount}
+              onConfirm={closeModal}
+            />
+          )}
+          {modalStep === 'creditNotEnough' && (
+            <CreditShortageModalContent
+              onClose={closeModal}
+              setModalStep={setModalStep}
+            />
+          )}
+          {modalStep === 'donation' && (
+            <DonationModalContent
+              item={selectedItem}
+              credits={credits}
+              setModalStep={setModalStep}
+              onDonationSuccess={handleDonationSuccess}
+            />
+          )}
+          {modalStep === 'donationSuccess' && (
+            <DonationSuccess onConfirm={closeModal} />
+          )}
+        </Modal>
+      )}
+    </div>
   );
 }
 
