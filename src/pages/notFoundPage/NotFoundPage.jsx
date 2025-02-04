@@ -3,7 +3,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 
 function NotFoundPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-midnightBlack font-pretendard">
+    <div className="min-h-screen flex flex-col justify-center items-center font-pretendard">
       <div className="font-bold text-[50px] bg-gradient-to-r from-coralRed to-pinkPunch bg-clip-text text-transparent">
         404
       </div>

@@ -56,7 +56,7 @@ function ListPage() {
   }[modalStep];
 
   return (
-    <div className="min-h-screen bg-midnightBlack px-6 pc:px-0 relative">
+    <div className="px-6 pc:px-0 relative">
       <img
         src={leftTopGradient}
         alt="leftTopGradient"
