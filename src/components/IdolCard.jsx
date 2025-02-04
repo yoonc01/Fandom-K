@@ -8,7 +8,7 @@ const IdolCard = ({ idol }) => {
   console.log('IdolCard 받은 데이터:', idol);
 
   return (
-    <div className="bg-midnightBlack p-6 flex justify-center">
+    <div className="  p-6 flex justify-center">
       <div
         className="relative w-[98px] h-[98px] flex items-center justify-center rounded-full cursor-pointer transition-all"
         onClick={() => setIsSelected(!isSelected)}

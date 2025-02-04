@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-const ImageWithBorder = ({ borderColor = "#f96868", size = "128px" }) => {
-  const [imageSrc, setImageSrc] = useState("");
+const ImageWithBorder = ({ borderColor = '#f96868', size = '128px' }) => {
+  const [imageSrc, setImageSrc] = useState('');
 
   useEffect(() => {
-    
-    setImageSrc("https://via.placeholder.com/150");
+    setImageSrc('https://via.placeholder.com/150');
   }, []);
 
   if (!imageSrc) {
@@ -27,12 +26,13 @@ const ImageWithBorder = ({ borderColor = "#f96868", size = "128px" }) => {
         }}
       ></div>
       <div
-        className="absolute overflow-hidden bg-white rounded-full"
+        className="absolute overflow-hidden bg-white rounded-full
+        bg-transparent"
         style={{
           width: `calc(${size} - 13px)`,
           height: `calc(${size} - 13px)`,
-          left: "6.53px",
-          top: "6.53px",
+          left: '6.53px',
+          top: '6.53px',
         }}
       >
         <img
