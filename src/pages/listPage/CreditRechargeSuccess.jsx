@@ -9,7 +9,7 @@ export default function CreditRechargeSuccess({ amount, onConfirm }) {
           + {amount.toLocaleString()}
         </p>
       </div>
-      <p className="my-[31px] mx-auto font-regular text-[16px] text-white">
+      <p className="my-[31px] mx-auto font-normal text-[16px] text-white">
         <span className="text-coralRed">충전</span> 완료
       </p>
       <PrimaryButton

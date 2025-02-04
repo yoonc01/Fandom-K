@@ -4,6 +4,14 @@ export const initCredits = (initialCreditValue = 50) => {
   }
 };
 
+export const setCredits = (creditValue) => {
+  if (localStorage.getItem('credits')) {
+    localStorage.setItem('credits', creditValue);
+  } else {
+    initCredits(creditValue);
+  }
+};
+
 export const getCredits = () => {
   return parseInt(localStorage.getItem('credits'), 10) || 0;
 };

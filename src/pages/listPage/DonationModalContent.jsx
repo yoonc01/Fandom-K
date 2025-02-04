@@ -69,7 +69,7 @@ function DonationModalContent({
           <img src={image} className="w-full h-full object-cover" />
         </div>
         <ul className="flex flex-col gap-[2px] m-0">
-          <li className="font-regular text-[12px] text-silverGray">
+          <li className="font-normal text-[12px] text-silverGray">
             {subtitle}
           </li>
           <li className="font-medium text-[16px] text-softWhite">
@@ -80,27 +80,27 @@ function DonationModalContent({
           {detailInfo && (
             <li className="flex flex-col gap-2 bg-[#272F3D] p-[10px] mt-[6px] rounded-lg">
               <ul className="flex flex-col">
-                <li className="font-regular text-[12px] text-silverGray">
+                <li className="font-normal text-[12px] text-silverGray">
                   모인 크레딧
                 </li>
                 <li className="flex items-baseline flex-end gap-1">
-                  <div className="inline-block font-regular text-[14px] text-softWhite">
+                  <div className="inline-block font-normal text-[14px] text-softWhite">
                     {receivedCredit}
                   </div>
-                  <div className="inline-block font-regular text-[10px] text-silverGray">
+                  <div className="inline-block font-normal text-[10px] text-silverGray">
                     크레딧
                   </div>
                 </li>
               </ul>
               <ul className="flex flex-col">
-                <li className="font-regular text-[12px] text-silverGray">
+                <li className="font-normal text-[12px] text-silverGray">
                   남은 일자
                 </li>
                 <li className="flex items-baseline flex-end gap-1">
-                  <div className="inline-block font-regular text-[14px] text-softWhite">
+                  <div className="inline-block font-normal text-[14px] text-softWhite">
                     {remainingDays}
                   </div>
-                  <div className="inline-block font-regular text-[10px] text-silverGray">
+                  <div className="inline-block font-normal text-[10px] text-silverGray">
                     일
                   </div>
                 </li>

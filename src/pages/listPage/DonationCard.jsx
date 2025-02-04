@@ -58,7 +58,7 @@ function DonationCard({ item, onDonationClick }) {
         <ul className="flex flex-col gap-[20px] tablet:gap-[24px]">
           <li className="flex flex-col gap-[2px] tablet:gap-[4px]">
             {/* 후원 부제목 */}
-            <div className="text-[12px] tablet:text-[16px] font-regular text-silverGray">
+            <div className="text-[12px] tablet:text-[16px] font-normal text-silverGray">
               {subtitle}
             </div>
             {/* 후원 제목 */}
@@ -72,12 +72,12 @@ function DonationCard({ item, onDonationClick }) {
               {/* 현재 후원된 크레딧 개수 */}
               <div className="flex justify-center gap-[3px]">
                 <img src={creditIcon} alt="credit" className="w-[12px]" />
-                <div className="font-regular text-[12px] text-coralRed">
+                <div className="font-normal text-[12px] text-coralRed">
                   {receivedCredit}
                 </div>
               </div>
               {/* 남은 후원 일자 */}
-              <div className="font-regular text-[12px] text-softWhite">{`${remainingDays}일 남음`}</div>
+              <div className="font-normal text-[12px] text-softWhite">{`${remainingDays}일 남음`}</div>
             </div>
             {/* 후원 현황 차트 */}
             <div className="w-full h-[1.5px] bg-white">
