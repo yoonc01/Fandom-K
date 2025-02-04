@@ -5,9 +5,9 @@ import prevIcon from '@/assets/icons/prevIcon.svg';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 
 function DonationsList({ onDonationClick }) {
-  const [history, setHistory] = useState([]);
   const [items, setItems] = useState([]);
   const [cursor, setCursor] = useState(0);
+  const [cursorArr, setCursorArr] = useState([0]);
   const [isLoading, setIsLoading] = useState(false);
   const [isPC, setIsPC] = useState(window.innerWidth >= 1200);
   const observerRef = useRef(null);
@@ -38,22 +38,8 @@ function DonationsList({ onDonationClick }) {
 
       const { list, nextCursor } = data;
 
-      // PC의 경우, 이전 페이지 데이터(history)를 저장
-      // 이전 페이지로 이동할 때는 새로 API 요청을 보내는 대신 저장된 데이터를 사용
-      if (isPC) {
-        setHistory((prevHistory) => {
-          const newHistory = [...prevHistory, { cursor, items }];
-          setItems(list);
-
-          return newHistory;
-        });
-      }
-
       // PC가 아닌 경우, 무한 스크롤을 고려해서 새로 받은 데이터를 기존 데이터에 추가
-      if (!isPC) {
-        setItems((prev) => [...prev, ...list]);
-      }
-
+      setItems((prev) => (isPC ? list : [...prev, ...list]));
       setCursor(nextCursor);
     } finally {
       setIsLoading(false);
@@ -61,23 +47,20 @@ function DonationsList({ onDonationClick }) {
   };
 
   const handleLoadPrev = () => {
-    // 현재 페이지 데이터 삭제 후 이전 페이지 데이터 가져오기
-    if (history.length > 1) {
-      const prevPage = history.pop();
-      setHistory([...history]);
-      setItems(prevPage.items);
-      setCursor(prevPage.cursor);
-    }
+    handleLoad({ cursor: cursorArr[cursorArr.length - 2] });
+    cursorArr.pop();
+    setCursorArr(cursorArr);
   };
 
   const handleLoadNext = () => {
+    setCursorArr((prev) => [...prev, cursor]);
     handleLoad({ cursor });
   };
 
   // 화면 크기가 PC에서 Tablet, Tablet에서 PC로 변했을 때 가장 처음의 데이터들 보여주기
   useEffect(() => {
     setItems([]);
-    setHistory([]);
+    setCursorArr([0]);
     handleLoad({ cursor: 0 });
   }, [isPC]);
 
@@ -112,7 +95,7 @@ function DonationsList({ onDonationClick }) {
               <button
                 type="button"
                 onClick={handleLoadPrev}
-                disabled={history.length <= 1} // 이전 데이터가 없으면 이전 버튼 비활성화
+                disabled={cursorArr.length <= 1} // 이전 데이터가 없으면 이전 버튼 비활성화
                 className="bg-deepCharcoal opacity-80 text-white pt-[28.5px] pb-[30px] px-[15px] rounded-lg shrink-0 hover:opacity-70 disabled:opacity-50"
               >
                 <img src={prevIcon} alt="이전" />
