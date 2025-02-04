@@ -8,9 +8,9 @@ import CreditRechargeSuccess from '@/pages/listPage/CreditRechargeSuccess';
 import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/pages/listPage/DonationModalContent';
-import MonthlyChart from '@/pages/listPage/MonthlyChart';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import DonationSuccess from './DonationSuccess';
+import MonthlyChartSection from './MonthlyChartSection';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,7 +69,7 @@ function ListPage() {
         credits={credits}
       />
       <DonationsList onDonationClick={(item) => openModal('donation', item)} />
-      <MonthlyChart />
+      <MonthlyChartSection />
 
       {isModalOpen && (
         <Modal title={modalTitle} onClose={closeModal}>
