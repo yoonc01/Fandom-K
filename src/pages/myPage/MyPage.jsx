@@ -108,61 +108,45 @@ const MyPage = () => {
           <h1 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-bold self-start">
             내가 관심있는 아이돌
           </h1>
-          {/* ✅ 가로 스크롤바 적용 (중복 제거) */}
-          <div className="w-full overflow-x-auto custom-scrollbar">
-            <div className="flex gap-3 mt-4 mx-auto min-h-[150px]">
-              {favoriteIdolsArr.map((idol) => (
-                <CheckedIdolCard
-                  key={idol.id}
-                  idol={idol}
-                  isSelectable={false}
-                />
-              ))}
+
+          <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-steelGray">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 mt-4 mx-auto min-h-[150px]">
+              {favoriteIdolsArr.map((idol) => {
+                return (
+                  <CheckedIdolCard
+                    key={idol.id}
+                    idol={idol}
+                    isSelectable={false}
+                  />
+                );
+              })}
             </div>
           </div>
-          <style jsx>
-            {`
-              .custom-scrollbar::-webkit-scrollbar {
-                height: 8px; /* 가로 스크롤바 높이 */
-              }
 
-              .custom-scrollbar::-webkit-scrollbar-track {
-                background: #111; /* 스크롤바 배경 */
-              }
-
-              .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: #333; /* 스크롤바 색상 */
-                border-radius: 10px;
-              }
-
-              .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                background: #888; /* 마우스 오버 시 */
-              }
-            `}
-            /br /br /br
-          </style>
-          {/* ✅ 중복된 스크롤 div 삭제 완료 */}
-          {/* 회색 구분선 */}
+          {/*   회색 구분선 */}
           <div className="relative w-full max-w-[1200px] mt-4 border-t border-gray-900" />
+
           {/* 아이돌 추가하기 섹션 */}
           <h2 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-bold self-start mt-6">
             관심 있는 아이돌을 추가해보세요.
           </h2>
+
+          {/*   버튼이 그리드 크기에 따라 자동으로 좌우 맞춤 */}
           <div className="relative w-full max-w-[1200px] mt-[20px]">
-            {/* 이전 버튼 */}
+            {/* 이전 버튼 (반응형 위치 조정) */}
             <button
               onClick={prevPage}
               disabled={currentPage === 0}
               className="absolute left-[1%] md:left-[-6%] lg:left-[-4%] top-1/2 transform -translate-y-1/2
-                   w-[29px] h-[135px] rounded-[4px] 
-                   bg-[rgba(27,27,27,0.8)] 
-                   hover:bg-[rgba(27,27,27,1)] transition-all 
-                   flex items-center justify-center"
+                       w-[29px] h-[135px] rounded-[4px] 
+                       bg-[rgba(27,27,27,0.8)] 
+                       hover:bg-[rgba(27,27,27,1)] transition-all 
+                       flex items-center justify-center"
             >
               <img src={prevIcon} alt="Previous" className="w-4 h-4" />
             </button>
 
-            {/* ✅ 아이돌 리스트 (중복된 `div` 정리) */}
+            {/*   아이돌 리스트 */}
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 mt-4 mx-auto min-h-[300px]">
               {idols
                 .slice(
@@ -180,19 +164,20 @@ const MyPage = () => {
                 ))}
             </div>
 
-            {/* 다음 버튼 */}
+            {/* 다음 버튼 (반응형 위치 조정) */}
             <button
               onClick={nextPage}
               disabled={(currentPage + 1) * itemsPerPage >= idols.length}
               className="absolute right-[1%] md:right-[-6%] lg:right-[-4%] top-1/2 transform -translate-y-1/2
-                   w-[29px] h-[135px] rounded-[4px] 
-                   bg-[rgba(27,27,27,0.8)] 
-                   hover:bg-[rgba(27,27,27,1)] transition-all 
-                   flex items-center justify-center"
+                       w-[29px] h-[135px] rounded-[4px] 
+                       bg-[rgba(27,27,27,0.8)] 
+                       hover:bg-[rgba(27,27,27,1)] transition-all 
+                       flex items-center justify-center"
             >
               <img src={nextIcon} alt="Next" className="w-4 h-4" />
             </button>
           </div>
+
           {/*   추가하기 버튼 중앙 정렬 */}
           <div className="flex justify-center w-full">
             <PrimaryButton
