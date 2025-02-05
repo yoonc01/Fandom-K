@@ -1,4 +1,5 @@
-import MonthlyChartItem from '@/pages/monthlyChart/MonthlyChartItem';
+import { useEffect } from 'react';
+import MonthlyChartItem from './MonthlyChartItem';
 
 const MonthlyChartList = ({ idols }) => {
   if (!idols.length === 0) {
