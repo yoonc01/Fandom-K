@@ -38,25 +38,25 @@ figma의 font를 정리하여 tailwind에 저장해 놓았습니다.
 
 아래는 프로젝트에서 사용되는 폰트 스타일과 Tailwind CSS 클래스 사용법입니다.
 
-| 폰트 스타일                                                                 | Tailwind CSS 클래스                                                          |
-| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **Pretendard / Bold / 26px**                                                | `font-pretendard text-[26px] font-bold`                                      |
-| **Pretendard / Bold / 20px / Line height 26px**                             | `font-pretendard text-[20px] font-bold leading-[26px]`                       |
-| **Pretendard / Bold / 20px**                                                | `font-pretendard text-[20px] font-bold`                                      |
-| **Pretendard / Semi-bold / 18px**                                           | `font-pretendard text-[18px] font-semiBold`                                  |
-| **Pretendard / Medium / 18px**                                              | `font-pretendard text-[18px] font-medium`                                    |
-| **Pretendard / Bold / 16px / Line height 26px**                             | `font-pretendard text-[16px] font-bold leading-[26px]`                       |
-| **Pretendard / Bold / 16px / Line height 26px / Letter spacing 5%**         | `font-pretendard text-[16px] font-bold leading-[26px] tracking-[0.05em]`     |
-| **Pretendard / Medium / 16px**                                              | `font-pretendard text-[16px] font-medium`                                    |
-| **Pretendard / Regular / 16px**                                             | `font-pretendard text-[16px] font-regular`                                   |
-| **Pretendard / Regular / 16px / Line height 18px / Letter spacing -0.17px** | `font-pretendard text-[16px] font-regular leading-[18px] tracking-[-0.17px]` |
-| **Pretendard / Bold / 15px / Line height 26px**                             | `font-pretendard text-[15px] font-bold leading-[26px]`                       |
-| **Pretendard / Bold / 14px / Line height 26px**                             | `font-pretendard text-[14px] font-bold leading-[26px]`                       |
-| **Pretendard / Regular / 14px**                                             | `font-pretendard text-[14px] font-regular`                                   |
-| **Pretendard / Medium / 13px / Line height 26px / Letter spacing 2%**       | `font-pretendard text-[13px] font-medium leading-[26px] tracking-[0.02em]`   |
-| **Pretendard / Bold / 13px / Line height 26px / Letter spacing 2%**         | `font-pretendard text-[13px] font-bold leading-[26px] tracking-[0.02em]`     |
-| **Pretendard / Medium / 12px**                                              | `font-pretendard text-[12px] font-medium`                                    |
-| **Pretendard / Medium / 12px / Line height 18px / Letter spacing -0.17px**  | `font-pretendard text-[12px] font-medium leading-[18px] tracking-[-0.17px]`  |
+| 폰트 스타일                                                                 | Tailwind CSS 클래스                                                         |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Pretendard / Bold / 26px**                                                | `font-pretendard text-[26px] font-bold`                                     |
+| **Pretendard / Bold / 20px / Line height 26px**                             | `font-pretendard text-[20px] font-bold leading-[26px]`                      |
+| **Pretendard / Bold / 20px**                                                | `font-pretendard text-[20px] font-bold`                                     |
+| **Pretendard / Semi-bold / 18px**                                           | `font-pretendard text-[18px] font-semiBold`                                 |
+| **Pretendard / Medium / 18px**                                              | `font-pretendard text-[18px] font-medium`                                   |
+| **Pretendard / Bold / 16px / Line height 26px**                             | `font-pretendard text-[16px] font-bold leading-[26px]`                      |
+| **Pretendard / Bold / 16px / Line height 26px / Letter spacing 5%**         | `font-pretendard text-[16px] font-bold leading-[26px] tracking-[0.05em]`    |
+| **Pretendard / Medium / 16px**                                              | `font-pretendard text-[16px] font-medium`                                   |
+| **Pretendard / Regular / 16px**                                             | `font-pretendard text-[16px] font-normal`                                   |
+| **Pretendard / Regular / 16px / Line height 18px / Letter spacing -0.17px** | `font-pretendard text-[16px] font-normal leading-[18px] tracking-[-0.17px]` |
+| **Pretendard / Bold / 15px / Line height 26px**                             | `font-pretendard text-[15px] font-bold leading-[26px]`                      |
+| **Pretendard / Bold / 14px / Line height 26px**                             | `font-pretendard text-[14px] font-bold leading-[26px]`                      |
+| **Pretendard / Regular / 14px**                                             | `font-pretendard text-[14px] font-normal`                                   |
+| **Pretendard / Medium / 13px / Line height 26px / Letter spacing 2%**       | `font-pretendard text-[13px] font-medium leading-[26px] tracking-[0.02em]`  |
+| **Pretendard / Bold / 13px / Line height 26px / Letter spacing 2%**         | `font-pretendard text-[13px] font-bold leading-[26px] tracking-[0.02em]`    |
+| **Pretendard / Medium / 12px**                                              | `font-pretendard text-[12px] font-medium`                                   |
+| **Pretendard / Medium / 12px / Line height 18px / Letter spacing -0.17px**  | `font-pretendard text-[12px] font-medium leading-[18px] tracking-[-0.17px]` |
 
 ---
 
@@ -68,7 +68,7 @@ figma의 font를 정리하여 tailwind에 저장해 놓았습니다.
   - `font-bold`: 굵기 700
   - `font-semiBold`: 굵기 600
   - `font-medium`: 굵기 500
-  - `font-regular`: 굵기 400
+  - `font-normal`: 굵기 400
 - **`leading-{크기}`**: 줄 간격(Line height)을 설정합니다.
 - **`tracking-{값}`**: 자간(Letter spacing)을 설정합니다.
 

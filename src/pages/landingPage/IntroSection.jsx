@@ -2,18 +2,18 @@ import fandomKLogo from '@/assets/icons/fandomKLogo.svg';
 import idolImage from '@/assets/images/introSectionIdolImage.webp';
 import PrimaryButton from '@/components/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
-import { initCredits } from '@/utils/creditStorage.js';
+import { setCredits } from '@/utils/creditStorage.js';
 
 function IntroSection() {
   const navigate = useNavigate();
 
-  const handleClick = (doInitCredits) => {
-    if (doInitCredits) initCredits();
+  const handleClick = (doSetCredits) => {
+    if (doSetCredits) setCredits(50);
     navigate('/list');
   };
 
   return (
-    <div className="py-[120px] relative flex flex-col items-center w-full min-h-screen">
+    <div className="py-[120px] relative flex flex-col items-center w-full">
       <h1 className="z-10 text-center text-[26px] font-bold">
         내가 좋아하는 아이돌을 <br />
         가장 <span className="text-coralRed">쉽게 덕질</span> 하는 방법

@@ -23,8 +23,8 @@ function DonationModalContent({
     setDetailInfo(!detailInfo);
   };
 
-  const handleCreditChange = (e) => {
-    setInputCredit(e.target.value);
+  const handleCreditChange = (event) => {
+    setInputCredit(event.target.value);
   };
 
   const handleDonation = async () => {
@@ -36,10 +36,9 @@ function DonationModalContent({
         spendCredits(credit);
         onDonationSuccess(getCredits());
         setModalStep('donationSuccess');
-      } else {
-        console.error('후원 요청 실패:', res);
-        alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
       }
+    } catch (error) {
+      alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
     } finally {
       setIsLoading(false);
     }
@@ -69,7 +68,7 @@ function DonationModalContent({
           <img src={image} className="w-full h-full object-cover" />
         </div>
         <ul className="flex flex-col gap-[2px] m-0">
-          <li className="font-regular text-[12px] text-silverGray">
+          <li className="font-normal text-[12px] text-silverGray">
             {subtitle}
           </li>
           <li className="font-medium text-[16px] text-softWhite">
@@ -80,27 +79,27 @@ function DonationModalContent({
           {detailInfo && (
             <li className="flex flex-col gap-2 bg-[#272F3D] p-[10px] mt-[6px] rounded-lg">
               <ul className="flex flex-col">
-                <li className="font-regular text-[12px] text-silverGray">
+                <li className="font-normal text-[12px] text-silverGray">
                   모인 크레딧
                 </li>
                 <li className="flex items-baseline flex-end gap-1">
-                  <div className="inline-block font-regular text-[14px] text-softWhite">
+                  <div className="inline-block font-normal text-[14px] text-softWhite">
                     {receivedCredit}
                   </div>
-                  <div className="inline-block font-regular text-[10px] text-silverGray">
+                  <div className="inline-block font-normal text-[10px] text-silverGray">
                     크레딧
                   </div>
                 </li>
               </ul>
               <ul className="flex flex-col">
-                <li className="font-regular text-[12px] text-silverGray">
+                <li className="font-normal text-[12px] text-silverGray">
                   남은 일자
                 </li>
                 <li className="flex items-baseline flex-end gap-1">
-                  <div className="inline-block font-regular text-[14px] text-softWhite">
+                  <div className="inline-block font-normal text-[14px] text-softWhite">
                     {remainingDays}
                   </div>
-                  <div className="inline-block font-regular text-[10px] text-silverGray">
+                  <div className="inline-block font-normal text-[10px] text-silverGray">
                     일
                   </div>
                 </li>
