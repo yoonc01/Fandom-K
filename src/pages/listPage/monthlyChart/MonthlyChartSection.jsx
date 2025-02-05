@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import chartLogo from '@/assets/icons/chartLogo.svg';
 import { getLists } from '@/apis/idolListApi';
 import PrimaryButton from '@/components/PrimaryButton';
-import MonthlyChartList from './MonthlyChartList';
+import MonthlyChartList from '@/pages/listPage/monthlyChart/MonthlyChartList';
 
 const MonthlyChartSection = () => {
   const [gender, setGender] = useState('female');
