@@ -135,7 +135,7 @@ const MyPage = () => {
           <button
             onClick={prevPage}
             disabled={currentPage === 0}
-            className="absolute left-[1%] tablet:left-[-6%] lg:left-[-4%] top-1/2 transform -translate-y-1/2
+            className="absolute left-[1%] tablet:left-[-6%] pc:left-[-4%] top-1/2 transform -translate-y-1/2
                        w-[29px] h-[135px] rounded-[4px] 
                        bg-[rgba(27,27,27,0.8)] 
                        hover:bg-[rgba(27,27,27,1)] transition-all 
@@ -156,7 +156,7 @@ const MyPage = () => {
             <img src={nextIcon} alt="Next" className="w-4 h-4" />
           </button>
           {/* 아이돌 리스트 */}
-          <div className="grid grid-cols-3 tablet:grid-cols-4 lg:grid-cols-8 gap-3 mt-4 mx-auto min-h-[300px]">
+          <div className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3 mt-4 mx-auto min-h-[300px]">
             {idols
               .slice(
                 currentPage * itemsPerPage,

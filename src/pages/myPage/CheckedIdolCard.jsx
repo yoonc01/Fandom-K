@@ -5,7 +5,7 @@ const CheckedIdolCard = ({
   idol,
   isSelectable = true,
   isSelected = false,
-  sizeClass = 'w-[98px] h-[98px] md:w-[128px] md:h-[128px]',
+  sizeClass = 'w-[98px] h-[98px] tablet:w-[128px] tablet:h-[128px]',
 }) => {
   const defaultImage = 'https://link24.kr/9iFIhh0';
   const storageKey = 'favoriteIdols';
@@ -64,7 +64,7 @@ const CheckedIdolCard = ({
       </div>
 
       <div className="mt-1 text-center">
-        <p className="text-white text-sm font-bold">{idol.name}</p>
+        <p className="text-white text-mobile font-bold">{idol.name}</p>
         <p className="text-white/70 text-xs">{idol.group || '그룹 없음'}</p>
       </div>
     </div>
