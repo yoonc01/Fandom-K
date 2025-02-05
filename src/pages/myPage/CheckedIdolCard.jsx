@@ -45,7 +45,7 @@ const CheckedIdolCard = ({
                     ${isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`}
         onClick={isSelectable ? toggleFavorite : undefined}
       >
-        <div className="absolute inset-0 rounded-full border-[1.3px] border-[#F96E68] border-opacity-100 z-10"></div>
+        <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed border-opacity-100 z-10"></div>
 
         <div className="absolute inset-0 m-1.5 over rounded-full overflow-hidden">
           <img
@@ -57,7 +57,7 @@ const CheckedIdolCard = ({
 
         {localIsSelected && isSelectable && (
           <>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F96E68] to-[#FE578F] opacity-50 z-20" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-coralRed to-pinkPunch opacity-50 z-20" />
             <img
               src={checkIcon}
               alt="check"

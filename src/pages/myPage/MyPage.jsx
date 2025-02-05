@@ -91,7 +91,7 @@ const MyPage = () => {
       <style>
         {`
           html, body {
-            background-color: #02000E; /* 브라우저 전체 배경 */
+            background-color:midnightBlack; /* 브라우저 전체 배경 */
             margin: 0;
             padding: 0;
             width: 100%;
@@ -100,7 +100,7 @@ const MyPage = () => {
           }
         `}
       </style>
-      <div className="w-full min-h-screen bg-[#02000E] flex flex-col items-center font-pretendard">
+      <div className="w-full min-h-screen bg-midnightBlack flex flex-col items-center font-pretendard">
         <Header />
 
         {/* 관심있는 아이돌 섹션 */}
