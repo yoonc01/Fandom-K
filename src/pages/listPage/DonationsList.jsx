@@ -99,7 +99,7 @@ function DonationsList({ onDonationClick }) {
             {/* 데이터 리스트 */}
             <div className="w-full pc:max-w-[1200px] ">
               {isError ? (
-                <div className="w-full h-[300.5px] tablet:h-[407.5px] flex justify-center items-center bg-[#272F3D] rounded-lg">
+                <div className="w-full h-[300.5px] tablet:h-[407.5px] flex justify-center items-center bg-[#272F3D] opacity-80 rounded-lg">
                   <div className="text-center font-normal text-[12px] tablet:text-[16px] pc:text-[20px]">
                     데이터를 불러오는 중 오류가 발생했습니다.
                     <br />
