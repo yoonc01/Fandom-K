@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 import Header from '@/components/Header';
-import CreditSection from '@/pages/listPage/CreditSection';
+import CreditSection from '@/pages/listPage/credit/CreditSection';
 import { getCredits } from '@/utils/creditStorage';
 import RechargeModalContent from '@/components/modalContent/RechargeModalContent';
-import CreditRechargeSuccess from '@/pages/listPage/CreditRechargeSuccess';
+import CreditRechargeSuccess from '@/pages/listPage/credit/CreditRechargeSuccess';
 import CreditShortageModalContent from '@/components/modalContent/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/DonationsList';
 import DonationModalContent from '@/components/modalContent/DonationModalContent';
