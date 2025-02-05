@@ -10,7 +10,7 @@ import DonationsList from '@/pages/listPage/donation/DonationsList';
 import DonationModalContent from '@/components/modalContent/DonationModalContent';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import DonationSuccess from '@/pages/listPage/donation/DonationSuccess';
-import MonthlyChartSection from './MonthlyChartSection';
+import MonthlyChartSection from '@/pages/listPage/monthlyChart/MonthlyChartSection';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
