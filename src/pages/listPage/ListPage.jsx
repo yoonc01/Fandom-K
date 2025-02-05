@@ -6,10 +6,10 @@ import { getCredits } from '@/utils/creditStorage';
 import RechargeModalContent from '@/components/modalContent/RechargeModalContent';
 import CreditRechargeSuccess from '@/pages/listPage/credit/CreditRechargeSuccess';
 import CreditShortageModalContent from '@/components/modalContent/CreditShortageModalContent';
-import DonationsList from '@/pages/listPage/DonationsList';
+import DonationsList from '@/pages/listPage/donation/DonationsList';
 import DonationModalContent from '@/components/modalContent/DonationModalContent';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
-import DonationSuccess from './DonationSuccess';
+import DonationSuccess from '@/pages/listPage/donation/DonationSuccess';
 import MonthlyChartSection from './MonthlyChartSection';
 
 function ListPage() {
