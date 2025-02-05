@@ -1,18 +1,18 @@
 import creditIcon from '@/assets/icons/credit.svg';
 import PrimaryButton from '@/components/PrimaryButton';
 
-function DonationCard({ item, onDonationClick }) {
-  const {
+function DonationCard({
+  item: {
     id,
-    idol,
+    idol: { name, group, profilePicture },
     subtitle,
     title,
     receivedDonations,
     targetDonation,
     deadline,
-  } = item;
-  const { name, group, profilePicture } = idol;
-
+  },
+  onDonationClick,
+}) {
   const currentDonationPercentage = (receivedDonations / targetDonation) * 100;
 
   const receivedCredit = receivedDonations.toLocaleString();
@@ -23,12 +23,12 @@ function DonationCard({ item, onDonationClick }) {
   const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   const modalData = {
-    id: id,
+    id,
     image: profilePicture,
-    subtitle: subtitle,
+    subtitle,
     title: `${group} ${name} 광고`,
-    receivedCredit: receivedCredit,
-    remainingDays: remainingDays,
+    receivedCredit,
+    remainingDays,
   };
 
   return (

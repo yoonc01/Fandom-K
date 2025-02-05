@@ -4,6 +4,8 @@ import DonationCard from '@/pages/listPage/donation/DonationCard';
 import prevIcon from '@/assets/icons/prevIcon.svg';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 
+const MAXIMUL_VIEW_DONATIONS = 4;
+
 function DonationsList({ onDonationClick }) {
   const [items, setItems] = useState([]);
   const [cursor, setCursor] = useState(0);
@@ -112,7 +114,7 @@ function DonationsList({ onDonationClick }) {
               {/* 로딩 중일 시 플레이스홀더 애니메이션 적용 */}
               {isLoading ? (
                 <div className="flex gap-2 tablet:gap-4 pc:gap-6">
-                  {[...Array(4)].map((_, index) => (
+                  {[...Array(MAXIMUL_VIEW_DONATIONS)].map((_, index) => (
                     <div
                       key={index}
                       className="w-[158px] tablet:w-[282px] h-[300.5px] tablet:h-[407.5px] flex-shrink-0 flex-grow-0 bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 opacity-10 animate-pulse rounded-lg"
