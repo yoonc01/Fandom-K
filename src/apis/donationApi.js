@@ -4,16 +4,16 @@ const instance = axios.create({
   baseURL: 'https://fandom-k-api.vercel.app/13-3',
 });
 
+const PAGE_SIZE = 4;
+
 export async function getItems({ cursor = 0 }) {
-  const query = `cursor=${cursor}&pageSize=4`;
+  const query = `cursor=${cursor}&pageSize=${PAGE_SIZE}`;
   try {
     const res = await instance.get(`/donations?${query}`);
-    return { data: res.data, error: null };
+    return { data: res.data };
   } catch (error) {
-    return {
-      data: null,
-      error: error.response || 'Failed to get data',
-    };
+    console.error(error);
+    throw error;
   }
 }
 
@@ -24,6 +24,7 @@ export async function putCredits({ id, credit }) {
     });
     return res;
   } catch (error) {
-    return error.response || 'Failed to put data';
+    console.error(error);
+    throw error;
   }
 }

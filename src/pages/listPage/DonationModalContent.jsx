@@ -23,8 +23,8 @@ function DonationModalContent({
     setDetailInfo(!detailInfo);
   };
 
-  const handleCreditChange = (e) => {
-    setInputCredit(e.target.value);
+  const handleCreditChange = (event) => {
+    setInputCredit(event.target.value);
   };
 
   const handleDonation = async () => {
@@ -36,10 +36,9 @@ function DonationModalContent({
         spendCredits(credit);
         onDonationSuccess(getCredits());
         setModalStep('donationSuccess');
-      } else {
-        console.error('후원 요청 실패:', res);
-        alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
       }
+    } catch (error) {
+      alert('후원 요청을 하는 중 오류가 발생했습니다. 다시 시도해주세요.');
     } finally {
       setIsLoading(false);
     }
