@@ -5,14 +5,11 @@ import { getCredits, spendCredits } from '@/utils/creditStorage';
 import { putCredits } from '@/apis/donationApi';
 
 function DonationModalContent({
-  item,
-  credits,
+  item: { id, image, subtitle, title, receivedCredit, remainingDays },
+  credits: myCredit,
   setModalStep,
   onDonationSuccess,
 }) {
-  const { id, image, subtitle, title, receivedCredit, remainingDays } = item;
-  const myCredit = credits;
-
   const [detailInfo, setDetailInfo] = useState(false);
   const [inputCredit, setInputCredit] = useState('');
   const [invalidCredit, setInvalidCredit] = useState(false);
