@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { getItems } from '@/apis/donationApi';
-import DonationCard from '@/pages/listPage/DonationCard';
+import DonationCard from '@/pages/listPage/donation/DonationCard';
 import prevIcon from '@/assets/icons/prevIcon.svg';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 

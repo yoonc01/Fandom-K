@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 import Header from '@/components/Header';
-import CreditSection from '@/pages/listPage/CreditSection';
+import CreditSection from '@/pages/listPage/credit/CreditSection';
 import { getCredits } from '@/utils/creditStorage';
-import RechargeModalContent from '@/pages/listPage/RechargeModalContent';
-import CreditRechargeSuccess from '@/pages/listPage/CreditRechargeSuccess';
-import CreditShortageModalContent from '@/pages/listPage/CreditShortageModalContent';
-import DonationsList from '@/pages/listPage/DonationsList';
-import DonationModalContent from '@/pages/listPage/DonationModalContent';
+import RechargeModalContent from '@/components/modalContent/RechargeModalContent';
+import CreditRechargeSuccess from '@/components/modalContent/CreditRechargeSuccess';
+import CreditShortageModalContent from '@/components/modalContent/CreditShortageModalContent';
+import DonationsList from '@/pages/listPage/donation/DonationsList';
+import DonationModalContent from '@/components/modalContent/DonationModalContent';
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
-import DonationSuccess from './DonationSuccess';
-import MonthlyChartSection from './MonthlyChartSection';
+import DonationSuccess from '@/components/modalContent/DonationSuccess';
+import MonthlyChartSection from '@/pages/listPage/monthlyChart/MonthlyChartSection';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
