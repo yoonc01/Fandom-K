@@ -42,19 +42,13 @@ function DonationModalContent({
   };
 
   useEffect(() => {
-    if (Number(inputCredit) > myCredit) {
-      setInvalidCredit(true);
-    } else {
-      setInvalidCredit(false);
-    }
+    const isInvalidCredit = Number(inputCredit) > myCredit;
+    setInvalidCredit(isInvalidCredit);
   }, [inputCredit]);
 
   useEffect(() => {
-    if (inputCredit === undefined || inputCredit < 1) {
-      setNullCredit(true);
-    } else {
-      setNullCredit(false);
-    }
+    const isNullCredit = inputCredit === undefined || inputCredit < 1;
+    setNullCredit(isNullCredit);
   }, [inputCredit]);
 
   return (
