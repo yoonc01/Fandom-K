@@ -24,7 +24,8 @@ function DonationModalContent({
     setInputCredit(event.target.value);
   };
 
-  const handleDonation = async () => {
+  const handleDonation = async (event) => {
+    event.preventDefault();
     setIsLoading(true);
     try {
       const credit = Number(inputCredit);
@@ -52,7 +53,10 @@ function DonationModalContent({
   }, [inputCredit]);
 
   return (
-    <div className="w-[295px] pt-[24px] flex flex-col items-center gap-6">
+    <form
+      onSubmit={handleDonation}
+      className="w-[295px] pt-[24px] flex flex-col items-center gap-6"
+    >
       {/* 후원 세부 정보 */}
       <div className="flex flex-col gap-[10px]">
         <div className="w-[158px] h-[206px] overflow-hidden rounded-lg">
@@ -123,11 +127,11 @@ function DonationModalContent({
       <PrimaryButton
         disabled={invalidCredit || nullCredit || isLoading}
         className="w-full h-[42px] rounded-lg font-bold text-[14px] text-white"
-        onClickFunc={handleDonation}
+        type="submit"
       >
         후원하기
       </PrimaryButton>
-    </div>
+    </form>
   );
 }
 
