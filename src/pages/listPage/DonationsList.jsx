@@ -12,15 +12,6 @@ function DonationsList({ onDonationClick }) {
   const [isPC, setIsPC] = useState(window.innerWidth >= 1200);
   const observerRef = useRef(null);
 
-  // 화면 크기에 따라 PC인지 아닌지 구분
-  useEffect(() => {
-    const handleResize = () => {
-      setIsPC(window.innerWidth >= 1200);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const handleLoad = async (query) => {
     setIsLoading(true);
     try {
@@ -47,15 +38,24 @@ function DonationsList({ onDonationClick }) {
   };
 
   const handleLoadPrev = () => {
-    handleLoad({ cursor: cursorArr[cursorArr.length - 2] });
-    cursorArr.pop();
-    setCursorArr(cursorArr);
+    const newCursorArr = cursorArr.slice(0, cursorArr.length - 1);
+    handleLoad({ cursor: newCursorArr[newCursorArr.length - 1] });
+    setCursorArr(newCursorArr);
   };
 
   const handleLoadNext = () => {
     setCursorArr((prev) => [...prev, cursor]);
     handleLoad({ cursor });
   };
+
+  // 화면 크기에 따라 PC인지 아닌지 구분
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPC(window.innerWidth >= 1200);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // 화면 크기가 PC에서 Tablet, Tablet에서 PC로 변했을 때 가장 처음의 데이터들 보여주기
   useEffect(() => {
