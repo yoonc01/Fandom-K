@@ -17,3 +17,13 @@ export async function getLists(gender, cursor = 0, pageSize) {
     throw error;
   }
 }
+
+export async function postVotes() {
+  try {
+    const res = await instance.post('/votes');
+    return res.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

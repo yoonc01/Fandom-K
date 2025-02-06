@@ -11,6 +11,7 @@ import DonationModalContent from '@/components/modalContent/DonationModalContent
 import leftTopGradient from '@/assets/images/leftTopGradient.png';
 import DonationSuccess from '@/components/modalContent/DonationSuccess';
 import MonthlyChartSection from '@/pages/listPage/monthlyChart/MonthlyChartSection';
+import MonthlyChartVoteModal from '../../components/modalContent/MonthlyChartVoteModal';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +19,7 @@ function ListPage() {
   const [credits, setCredits] = useState(getCredits());
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [gender, setGender] = useState('female');
 
   useEffect(() => {
     setCredits(getCredits());
@@ -53,6 +55,7 @@ function ListPage() {
     creditNotEnough: '',
     donation: '후원하기',
     donationSuccess: '',
+    vote: `이달의 ${gender === 'female' ? '여자' : '남자'} 아이돌`,
   }[modalStep];
 
   return (
@@ -69,7 +72,13 @@ function ListPage() {
         credits={credits}
       />
       <DonationsList onDonationClick={(item) => openModal('donation', item)} />
-      <MonthlyChartSection />
+      <MonthlyChartSection
+        onClickVote={() => {
+          openModal('vote');
+        }}
+        gender={gender}
+        setGender={setGender}
+      />
 
       {isModalOpen && (
         <Modal title={modalTitle} onClose={closeModal}>
@@ -102,6 +111,7 @@ function ListPage() {
           {modalStep === 'donationSuccess' && (
             <DonationSuccess onConfirm={closeModal} />
           )}
+          {modalStep === 'vote' && <MonthlyChartVoteModal gender={gender} />}
         </Modal>
       )}
     </div>
