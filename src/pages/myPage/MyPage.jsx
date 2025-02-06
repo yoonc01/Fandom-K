@@ -95,26 +95,27 @@ const MyPage = () => {
           내가 관심있는 아이돌
         </h1>
 
-        <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-steelGray">
-          <div className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3 mt-4 mx-auto min-h-[150px]">
+        <div className="w-full overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <div className=" flex  gap-5 mt-4 mx-auto min-h-[150px]">
             {favoriteIdolsArr.map((idol) => (
               <div key={idol.id} className="relative">
-                {/* 닫기 버튼  */}
-                {/* X 버튼 (항상 테두리 상단에 고정) */}
-                <button
-                  onClick={() => handleRemoveFavorite(idol.id)}
-                  className="absolute -top-2 -right-2 w-6 h-6 z-50 
-                 flex items-center justify-center bg-transparent
-                 transition-opacity"
-                >
-                  <img src={xButton} alt="Remove" className="w-full h-full" />
-                </button>
-
                 <CheckedIdolCard
+                  className="relative"
                   idol={idol}
                   isSelectable={false}
                   sizeClass="w-[100px] h-[100px]"
-                />
+                >
+                  {/* 닫기 버튼  */}
+                  {/* X 버튼 (항상 테두리 상단에 고정) */}
+                  <button
+                    onClick={() => handleRemoveFavorite(idol.id)}
+                    className="absolute top-0 right-0
+                 flex items-center justify-center bg-transparent
+                 transition-opacity z-30 "
+                  >
+                    <img src={xButton} alt="Remove" className="w-full h-full" />
+                  </button>
+                </CheckedIdolCard>
               </div>
             ))}
           </div>

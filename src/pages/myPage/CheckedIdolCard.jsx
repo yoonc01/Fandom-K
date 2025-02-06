@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import checkIcon from '@/assets/images/check.png';
 
 const CheckedIdolCard = ({
+  children,
   idol,
   isSelectable = true,
   isSelected = false,
@@ -35,12 +36,13 @@ const CheckedIdolCard = ({
   };
 
   return (
-    <div className="p-1 flex flex-col items-center">
+    <div className="p-1 flex flex-col items-center relative ">
       <div
         className={`relative ${sizeClass} p-[2px] flex items-center justify-center rounded-full 
-                    ${isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`}
+        ${isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`}
         onClick={isSelectable ? toggleFavorite : undefined}
       >
+        {children}
         <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed z-10"></div>
 
         <div className="absolute inset-0 m-1.5 rounded-full overflow-hidden">
