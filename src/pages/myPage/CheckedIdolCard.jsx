@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import checkIcon from '@/assets/images/check.png';
-import PrimaryButton from '@/components/PrimaryButton';
-import xButton from '@/assets/icons/xButton.svg';
 
 const CheckedIdolCard = ({
+  children,
   idol,
   isSelectable = true,
   isSelected = false,
-  isFavorte = false,
-  onRemove,
+  sizeClass = 'w-[98px] h-[98px] tablet:w-[128px] tablet:h-[128px]',
 }) => {
   const defaultImage = 'https://link24.kr/9iFIhh0';
   const storageKey = 'favoriteIdols';
@@ -38,16 +36,16 @@ const CheckedIdolCard = ({
   };
 
   return (
-    <div className="p-1 flex flex-col items-center">
+    <div className="p-1 flex flex-col items-center relative ">
       <div
-        className={`relative w-[98px] h-[98px] md:w-[128px] md:h-[128px] p-[2px]
-                    flex items-center justify-center rounded-full 
-                    ${isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`}
+        className={`relative ${sizeClass} p-[2px] flex items-center justify-center rounded-full 
+        ${isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`}
         onClick={isSelectable ? toggleFavorite : undefined}
       >
-        <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed border-opacity-100 z-10"></div>
+        {children}
+        <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed z-10"></div>
 
-        <div className="absolute inset-0 m-1.5 over rounded-full overflow-hidden">
+        <div className="absolute inset-0 m-1.5 rounded-full overflow-hidden">
           <img
             src={idol.profilePicture || defaultImage}
             alt={idol.name}
@@ -68,7 +66,7 @@ const CheckedIdolCard = ({
       </div>
 
       <div className="mt-1 text-center">
-        <p className="text-white text-sm font-bold">{idol.name}</p>
+        <p className="text-white text-mobile font-bold">{idol.name}</p>
         <p className="text-white/70 text-xs">{idol.group || '그룹 없음'}</p>
       </div>
     </div>
