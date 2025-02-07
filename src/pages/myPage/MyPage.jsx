@@ -40,7 +40,7 @@ const MyPage = () => {
   useEffect(() => {
     const storedFavorites = localStorage.getItem(storageKey);
     if (storedFavorites) {
-      setFavoriteIdols(storedFavorites.split(',').map(Number)); //  문자열 배열 → 숫자로 변환
+      setFavoriteIdols(storedFavorites.split(',').map(Number));
     }
   }, []);
 
@@ -126,18 +126,50 @@ const MyPage = () => {
           관심 있는 아이돌을 추가해보세요.
         </h2>
 
-        <div className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3 mt-4 mx-auto min-h-[300px]">
-          {idols
-            .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
-            .map((idol) => (
-              <CheckedIdolCard
-                key={idol.id}
-                idol={idol}
-                isSelectable={true}
-                isSelected={selectedIdols.includes(idol.id)}
-                onClick={handleToggle}
-              />
-            ))}
+        {/* 이전 버튼 */}
+        <div className="relative w-full max-w-[1200px] mt-[20px]">
+          <button
+            onClick={prevPage}
+            disabled={currentPage === 0}
+            className="absolute left-[1%] md:left-[-6%] lg:left-[-4%] top-1/2 transform -translate-y-1/2
+                       w-[29px] h-[135px] rounded-[4px] 
+                       bg-[rgba(27,27,27,0.8)] 
+                       hover:bg-[rgba(27,27,27,1)] transition-all 
+                       flex items-center justify-center"
+          >
+            <img src={prevIcon} alt="Previous" className="w-4 h-4" />
+          </button>
+
+          {/*   아이돌 리스트 */}
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 mt-4 mx-auto min-h-[300px]">
+            {idols
+              .slice(
+                currentPage * itemsPerPage,
+                (currentPage + 1) * itemsPerPage
+              )
+              .map((idol) => (
+                <CheckedIdolCard
+                  key={idol.id}
+                  idol={idol}
+                  isSelectable={true}
+                  isSelected={selectedIdols.includes(idol.id)}
+                  onClick={() => handleToggle(idol.id)}
+                />
+              ))}
+          </div>
+
+          {/* 다음 버튼 (반응형 위치 조정) */}
+          <button
+            onClick={nextPage}
+            disabled={(currentPage + 1) * itemsPerPage >= idols.length}
+            className="absolute right-[1%] md:right-[-6%] lg:right-[-4%] top-1/2 transform -translate-y-1/2
+                       w-[29px] h-[135px] rounded-[4px] 
+                       bg-[rgba(27,27,27,0.8)] 
+                       hover:bg-[rgba(27,27,27,1)] transition-all 
+                       flex items-center justify-center"
+          >
+            <img src={nextIcon} alt="Next" className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
