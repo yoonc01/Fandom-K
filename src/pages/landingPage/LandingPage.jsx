@@ -1,8 +1,8 @@
 import IntroSection from '@/pages/landingPage/IntroSection.jsx';
-import leftTopGradient from '@/assets/images/leftTopGradient.png';
-import phoneImage1 from '@/assets/images/mainSectionPhoneImage1.png';
-import phoneImage2 from '@/assets/images/mainSectionPhoneImage2.png';
-import phoneImage3 from '@/assets/images/mainSectionPhoneImage3.png';
+import leftTopGradient from '@/assets/images/leftTopGradient.webp';
+import phoneImage1 from '@/assets/images/mainSectionPhoneImage1.webp';
+import phoneImage2 from '@/assets/images/mainSectionPhoneImage2.webp';
+import phoneImage3 from '@/assets/images/mainSectionPhoneImage3.webp';
 import MainSectionList from '@/pages/landingPage/MainSectionList';
 
 const sections = [

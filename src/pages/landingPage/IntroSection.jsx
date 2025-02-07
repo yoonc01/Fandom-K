@@ -21,7 +21,7 @@ function IntroSection() {
       <img
         src={fandomKLogo}
         alt="FandomKLogo"
-        className="cursor-pointer z-10 mt-[20px] w-[236px] tablet:w-[324px] pc:w-[512px] select-none"
+        className="cursor-pointer z-10 mt-[20px] w-[236px] h-[44px] tablet:w-[324px] tablet:h-[62px] pc:w-[512px] pc:h-[98px] select-none"
         onClick={() => {
           handleClick(false);
         }}
@@ -29,7 +29,7 @@ function IntroSection() {
       <img
         src={idolImage}
         alt="idolImage"
-        className="w-[392px] mt-[20px] h-auto opacity-70 top-[100px] tablet:w-[712px] pc:absolute pc:w-[932px] select-none"
+        className="w-[392px] h-[328px] mt-[20px] h-auto opacity-70 top-[100px] tablet:w-[712px] tablet:w-[596px] pc:absolute pc:w-[932px] pc:h-[780px] select-none"
       />
       <PrimaryButton
         className={

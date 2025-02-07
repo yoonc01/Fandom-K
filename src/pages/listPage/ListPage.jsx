@@ -8,7 +8,7 @@ import CreditRechargeSuccess from '@/components/modalContent/CreditRechargeSucce
 import CreditShortageModalContent from '@/components/modalContent/CreditShortageModalContent';
 import DonationsList from '@/pages/listPage/donation/DonationsList';
 import DonationModalContent from '@/components/modalContent/DonationModalContent';
-import leftTopGradient from '@/assets/images/leftTopGradient.png';
+import leftTopGradient from '@/assets/images/leftTopGradient.webp';
 import DonationSuccess from '@/components/modalContent/DonationSuccess';
 import MonthlyChartSection from '@/pages/listPage/monthlyChart/MonthlyChartSection';
 import MonthlyChartVoteModal from '../../components/modalContent/MonthlyChartVoteModal';

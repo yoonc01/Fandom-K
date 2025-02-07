@@ -28,7 +28,7 @@ function MainSectionList({ headText, semiHeadText, imgData, backgroundImage }) {
         <img
           src={src}
           alt={alt}
-          className="mt-[60px] w-[240px] tablet:w-[200px] pc:w-[320px]"
+          className="mt-[60px] w-[240px] h-[520px] tablet:w-[200px] tablet:h-[432px] pc:w-[320px] pc:h-[692px]"
         />
       </div>
     </div>
