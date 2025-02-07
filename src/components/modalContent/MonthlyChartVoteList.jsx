@@ -1,8 +1,29 @@
+import { useEffect, useState } from 'react';
 import MonthlyChartItem from '@/pages/listPage/monthlyChart/MonthlyChartItem';
 
-const MonthlyChartVoteList = ({ idols, selectedIdol, setSelectedIdol }) => {
+const MonthlyChartVoteList = ({
+  idols,
+  selectedIdol,
+  setSelectedIdol,
+  children,
+}) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className="flex flex-col mt-[24px] mb-[40px]">
+    <div
+      style={{ height: isMobile ? 'calc(100vh - 156px)' : '693px' }}
+      className={`flex flex-col overflow-y-scroll scrollbar-hidden w-full mt-[24px] ${isMobile ? 'mb-[40px]' : 'mb-[400px]'}`}
+    >
       {idols.map((idol, idx) => (
         <div key={idol.id} onClick={() => setSelectedIdol(idol.id)}>
           <MonthlyChartItem idol={idol} rank={idx + 1} layout="vote">
@@ -19,6 +40,7 @@ const MonthlyChartVoteList = ({ idols, selectedIdol, setSelectedIdol }) => {
           <div className="w-full h-[1px] bg-white bg-opacity-10 my-[4px]"></div>
         </div>
       ))}
+      {children}
     </div>
   );
 };
