@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import checkIcon from '@/assets/images/check.png';
 
 const CheckedIdolCard = ({
@@ -7,40 +7,16 @@ const CheckedIdolCard = ({
   isSelectable = true,
   isSelected = false,
   sizeClass = 'w-[98px] h-[98px] tablet:w-[128px] tablet:h-[128px]',
+  onClick,
 }) => {
   const defaultImage = 'https://link24.kr/9iFIhh0';
-  const storageKey = 'favoriteIdols';
-  const [localIsSelected, setLocalIsSelected] = useState(isSelected);
-
-  useEffect(() => {
-    if (isSelectable) {
-      const savedFavorites = localStorage.getItem(storageKey) || '';
-      setLocalIsSelected(savedFavorites.split(',').includes(String(idol.id)));
-    }
-  }, [idol.id, isSelectable]);
-
-  const toggleFavorite = () => {
-    if (!isSelectable) return;
-
-    let savedFavorites = localStorage.getItem(storageKey) || '';
-    let favoriteArray = savedFavorites ? savedFavorites.split(',') : [];
-
-    if (favoriteArray.includes(String(idol.id))) {
-      favoriteArray = favoriteArray.filter((id) => id !== String(idol.id));
-    } else {
-      favoriteArray.push(String(idol.id));
-    }
-
-    localStorage.setItem(storageKey, favoriteArray.join(','));
-    setLocalIsSelected(!localIsSelected);
-  };
 
   return (
-    <div className="p-1 flex flex-col items-center relative ">
+    <div className="p-1 flex flex-col items-center relative">
       <div
         className={`relative ${sizeClass} p-[2px] flex items-center justify-center rounded-full 
         ${isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`}
-        onClick={isSelectable ? toggleFavorite : undefined}
+        onClick={isSelectable ? () => onClick(idol.id) : undefined}
       >
         {children}
         <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed z-10"></div>
@@ -53,7 +29,7 @@ const CheckedIdolCard = ({
           />
         </div>
 
-        {localIsSelected && isSelectable && (
+        {isSelected && isSelectable && (
           <>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-coralRed to-pinkPunch opacity-50 z-20" />
             <img
