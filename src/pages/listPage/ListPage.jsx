@@ -111,7 +111,9 @@ function ListPage() {
           {modalStep === 'donationSuccess' && (
             <DonationSuccess onConfirm={closeModal} />
           )}
-          {modalStep === 'vote' && <MonthlyChartVoteModal gender={gender} />}
+          {modalStep === 'vote' && (
+            <MonthlyChartVoteModal closeModal={closeModal} gender={gender} />
+          )}
         </Modal>
       )}
     </div>

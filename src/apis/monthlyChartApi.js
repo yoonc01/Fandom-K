@@ -18,9 +18,14 @@ export async function getLists(gender, cursor = 0, pageSize) {
   }
 }
 
-export async function postVotes() {
+export async function postVotes(idolId) {
   try {
-    const res = await instance.post('/votes');
+    const loadData = { idolId };
+    const res = await instance.post('/votes', loadData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return res.data;
   } catch (error) {
     console.error(error);

@@ -33,5 +33,6 @@ export const spendCredits = (amount) => {
 
     const newCredits = Math.max(currentCredits - amount, 0);
     localStorage.setItem('credits', newCredits);
+    return 'SUCCESS';
   }
 };
