@@ -85,7 +85,6 @@ function DonationsList({ onDonationClick, credits }) {
   }, [credits]);
 
   useEffect(() => {
-    console.log(prevCreditsRef.current > credits);
     if (prevCreditsRef.current > credits) {
       if (isPC) {
         handleLoad({ cursor: cursorArr[cursorArr.length - 1] });
