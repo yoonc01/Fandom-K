@@ -6,7 +6,7 @@ import nextIcon from '@/assets/icons/nextIcon.svg';
 
 const MAXIMUL_VIEW_DONATIONS = 4;
 
-function DonationsList({ onDonationClick }) {
+function DonationsList({ onDonationClick, credits }) {
   const [items, setItems] = useState([]);
   const [cursor, setCursor] = useState(0);
   const [cursorArr, setCursorArr] = useState([0]);
@@ -14,6 +14,7 @@ function DonationsList({ onDonationClick }) {
   const [isError, setIsError] = useState(false);
   const [isPC, setIsPC] = useState(window.innerWidth >= 1200);
   const observerRef = useRef(null);
+  const prevCreditsRef = useRef(credits);
 
   const handleLoad = async (query) => {
     setIsLoading(true);
@@ -75,6 +76,25 @@ function DonationsList({ onDonationClick }) {
     if (observerRef.current) observer.observe(observerRef.current);
     return () => observer.disconnect();
   }, [cursor, isPC]);
+
+  // 크레딧 값이 감소했을 시 GET Request
+  useEffect(() => {
+    setTimeout(() => {
+      prevCreditsRef.current = credits;
+    }, 0);
+  }, [credits]);
+
+  useEffect(() => {
+    console.log(prevCreditsRef.current > credits);
+    if (prevCreditsRef.current > credits) {
+      if (isPC) {
+        handleLoad({ cursor: cursorArr[cursorArr.length - 1] });
+      } else {
+        setItems([]);
+        handleLoad({ cursor: 0 });
+      }
+    }
+  }, [credits]);
 
   return (
     <div className="flex flex-col gap-4 tablet:gap-6 pc:gap-8 font-pretendard text-softWhite">
