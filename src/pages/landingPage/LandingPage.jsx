@@ -4,6 +4,7 @@ import phoneImage1 from '@/assets/images/mainSectionPhoneImage1.webp';
 import phoneImage2 from '@/assets/images/mainSectionPhoneImage2.webp';
 import phoneImage3 from '@/assets/images/mainSectionPhoneImage3.webp';
 import MainSectionList from '@/pages/landingPage/MainSectionList';
+import { useEffect } from 'react';
 
 const sections = [
   {
@@ -27,6 +28,17 @@ const sections = [
 ];
 
 function LandingPage() {
+  useEffect(() => {
+    const handleRefresh = () => {
+      window.scrollTo(0, 0); // 새로고침 시 페이지 상단으로 이동
+    };
+
+    window.addEventListener('beforeunload', handleRefresh);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleRefresh);
+    };
+  }, []);
   return (
     <div className="bg-midnightBlack text-softWhite font-pretendard min-h-screen">
       <img
