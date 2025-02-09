@@ -71,7 +71,10 @@ function ListPage() {
         onCreditShortageClick={() => openModal('creditNotEnough')}
         credits={credits}
       />
-      <DonationsList onDonationClick={(item) => openModal('donation', item)} />
+      <DonationsList
+        onDonationClick={(item) => openModal('donation', item)}
+        credits={credits}
+      />
       <MonthlyChartSection
         onClickVote={() => {
           openModal('vote');
