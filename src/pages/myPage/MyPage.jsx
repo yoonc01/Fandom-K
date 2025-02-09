@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
-import CheckedIdolCard from '@/pages/myPage/CheckedIdolCard';
+import IdolCard from '@/components/IdolCard';
 import nextIcon from '@/assets/icons/nextIcon.svg';
 import prevIcon from '@/assets/icons/prevIcon.svg';
 import { fetchIdols } from '@/apis/myPageApi.js';
@@ -100,7 +100,7 @@ const MyPage = () => {
 
               return (
                 <div key={idol.id} className="relative cursor-default">
-                  <CheckedIdolCard
+                  <IdolCard
                     idol={idol}
                     isSelectable={false}
                     isDisabled={false}
@@ -111,82 +111,91 @@ const MyPage = () => {
                       className="absolute -top-0 -right-[0] w-7 h-7  z-50 flex items-center justify-center 
                                  bg-transparent transition-opacity cursor-pointer"
                     >
-                      <img src={xButton} alt="Remove" className="w-full h-full" />
+                      <img
+                        src={xButton}
+                        alt="Remove"
+                        className="w-full h-full"
+                      />
                     </button>
-                  </CheckedIdolCard>
+                  </IdolCard>
                 </div>
               );
             })}
           </div>
         </div>
- 
+
         <div className="w-full max-w-[1200px] border-b border-gray-700 my-6"></div>
 
         <h2 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-bold self-start mt-6">
           관심 있는 아이돌을 추가해보세요.
         </h2>
       </div>
- 
-      <div className="relative w-full max-w-[1200px] mt-[10px]"> 
 
-        <button 
-          onClick={prevPage} 
-          disabled={currentPage === 0} 
+      <div className="relative w-full max-w-[1200px] mt-[10px]">
+        <button
+          onClick={prevPage}
+          disabled={currentPage === 0}
           className="absolute left-[1%] tablet:left-[1.5%] pc:left-[-4.5%] top-1/2 transform -translate-y-1/2 
                      bg-[rgba(27,27,27,0.8)] hover:bg-[rgba(27,27,27,1)] transition-all w-[29px] h-[135px] 
                      rounded-[4px] flex items-center justify-center"
         >
-          <img src={prevIcon}
-           alt="Previous"
-           className="w-[6px] h-[12px] object-contain"
-           />
+          <img
+            src={prevIcon}
+            alt="Previous"
+            className="w-[6px] h-[12px] object-contain"
+          />
         </button>
 
         {/*  아이돌 리스트 */}
-        <div className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3.5
-         px-[8px] mt-0 mx-auto  ">
-          {idols.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage).map((idol) => {
-            const isDisabled = favoriteIdols.includes(idol.id);
+        <div
+          className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3.5
+         px-[8px] mt-0 mx-auto  "
+        >
+          {idols
+            .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+            .map((idol) => {
+              const isDisabled = favoriteIdols.includes(idol.id);
 
-            return (
-              <div key={idol.id} className={`relative transition-opacity duration-300 ${isDisabled ? 'opacity-50' : ''}`}>
-                <CheckedIdolCard
-                  idol={idol}
-                  isSelectable={!isDisabled}
-                  isSelected={selectedIdols.includes(idol.id)}
-                  isDisabled={isDisabled}
-                  onClick={(e) => {
-                    if (isDisabled) {
-                      e.preventDefault();
-                      return;
-                    }
-                    handleToggle(idol.id);
-                  }}
-                />
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={idol.id}
+                  className={`relative transition-opacity duration-300 ${isDisabled ? 'opacity-50' : ''}`}
+                >
+                  <IdolCard
+                    idol={idol}
+                    isSelectable={!isDisabled}
+                    isSelected={selectedIdols.includes(idol.id)}
+                    isDisabled={isDisabled}
+                    onClick={(e) => {
+                      if (isDisabled) {
+                        e.preventDefault();
+                        return;
+                      }
+                      handleToggle(idol.id);
+                    }}
+                  />
+                </div>
+              );
+            })}
         </div>
 
-
-        <button 
-  onClick={nextPage} 
-  disabled={(currentPage + 1) * itemsPerPage >= idols.length} 
-  className="absolute right-[1%] tablet:right-[1.5%] pc:right-[-4.5%] top-1/2 transform -translate-y-1/2 
+        <button
+          onClick={nextPage}
+          disabled={(currentPage + 1) * itemsPerPage >= idols.length}
+          className="absolute right-[1%] tablet:right-[1.5%] pc:right-[-4.5%] top-1/2 transform -translate-y-1/2 
              bg-[rgba(27,27,27,0.8)] hover:bg-[rgba(27,27,27,1)] transition-all w-[29px] h-[135px] 
              rounded-[4px] flex items-center justify-center"
->
-  <img 
-    src={nextIcon} 
-    alt="Next" 
-    className="w-[6px] h-[12px] object-contain"  
-  />
-</button>
+        >
+          <img
+            src={nextIcon}
+            alt="Next"
+            className="w-[6px] h-[12px] object-contain"
+          />
+        </button>
       </div>
 
- 
-      <PrimaryButton 
-        onClickFunc={handleAddToFavorites} 
+      <PrimaryButton
+        onClickFunc={handleAddToFavorites}
         className="w-[255px] h-[48px] mt-10 text-white rounded-full font-bold 
                    bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90"
       >

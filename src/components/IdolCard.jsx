@@ -1,39 +1,60 @@
-import React, { useState } from 'react';
+import React from 'react';
 import checkIcon from '@/assets/images/check.png';
 
-const IdolCard = ({ idol }) => {
-  const [isSelected, setIsSelected] = useState(false);
+const IdolCard = ({
+  children,
+  idol,
+  isSelectable = true,
+  isSelected = false,
+  isDisabled = false,
+  sizeClass = 'w-[98px] h-[98px] tablet:w-[128px] tablet:h-[128px]',
+  onClick,
+}) => {
   const defaultImage = 'https://link24.kr/9iFIhh0';
 
-  console.log('IdolCard 받은 데이터:', idol);
-
   return (
-    <div className="bg-midnightBlack p-6 flex justify-center">
+    <div className="p-1 flex flex-col items-center relative">
       <div
-        className="relative w-[98px] h-[98px] flex items-center justify-center rounded-full cursor-pointer transition-all"
-        onClick={() => setIsSelected(!isSelected)}
+        className={`relative ${sizeClass} p-[2px] flex items-center justify-center rounded-full 
+        ${isDisabled ? 'opacity-50 cursor-not-allowed' : isSelectable ? 'cursor-pointer' : 'cursor-default'} transition-all`} // 비활성화된 경우 투명도 50%
+        onClick={
+          !isDisabled && isSelectable ? () => onClick(idol.id) : undefined
+        } //  비활성화된 경우 클릭 방지
       >
-        <div className="absolute inset-0 rounded-full border-[3px] border-red-400 transition-all"></div>
+        {children}
+        <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed z-10"></div>
 
-        <div className="absolute left-[5px] top-[5px] w-[88px] h-[88px] rounded-full overflow-hidden bg-white">
+        <div className="absolute inset-0 m-1.5 rounded-full overflow-hidden">
           <img
-            src={idol?.profilePicture || defaultImage} // API에서 받은 이미지 적용
-            alt={idol?.name || 'Default Profile'}
-            className="absolute inset-0 w-full h-full object-cover transition-all"
+            src={idol.profilePicture || defaultImage}
+            alt={idol.name}
+            className="w-full h-full object-cover"
           />
         </div>
 
-        {isSelected && (
-          <div className="absolute left-[5px] top-[5px] w-[88px] h-[88px] rounded-full bg-gradient-to-r from-red-400 to-pink-500 opacity-50 transition-all"></div>
-        )}
-
-        {isSelected && (
-          <img
-            src={checkIcon}
-            alt="check"
-            className="absolute w-[45.45%] h-[45.45%] top-[27.5%] left-[27.5%] transition-all"
+        {/*   비활성화된 경우 클릭 차단 & 마우스 금지 커서 적용 */}
+        {isDisabled && (
+          <div
+            className="absolute inset-0 w-full h-full cursor-not-allowed"
+            style={{ cursor: 'not-allowed', pointerEvents: 'auto' }}
           />
         )}
+
+        {isSelected && isSelectable && (
+          <>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-coralRed to-pinkPunch opacity-50 z-20" />
+            <img
+              src={checkIcon}
+              alt="check"
+              className="absolute w-[40%] h-[40%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30"
+            />
+          </>
+        )}
+      </div>
+
+      <div className="mt-1 text-center">
+        <p className="text-white text-mobile font-bold">{idol.name}</p>
+        <p className="text-white/70 text-xs">{idol.group || '그룹 없음'}</p>
       </div>
     </div>
   );
