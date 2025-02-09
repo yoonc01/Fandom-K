@@ -132,7 +132,7 @@ const MyPage = () => {
         <button 
           onClick={prevPage} 
           disabled={currentPage === 0} 
-          className="absolute left-[1%] tablet:left-[-1%] pc:left-[-4.5%] top-1/2 transform -translate-y-1/2 
+          className="absolute left-[1%] tablet:left-[1.5%] pc:left-[-4.5%] top-1/2 transform -translate-y-1/2 
                      bg-[rgba(27,27,27,0.8)] hover:bg-[rgba(27,27,27,1)] transition-all w-[29px] h-[135px] 
                      rounded-[4px] flex items-center justify-center"
         >
@@ -142,7 +142,7 @@ const MyPage = () => {
            />
         </button>
 
-        {/* 🔹 아이돌 리스트 */}
+        {/*  아이돌 리스트 */}
         <div className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3.5
          px-[8px] mt-0 mx-auto  ">
           {idols.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage).map((idol) => {
@@ -172,7 +172,7 @@ const MyPage = () => {
         <button 
   onClick={nextPage} 
   disabled={(currentPage + 1) * itemsPerPage >= idols.length} 
-  className="absolute right-[1%] tablet:right-[-1%] pc:right-[-4.5%] top-1/2 transform -translate-y-1/2 
+  className="absolute right-[1%] tablet:right-[1.5%] pc:right-[-4.5%] top-1/2 transform -translate-y-1/2 
              bg-[rgba(27,27,27,0.8)] hover:bg-[rgba(27,27,27,1)] transition-all w-[29px] h-[135px] 
              rounded-[4px] flex items-center justify-center"
 >
