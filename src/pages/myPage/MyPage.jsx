@@ -21,6 +21,7 @@ const MyPage = () => {
       const width = window.innerWidth;
       if (width >= 1200) setItemsPerPage(16);
       else if (width >= 768) setItemsPerPage(8);
+      else if (width >= 375) setItemsPerPage(6);
       else setItemsPerPage(6);
     };
 
@@ -45,6 +46,7 @@ const MyPage = () => {
   }, []);
 
   const handleToggle = (idolId) => {
+    if (favoriteIdols.includes(idolId)) return;
     setSelectedIdols((prev) =>
       prev.includes(idolId)
         ? prev.filter((id) => id !== idolId)
@@ -54,13 +56,11 @@ const MyPage = () => {
 
   const handleAddToFavorites = () => {
     if (selectedIdols.length === 0) return;
-
     setFavoriteIdols((prev) => {
       const updatedFavorites = [...new Set([...prev, ...selectedIdols])];
       localStorage.setItem(storageKey, updatedFavorites.join(','));
       return updatedFavorites;
     });
-
     setSelectedIdols([]);
   };
 
@@ -87,9 +87,9 @@ const MyPage = () => {
       <Header />
 
       {/* 관심 있는 아이돌 섹션 */}
-      <div className="w-full max-w-[1200px] flex flex-col items-center py-6 mobile:py-10">
-        <h1 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-pretendard font-bold self-start">
-          내가 관심있는 아이돌
+      <div className="w-full max-w-[1200px] flex flex-col items-center py-6 mobile:py-10 px-[24px]">
+        <h1 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-bold self-start">
+          내가 관심 있는 아이돌
         </h1>
 
         <div className="w-full overflow-x-auto whitespace-nowrap scrollbar-hide">
@@ -99,21 +99,19 @@ const MyPage = () => {
               if (!idol) return null;
 
               return (
-                <div key={idol.id} className="relative">
+                <div key={idol.id} className="relative cursor-default">
                   <CheckedIdolCard
                     idol={idol}
                     isSelectable={false}
+                    isDisabled={false}
                     sizeClass="w-[100px] h-[100px]"
                   >
                     <button
                       onClick={() => handleRemoveFavorite(idol.id)}
-                      className="absolute -top-2 -right-2 w-6 h-6 z-50 flex items-center justify-center bg-transparent transition-opacity"
+                      className="absolute -top-0 -right-[0] w-7 h-7  z-50 flex items-center justify-center 
+                                 bg-transparent transition-opacity cursor-pointer"
                     >
-                      <img
-                        src={xButton}
-                        alt="Remove"
-                        className="w-full h-full"
-                      />
+                      <img src={xButton} alt="Remove" className="w-full h-full" />
                     </button>
                   </CheckedIdolCard>
                 </div>
@@ -121,61 +119,76 @@ const MyPage = () => {
             })}
           </div>
         </div>
+ 
+        <div className="w-full max-w-[1200px] border-b border-gray-700 my-6"></div>
 
-        <h2 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-pretendard font-bold self-start mt-6">
+        <h2 className="text-white text-[16px] tablet:text-[20px] pc:text-[24px] font-bold self-start mt-6">
           관심 있는 아이돌을 추가해보세요.
         </h2>
+      </div>
+ 
+      <div className="relative w-full max-w-[1200px] mt-[10px]"> 
 
-        {/* 이전 버튼 */}
-        <div className="relative w-full max-w-[1200px] mt-[20px]">
-          <button
-            onClick={prevPage}
-            disabled={currentPage === 0}
-            className="absolute left-[1%] md:left-[-6%] lg:left-[-4%] top-1/2 transform -translate-y-1/2
-                       w-[29px] h-[135px] rounded-[4px] 
-                       bg-[rgba(27,27,27,0.8)] 
-                       hover:bg-[rgba(27,27,27,1)] transition-all 
-                       flex items-center justify-center"
-          >
-            <img src={prevIcon} alt="Previous" className="w-4 h-4" />
-          </button>
+        <button 
+          onClick={prevPage} 
+          disabled={currentPage === 0} 
+          className="absolute left-[1%] tablet:left-[1.5%] pc:left-[-4.5%] top-1/2 transform -translate-y-1/2 
+                     bg-[rgba(27,27,27,0.8)] hover:bg-[rgba(27,27,27,1)] transition-all w-[29px] h-[135px] 
+                     rounded-[4px] flex items-center justify-center"
+        >
+          <img src={prevIcon}
+           alt="Previous"
+           className="w-[6px] h-[12px] object-contain"
+           />
+        </button>
 
-          {/*   아이돌 리스트 */}
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 mt-4 mx-auto min-h-[300px]">
-            {idols
-              .slice(
-                currentPage * itemsPerPage,
-                (currentPage + 1) * itemsPerPage
-              )
-              .map((idol) => (
+        {/*  아이돌 리스트 */}
+        <div className="grid grid-cols-3 tablet:grid-cols-4 pc:grid-cols-8 gap-3.5
+         px-[8px] mt-0 mx-auto  ">
+          {idols.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage).map((idol) => {
+            const isDisabled = favoriteIdols.includes(idol.id);
+
+            return (
+              <div key={idol.id} className={`relative transition-opacity duration-300 ${isDisabled ? 'opacity-50' : ''}`}>
                 <CheckedIdolCard
-                  key={idol.id}
                   idol={idol}
-                  isSelectable={true}
+                  isSelectable={!isDisabled}
                   isSelected={selectedIdols.includes(idol.id)}
-                  onClick={() => handleToggle(idol.id)}
+                  isDisabled={isDisabled}
+                  onClick={(e) => {
+                    if (isDisabled) {
+                      e.preventDefault();
+                      return;
+                    }
+                    handleToggle(idol.id);
+                  }}
                 />
-              ))}
-          </div>
-
-          {/* 다음 버튼 (반응형 위치 조정) */}
-          <button
-            onClick={nextPage}
-            disabled={(currentPage + 1) * itemsPerPage >= idols.length}
-            className="absolute right-[1%] md:right-[-6%] lg:right-[-4%] top-1/2 transform -translate-y-1/2
-                       w-[29px] h-[135px] rounded-[4px] 
-                       bg-[rgba(27,27,27,0.8)] 
-                       hover:bg-[rgba(27,27,27,1)] transition-all 
-                       flex items-center justify-center"
-          >
-            <img src={nextIcon} alt="Next" className="w-4 h-4" />
-          </button>
+              </div>
+            );
+          })}
         </div>
+
+
+        <button 
+  onClick={nextPage} 
+  disabled={(currentPage + 1) * itemsPerPage >= idols.length} 
+  className="absolute right-[1%] tablet:right-[1.5%] pc:right-[-4.5%] top-1/2 transform -translate-y-1/2 
+             bg-[rgba(27,27,27,0.8)] hover:bg-[rgba(27,27,27,1)] transition-all w-[29px] h-[135px] 
+             rounded-[4px] flex items-center justify-center"
+>
+  <img 
+    src={nextIcon} 
+    alt="Next" 
+    className="w-[6px] h-[12px] object-contain"  
+  />
+</button>
       </div>
 
-      <PrimaryButton
-        onClickFunc={handleAddToFavorites}
-        className="w-[255px] h-[48px] mt-10 text-white rounded-full font-pretendard font-bold text-[16px]"
+ 
+      <PrimaryButton 
+        onClickFunc={handleAddToFavorites} 
+        className="w-[255px] h-[48px] mt-10 text-white rounded-full font-bold 
+                   bg-gradient-to-r from-pink-500 to-red-500 hover:opacity-90"
       >
         + 추가하기
       </PrimaryButton>
