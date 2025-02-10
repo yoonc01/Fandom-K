@@ -1,8 +1,4 @@
-export default function CreditSection({
-  onRechargeClick,
-  onCreditShortageClick,
-  credits,
-}) {
+export default function CreditSection({ onRechargeClick, credits }) {
   return (
     <div className="h-[87px] mx-auto pl-[70px] pr-[78px] bg-midnightBlack border border-[#F1EEF9]/80 rounded-lg flex items-center justify-between w-full max-w-[1200px] min-w-[327px] pc:h-[131px] tablet:h-[131px] mt-[16px] mb-[40px] tablet:mt-[0] tablet:mb-[64px] pc:my-[50px]">
       <div className="flex flex-col items-start">
@@ -22,12 +18,6 @@ export default function CreditSection({
           onClick={onRechargeClick}
         >
           충전하기
-        </p>
-        <p
-          className="mt-[50px] text-white absolute cursor-pointer"
-          onClick={onCreditShortageClick}
-        >
-          크레딧 부족
         </p>
       </div>
     </div>
