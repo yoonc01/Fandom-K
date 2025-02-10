@@ -9,6 +9,7 @@ const IdolCard = ({
   isDisabled = false,
   sizeClass = 'w-[98px] h-[98px] tablet:w-[128px] tablet:h-[128px]',
   onClick,
+  isMyPage = true,
 }) => {
   const defaultImage = 'https://link24.kr/9iFIhh0';
 
@@ -22,7 +23,7 @@ const IdolCard = ({
         } //  비활성화된 경우 클릭 방지
       >
         {children}
-        <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed z-10"></div>
+        <div className="absolute inset-0 rounded-full border-[1.3px] border-coralRed"></div>
 
         <div className="absolute inset-0 m-1.5 rounded-full overflow-hidden">
           <img
@@ -42,15 +43,21 @@ const IdolCard = ({
 
         {isSelected && isSelectable && (
           <>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-coralRed to-pinkPunch opacity-50 z-20" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-coralRed to-pinkPunch opacity-50" />
             <img
               src={checkIcon}
               alt="check"
-              className="absolute w-[40%] h-[40%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30"
+              className="absolute w-[40%] h-[40%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             />
           </>
         )}
       </div>
+      {isMyPage && (
+        <div className="mt-1 text-center">
+          <p className="text-white text-mobile font-bold">{idol.name}</p>
+          <p className="text-white/70 text-xs">{idol.group || '그룹 없음'}</p>
+        </div>
+      )}
     </div>
   );
 };

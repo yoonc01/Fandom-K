@@ -4,7 +4,7 @@ import exitArrow from '@/assets/icons/exitArrow.svg';
 import { useEffect, useState } from 'react';
 
 function Modal({ title, onClose, children }) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'; // 모달창 열려 있으면 뒤의 배경 스크롤 막기
@@ -14,19 +14,14 @@ function Modal({ title, onClose, children }) {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
-    handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (title.includes('아이돌') && isMobile) {
     return (
-      // z-[9999] : 모달창이 열렸을 때 리스트 페이지에 있는 아이돌 이미지 보더가 같이 보이는 현상 해결을 위해 작성
-      <div className="fixed flex flex-col top-0 left-0 size-full bg-midnightBlack z-[9999]">
+      <div className="fixed flex flex-col top-0 left-0 size-full bg-midnightBlack">
         <img
           src={leftTopGradient}
           alt="leftTopGradient"
@@ -53,7 +48,7 @@ function Modal({ title, onClose, children }) {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-midnightBlack/80 font-pretendard z-[9999]">
+    <div className="fixed top-0 left-0 w-[100%] h-[100%] flex justify-center items-center bg-midnightBlack/80 font-pretendard">
       <div className="relative bg-deepCharcoal p-[20px] rounded-[8px] py-[24px] px-[16px]">
         <img
           src={closeButton}
