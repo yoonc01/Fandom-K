@@ -51,11 +51,6 @@ const IdolCard = ({
           </>
         )}
       </div>
-
-      <div className="mt-1 text-center">
-        <p className="text-white text-mobile font-bold">{idol.name}</p>
-        <p className="text-white/70 text-xs">{idol.group || '그룹 없음'}</p>
-      </div>
     </div>
   );
 };
