@@ -26,7 +26,7 @@ const MonthlyChartItem = ({
             <h4 className="text-coralRed">{rank}</h4>
             <div className="flex justify-between w-max">
               <p className="text-white/[0.87]">
-                {idol.group} {idol.name}
+                {group} {name}
               </p>
             </div>
           </div>
