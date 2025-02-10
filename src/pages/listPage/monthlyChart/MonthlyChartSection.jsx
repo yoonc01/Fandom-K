@@ -4,7 +4,13 @@ import { getLists } from '@/apis/monthlyChartApi';
 import PrimaryButton from '@/components/PrimaryButton';
 import MonthlyChartList from '@/pages/listPage/monthlyChart/MonthlyChartList';
 
-const MonthlyChartSection = ({ onClickVote, gender, setGender }) => {
+const MonthlyChartSection = ({
+  onClickVote,
+  gender,
+  setGender,
+  voteTrigger,
+  setVoteTrigger,
+}) => {
   const [cursor, setCursor] = useState(0);
   const [idolData, setIdolData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,8 +33,10 @@ const MonthlyChartSection = ({ onClickVote, gender, setGender }) => {
 
   const loadIdolData = async () => {
     setLoading(true);
+    console.log('loadIdolData:', gender, voteTrigger, cursor);
+    const cursorValue = voteTrigger ? 0 : cursor;
     try {
-      const response = await getLists(gender, cursor, pageSize);
+      const response = await getLists(gender, cursorValue, pageSize);
       if (cursor !== 0) {
         setIdolData((prev) => [...prev, ...response.idols]);
       } else {
@@ -39,6 +47,7 @@ const MonthlyChartSection = ({ onClickVote, gender, setGender }) => {
       console.error(error);
     } finally {
       setLoading(false);
+      setVoteTrigger(false);
     }
   };
 
@@ -55,6 +64,13 @@ const MonthlyChartSection = ({ onClickVote, gender, setGender }) => {
     setCursor(0);
     loadIdolData();
   }, [gender, pageSize]);
+
+  useEffect(() => {
+    if (voteTrigger) {
+      setIdolData([]);
+      loadIdolData();
+    }
+  }, [voteTrigger]);
 
   useEffect(() => {
     window.addEventListener('resize', updateChartSize);

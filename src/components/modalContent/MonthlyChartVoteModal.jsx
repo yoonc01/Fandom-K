@@ -2,9 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import MonthlyChartVoteList from '@/components/modalContent/MonthlyChartVoteList';
 import { getLists, postVotes } from '@/apis/monthlyChartApi';
 import PrimaryButton from '@/components/PrimaryButton';
-import { spendCredits } from '../../utils/creditStorage';
+import { spendCredits, rechargeCredits } from '@/utils/creditStorage';
 
-const MonthlyChartVoteModal = ({ gender, onClickVoteCredit, closeModal }) => {
+const MonthlyChartVoteModal = ({
+  gender,
+  closeModal,
+  setModalStep,
+  setVoteTrigger,
+}) => {
   const [cursor, setCursor] = useState(0);
   const [idolData, setIdolData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,18 +37,20 @@ const MonthlyChartVoteModal = ({ gender, onClickVoteCredit, closeModal }) => {
   const handleVoteClick = async () => {
     const result = spendCredits(1000);
     if (result === 'NOT-ENOUGH') {
-      alert('앗! 투표하기 위한 크레딧이 부족해요');
-    } else {
-      try {
-        const voteResult = await postVotes(selectedIdol);
-        alert('투표 완료!');
+      setModalStep('creditNotEnough');
+      return;
+    }
 
-        if (onClickVoteCredit) onClickVoteCredit();
-        closeModal();
-      } catch (error) {
-        console.error(error);
-        alert('투표에 실패했습니다. 다시 시도해 주세요.');
-      }
+    try {
+      await postVotes(selectedIdol);
+      alert('투표 완료!');
+      setVoteTrigger((prev) => !prev);
+
+      closeModal();
+    } catch (error) {
+      alert('투표에 실패했습니다. 다시 시도해 주세요.');
+      rechargeCredits(1000);
+      return;
     }
   };
 
@@ -68,7 +75,9 @@ const MonthlyChartVoteModal = ({ gender, onClickVoteCredit, closeModal }) => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) loadIdolData();
+        if (entries[0].isIntersecting) {
+          loadIdolData();
+        }
       },
       { threshold: 0.2 }
     );
@@ -78,25 +87,28 @@ const MonthlyChartVoteModal = ({ gender, onClickVoteCredit, closeModal }) => {
 
   return (
     <div
-      className={`relative overflow-hidden ${isMobile ? 'w-[calc(100%-24px)] h-full' : 'w-[525px] h-[693px]'}`}
+      className={`relative overflow-hidden ${isMobile ? 'W-full h-full' : 'w-[525px] h-[693px]'}`}
     >
       {loading ? (
         <div className="text-center text-white">로딩 중입니다...</div>
       ) : (
-        <MonthlyChartVoteList
-          idols={idolData}
-          selectedIdol={selectedIdol}
-          setSelectedIdol={setSelectedIdol}
+        <div
+          className={`overflow-y-auto ${isMobile ? 'h-[calc(100vh-156px)]' : 'h-[600px]'}`}
         >
-          <div
-            className="w-full h-[40px]"
-            ref={cursor !== null ? observerRef : null}
-          ></div>
-        </MonthlyChartVoteList>
+          <MonthlyChartVoteList
+            idols={idolData}
+            selectedIdol={selectedIdol}
+            setSelectedIdol={setSelectedIdol}
+          >
+            <div
+              className="w-full h-[40px]"
+              ref={cursor !== null ? observerRef : null}
+            ></div>
+          </MonthlyChartVoteList>
+        </div>
       )}
       <div
-        style={{ width: isMobile ? 'calc(100vw - 68px)' : '525px' }}
-        className={`absolute text-white leading-[26px] ${isMobile ? 'bottom-[64px] h-[112px] bg-midnightBlack' : 'bottom-0 h-[72px] bg-deepCharcoal'}`}
+        className={`absolute text-white leading-[26px] ${isMobile ? 'bottom-[64px] w-full h-[112px] bg-midnightBlack' : 'bottom-0 w-[525px] h-[72px] bg-deepCharcoal'}`}
       >
         <PrimaryButton
           onClickFunc={handleVoteClick}

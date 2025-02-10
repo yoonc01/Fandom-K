@@ -11,7 +11,7 @@ import DonationModalContent from '@/components/modalContent/DonationModalContent
 import leftTopGradient from '@/assets/images/leftTopGradient.webp';
 import DonationSuccess from '@/components/modalContent/DonationSuccess';
 import MonthlyChartSection from '@/pages/listPage/monthlyChart/MonthlyChartSection';
-import MonthlyChartVoteModal from '../../components/modalContent/MonthlyChartVoteModal';
+import MonthlyChartVoteModal from '@/components/modalContent/MonthlyChartVoteModal';
 
 function ListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,10 +20,11 @@ function ListPage() {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [gender, setGender] = useState('female');
+  const [voteTrigger, setVoteTrigger] = useState(false);
 
   useEffect(() => {
     setCredits(getCredits());
-  }, []);
+  }, [modalStep]);
 
   const openModal = (step, item = null) => {
     setModalStep(step);
@@ -81,6 +82,8 @@ function ListPage() {
         }}
         gender={gender}
         setGender={setGender}
+        voteTrigger={voteTrigger}
+        setVoteTrigger={setVoteTrigger}
       />
 
       {isModalOpen && (
@@ -115,7 +118,12 @@ function ListPage() {
             <DonationSuccess onConfirm={closeModal} />
           )}
           {modalStep === 'vote' && (
-            <MonthlyChartVoteModal closeModal={closeModal} gender={gender} />
+            <MonthlyChartVoteModal
+              closeModal={closeModal}
+              gender={gender}
+              setModalStep={setModalStep}
+              setVoteTrigger={setVoteTrigger}
+            />
           )}
         </Modal>
       )}
