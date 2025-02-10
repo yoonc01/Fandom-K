@@ -7,7 +7,7 @@ import { fetchIdols } from '@/apis/myPageApi.js';
 import PrimaryButton from '@/components/PrimaryButton';
 import xButton from '@/assets/icons/xButton.svg';
 
-const storageKey = 'favoriteIdols';
+const STORAGEKEY = 'favoriteIdols';
 
 const MyPage = () => {
   const [idols, setIdols] = useState([]);
@@ -39,7 +39,7 @@ const MyPage = () => {
   }, []);
 
   useEffect(() => {
-    const storedFavorites = localStorage.getItem(storageKey);
+    const storedFavorites = localStorage.getItem(STORAGEKEY);
     if (storedFavorites) {
       setFavoriteIdols(storedFavorites.split(',').map(Number));
     }
@@ -58,7 +58,7 @@ const MyPage = () => {
     if (selectedIdols.length === 0) return;
     setFavoriteIdols((prev) => {
       const updatedFavorites = [...new Set([...prev, ...selectedIdols])];
-      localStorage.setItem(storageKey, updatedFavorites.join(','));
+      localStorage.setItem(STORAGEKEY, updatedFavorites.join(','));
       return updatedFavorites;
     });
     setSelectedIdols([]);
@@ -67,7 +67,7 @@ const MyPage = () => {
   const handleRemoveFavorite = (idolId) => {
     setFavoriteIdols((prev) => {
       const updatedFavorites = prev.filter((id) => id !== idolId);
-      localStorage.setItem(storageKey, updatedFavorites.join(','));
+      localStorage.setItem(STORAGEKEY, updatedFavorites.join(','));
       return updatedFavorites;
     });
   };
