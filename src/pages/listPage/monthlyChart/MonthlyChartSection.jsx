@@ -33,7 +33,6 @@ const MonthlyChartSection = ({
 
   const loadIdolData = async () => {
     setLoading(true);
-    console.log('loadIdolData:', gender, voteTrigger, cursor);
     const cursorValue = voteTrigger ? 0 : cursor;
     try {
       const response = await getLists(gender, cursorValue, pageSize);

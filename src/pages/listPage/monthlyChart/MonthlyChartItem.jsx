@@ -15,11 +15,14 @@ const MonthlyChartItem = ({
       {layout === 'default' ? (
         <div className="flex w-full h-[70px] justify-between items-center">
           <div className="flex items-center gap-[12px] font-medium">
-            <IdolCard
-              idol={idol}
-              isSelected={false}
-              sizeClass="w-[70px] h-[70px]"
-            />
+            <div className="pointer-events-none">
+              <IdolCard
+                idol={idol}
+                isSelected={false}
+                isMyPage={false}
+                sizeClass="w-[70px] h-[70px]"
+              />
+            </div>
             <h4 className="text-coralRed">{rank}</h4>
             <div className="flex justify-between w-max">
               <p className="text-white/[0.87]">
@@ -40,6 +43,7 @@ const MonthlyChartItem = ({
                 isSelected={selectedIdol === idol.id}
                 sizeClass="w-[70px] h-[70px]"
                 isSelectable={false}
+                isMyPage={false}
               />
               {selectedIdol === idol.id && (
                 <div className="absolute inset-0 m-1.5 rounded-full overflow-hidden z-10">
